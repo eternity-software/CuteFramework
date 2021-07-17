@@ -2,9 +2,8 @@ package ru.etysoft.cuteframework.requests;
 
 import java.util.Set;
 
-import org.jetbrains.annotations.NotNull;
-import ru.etysoft.cuteframework.api.Methods;
-import ru.etysoft.cuteframework.api.request.Pair;
+import com.sun.istack.internal.NotNull;
+import ru.etysoft.cuteframework.Methods;
 import ru.etysoft.cuteframework.exceptions.ResponseException;
 
 /**
@@ -25,7 +24,7 @@ public class Request {
     /**
      * Transform HashMap to URL-looking Stirng
      * @param params HashMap with request args
-     * @return
+     * @return String
      */
     public static String getArgsAsString(@NotNull Set<Pair> params) {
         String args = "?";
@@ -42,8 +41,7 @@ public class Request {
             i++;
         }
 
-        if(args.equals("?"))
-        {
+        if(args.equals("?")) {
             args = "";
         }
 
@@ -62,7 +60,6 @@ public class Request {
     }
 
     public String processAPI() throws ResponseException {
-
         String response = GET.execute(getFormattedURL());
         System.out.println(method + " >> " + response);
         return response;

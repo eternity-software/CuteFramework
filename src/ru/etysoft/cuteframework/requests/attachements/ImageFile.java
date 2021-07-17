@@ -1,7 +1,8 @@
 package ru.etysoft.cuteframework.requests.attachements;
 
 
-import org.jetbrains.annotations.NotNull;
+import com.sun.istack.internal.NotNull;
+
 import java.io.File;
 
 public class ImageFile extends File {

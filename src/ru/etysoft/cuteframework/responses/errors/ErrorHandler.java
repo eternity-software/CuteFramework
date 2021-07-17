@@ -1,4 +1,4 @@
-package ru.etysoft.cuteframework.api.errors;
+package ru.etysoft.cuteframework.responses.errors;
 
 import org.json.JSONException;
 import ru.etysoft.cuteframework.json.JSONArrayList;

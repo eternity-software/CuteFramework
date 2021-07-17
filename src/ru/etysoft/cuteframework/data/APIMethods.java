@@ -1,4 +1,4 @@
-package ru.etysoft.cuteframework.api.request;
+package ru.etysoft.cuteframework.data;
 
 public class APIMethods {
     public final static String AUTHORIZATION = "account.auth";

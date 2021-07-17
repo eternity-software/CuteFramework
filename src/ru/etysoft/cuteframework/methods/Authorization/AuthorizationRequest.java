@@ -1,10 +1,10 @@
-package ru.etysoft.cuteframework.api.request.methods;
+package ru.etysoft.cuteframework.methods.Authorization;
 
-import ru.etysoft.cuteframework.api.request.APIMethods;
-import ru.etysoft.cuteframework.api.request.Pair;
-import ru.etysoft.cuteframework.api.request.RequestHolder;
-import ru.etysoft.cuteframework.api.response.APIKeys;
-import ru.etysoft.cuteframework.api.response.methods.AuthorizationResponseHandler;
+import ru.etysoft.cuteframework.data.APIMethods;
+import ru.etysoft.cuteframework.requests.Pair;
+import ru.etysoft.cuteframework.requests.RequestHolder;
+import ru.etysoft.cuteframework.data.APIKeys;
+import ru.etysoft.cuteframework.methods.Authorization.AuthorizationResponse;
 import ru.etysoft.cuteframework.exceptions.ResponseException;
 import ru.etysoft.cuteframework.requests.Request;
 
@@ -30,9 +30,9 @@ public class AuthorizationRequest extends RequestHolder {
     }
 
 
-    public AuthorizationResponseHandler execute() throws ResponseException {
+    public AuthorizationResponse execute() throws ResponseException {
         Request request = makeRequest();
-        return new AuthorizationResponseHandler(request.processAPI(), request.getFormattedURL());
+        return new AuthorizationResponse(request.processAPI(), request.getFormattedURL());
     }
 
 

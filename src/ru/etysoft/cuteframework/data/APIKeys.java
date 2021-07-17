@@ -1,4 +1,4 @@
-package ru.etysoft.cuteframework.api.response;
+package ru.etysoft.cuteframework.data;
 
 public class APIKeys {
     public final static String SESSION_KEY = "session_key";

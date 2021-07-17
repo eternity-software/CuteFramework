@@ -1,16 +1,16 @@
-package ru.etysoft.cuteframework.api.response.methods;
+package ru.etysoft.cuteframework.methods.GetAccount;
 
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import ru.etysoft.cuteframework.api.response.ResponseHandler;
+import ru.etysoft.cuteframework.responses.ResponseHandler;
 
-public class InformationResponseHandler extends ResponseHandler {
+public class GetAccountResponse extends ResponseHandler {
 
     private String active, display_name, display_surname;
     private int id;
 
-    public InformationResponseHandler(String jsonResponse, String url) throws JSONException {
+    public GetAccountResponse(String jsonResponse, String url) throws JSONException {
         super(jsonResponse, url);
 
     }

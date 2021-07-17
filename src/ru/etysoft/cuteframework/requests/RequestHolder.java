@@ -1,17 +1,13 @@
-package ru.etysoft.cuteframework.api.request;
-
-import ru.etysoft.cuteframework.api.response.methods.AuthorizationResponseHandler;
-import ru.etysoft.cuteframework.requests.Request;
+package ru.etysoft.cuteframework.requests;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
 /**
  * Hold the method name and params
  *
- * @autor Mikhail Karlov
+ * @author Mikhail Karlov
  */
 public abstract class RequestHolder {
 
@@ -33,7 +29,6 @@ public abstract class RequestHolder {
     public Request makeRequest() {
         return new Request(method, params);
     }
-
 
     public String getMethod() {
         return method;

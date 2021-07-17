@@ -1,8 +1,9 @@
-package ru.etysoft.cuteframework.api.response;
+package ru.etysoft.cuteframework.responses;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import ru.etysoft.cuteframework.api.errors.ErrorHandler;
+import ru.etysoft.cuteframework.responses.errors.ErrorHandler;
+import ru.etysoft.cuteframework.data.APIKeys;
 
 /**
  * Abstract class for JSON response handling

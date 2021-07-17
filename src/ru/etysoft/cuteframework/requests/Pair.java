@@ -1,4 +1,4 @@
-package ru.etysoft.cuteframework.api.request;
+package ru.etysoft.cuteframework.requests;
 
 /**
  * Easy to use data holder for making a server request

@@ -28,7 +28,6 @@ public class GET {
             e.printStackTrace();
             throw new ResponseException("GET-request exception has been occurred");
         }
-
     }
 
 
@@ -50,7 +49,6 @@ public class GET {
             e.printStackTrace();
             throw new ResponseException("GET-request exception has been occurred");
         }
-
     }
 
 }

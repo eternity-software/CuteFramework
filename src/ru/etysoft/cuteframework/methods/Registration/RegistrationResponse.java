@@ -1,15 +1,15 @@
-package ru.etysoft.cuteframework.api.response.methods;
+package ru.etysoft.cuteframework.methods.Registration;
 
 import org.json.JSONException;
-import ru.etysoft.cuteframework.api.response.APIKeys;
-import ru.etysoft.cuteframework.api.response.ResponseHandler;
+import ru.etysoft.cuteframework.data.APIKeys;
+import ru.etysoft.cuteframework.responses.ResponseHandler;
 import ru.etysoft.cuteframework.exceptions.ResponseException;
 
-public class RegistrationResponseHandler extends ResponseHandler {
+public class RegistrationResponse extends ResponseHandler {
 
     private String sessionKey;
 
-    public RegistrationResponseHandler(String jsonResponse, String url) throws JSONException {
+    public RegistrationResponse(String jsonResponse, String url) throws JSONException {
         super(jsonResponse, url);
     }
 
