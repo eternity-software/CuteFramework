@@ -15,7 +15,7 @@ public class AuthorizationResponseHandler extends ResponseHandler {
 
     @Override
     public void onSuccess() {
-        sessionKey = getJsonResponse().getJSONObject(APIKeys.DATA).getString(APIKeys.SESSION);
+        sessionKey = getJsonResponse().getJSONObject(APIKeys.DATA).getString(APIKeys.SESSION_KEY);
     }
 
     public String getSessionKey() throws ResponseException {

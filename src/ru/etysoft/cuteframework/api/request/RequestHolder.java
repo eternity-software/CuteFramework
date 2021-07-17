@@ -18,8 +18,7 @@ public abstract class RequestHolder {
     private String method;
     private Set<Pair> params = null;
 
-    public RequestHolder(String method)
-    {
+    public RequestHolder(String method) {
         this.method = method;
     }
 
@@ -31,8 +30,7 @@ public abstract class RequestHolder {
         return params;
     }
 
-    public Request makeRequest()
-    {
+    public Request makeRequest() {
         return new Request(method, params);
     }
 
