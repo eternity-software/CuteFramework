@@ -2,7 +2,7 @@ package ru.etysoft.cuteframework.requests;
 
 import java.util.Set;
 
-import com.sun.istack.internal.NotNull;
+import org.jetbrains.annotations.NotNull;
 import ru.etysoft.cuteframework.Methods;
 import ru.etysoft.cuteframework.exceptions.ResponseException;
 
