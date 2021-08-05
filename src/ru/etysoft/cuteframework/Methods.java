@@ -22,7 +22,8 @@ public class Methods {
     public static RegistrationResponse register(String login, String email, String password) throws ResponseException {
         return (new RegistrationRequest(login, email, password)).execute();
     }
-    public static GetAccountResponse getInfo(String sessionKey) throws ResponseException{
+
+    public static GetAccountResponse getInfo(String sessionKey) throws ResponseException {
         return (new GetAccountRequest(sessionKey).execute());
     }
 

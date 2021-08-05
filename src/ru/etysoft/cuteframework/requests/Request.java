@@ -56,7 +56,7 @@ public class Request {
 
     public String getFormattedURL()
     {
-       return getURL() + Methods.options;
+       return getURL();
     }
 
     public String processAPI() throws ResponseException {
