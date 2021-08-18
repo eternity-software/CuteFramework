@@ -51,7 +51,7 @@ public class Request {
 
     public String getURL()
     {
-        return Methods.domain + method  + getArgsAsString(params);
+        return Methods.domain + method + getArgsAsString(params);
     }
 
     public String getFormattedURL()

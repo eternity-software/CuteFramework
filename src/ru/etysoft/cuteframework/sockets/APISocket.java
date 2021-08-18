@@ -65,9 +65,7 @@ public abstract class APISocket {
                 out.write(stringToServer);
                 out.close();
             }
-            else {
-                throw new SocketNotStartedException();
-            }
+            else throw new SocketNotStartedException();
         } catch (IOException e) {
             e.printStackTrace();
         }

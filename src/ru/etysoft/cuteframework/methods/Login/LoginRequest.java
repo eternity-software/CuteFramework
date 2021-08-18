@@ -1,20 +1,19 @@
-package ru.etysoft.cuteframework.methods.Authorization;
+package ru.etysoft.cuteframework.methods.Login;
 
 import ru.etysoft.cuteframework.data.APIMethods;
 import ru.etysoft.cuteframework.requests.Pair;
 import ru.etysoft.cuteframework.requests.RequestHolder;
 import ru.etysoft.cuteframework.data.APIKeys;
-import ru.etysoft.cuteframework.methods.Authorization.AuthorizationResponse;
 import ru.etysoft.cuteframework.exceptions.ResponseException;
 import ru.etysoft.cuteframework.requests.Request;
 
-public class AuthorizationRequest extends RequestHolder {
+public class LoginRequest extends RequestHolder {
 
     private String login;
     private String password;
 
-    public AuthorizationRequest(String login, String password) {
-        super(APIMethods.AUTHORIZATION);
+    public LoginRequest(String login, String password) {
+        super(APIMethods.LOGIN);
         this.login = login;
         this.password = password;
         setParams(Pair.make(APIKeys.LOGIN, login),
@@ -30,9 +29,9 @@ public class AuthorizationRequest extends RequestHolder {
     }
 
 
-    public AuthorizationResponse execute() throws ResponseException {
+    public LoginResponse execute() throws ResponseException {
         Request request = makeRequest();
-        return new AuthorizationResponse(request.processAPI(), request.getFormattedURL());
+        return new LoginResponse(request.processAPI(), request.getFormattedURL());
     }
 
 

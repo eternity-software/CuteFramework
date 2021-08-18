@@ -1,14 +1,14 @@
-package ru.etysoft.cuteframework.methods.Confirmation;
+package ru.etysoft.cuteframework.methods.EditDisplayName;
 
 import org.json.JSONException;
 import ru.etysoft.cuteframework.data.APIKeys;
 import ru.etysoft.cuteframework.exceptions.ResponseException;
 import ru.etysoft.cuteframework.responses.ResponseHandler;
 
-public class ConfirmationResponse extends ResponseHandler {
+public class EditResponse extends ResponseHandler {
     private String status;
 
-    public ConfirmationResponse(String jsonResponse, String url) throws JSONException {
+    public EditResponse(String jsonResponse, String url) throws JSONException {
         super(jsonResponse, url);
     }
 

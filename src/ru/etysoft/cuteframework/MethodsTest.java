@@ -1,26 +1,30 @@
 package ru.etysoft.cuteframework;
 
+
 import org.junit.Assert;
+
+
 import org.junit.FixMethodOrder;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.runners.MethodSorters;
-import ru.etysoft.cuteframework.methods.Authorization.AuthorizationResponse;
+import ru.etysoft.cuteframework.methods.Login.LoginResponse;
 import ru.etysoft.cuteframework.methods.Registration.RegistrationResponse;
 import ru.etysoft.cuteframework.exceptions.ResponseException;
 
 @FixMethodOrder(MethodSorters.JVM)
-class MethodsTest {
+public class MethodsTest {
 
-    String testLogin = "kkkkkek12";
-    String testPassword = "12345e6";
-    String testMail = "tesetmail@yandex.ru";
+    String testLogin = "kkkkkeqk12";
+    String testPassword = "q12345e6";
+    String testMail = "teqsetmail@yandex.ru";
+    String testDisplay_name = "iluxa";
 
     @Test
-    void accountCreation() {
+    public void accountCreation() {
         RegistrationResponse registrationResponseHandler = null;
-        AuthorizationResponse authorizationResponseHandler = null;
+        LoginResponse authorizationResponseHandler = null;
         try {
-            registrationResponseHandler = Methods.register(testLogin, testMail, testPassword);
+            registrationResponseHandler = Methods.register(testLogin, testMail, testPassword, testDisplay_name);
             authorizationResponseHandler = Methods.authorize(testLogin, testPassword);
 
 

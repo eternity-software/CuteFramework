@@ -1,6 +1,5 @@
 package ru.etysoft.cuteframework.requests;
 
-
 import okhttp3.Request;
 import okhttp3.*;
 import ru.etysoft.cuteframework.requests.attachements.ImageFile;
@@ -50,7 +49,7 @@ public class POST {
                     .url(url)
                     .post(requestBodyBuilder.build())
                     .build();
-
+            System.out.println(debugInfo);
             try (Response response = client.newCall(request).execute()) {
                 if (!response.isSuccessful())
                     throw new IOException("Unexpected code " + response);

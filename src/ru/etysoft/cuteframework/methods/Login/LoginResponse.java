@@ -1,4 +1,4 @@
-package ru.etysoft.cuteframework.methods.Registration;
+package ru.etysoft.cuteframework.methods.Login;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -6,12 +6,13 @@ import ru.etysoft.cuteframework.data.APIKeys;
 import ru.etysoft.cuteframework.responses.ResponseHandler;
 import ru.etysoft.cuteframework.exceptions.ResponseException;
 
-public class RegistrationResponse extends ResponseHandler {
+public class LoginResponse extends ResponseHandler {
 
     private String sessionKey;
     private String accountId;
     private int expires;
-    public RegistrationResponse(String jsonResponse, String url) throws JSONException {
+
+    public LoginResponse(String jsonResponse, String url) throws JSONException {
         super(jsonResponse, url);
     }
 
@@ -23,10 +24,8 @@ public class RegistrationResponse extends ResponseHandler {
         expires = jsonObject.getInt(APIKeys.EXPIRES);
     }
 
-
     public String getSessionKey() throws ResponseException {
-        if(sessionKey == null) throw new ResponseException("Session key is null");
+        if(sessionKey == null) throw new ResponseException("Session is null!");
         return sessionKey;
     }
-
 }

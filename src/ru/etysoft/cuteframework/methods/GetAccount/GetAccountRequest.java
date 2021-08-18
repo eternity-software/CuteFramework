@@ -8,17 +8,17 @@ import ru.etysoft.cuteframework.exceptions.ResponseException;
 import ru.etysoft.cuteframework.requests.Request;
 
 public class GetAccountRequest extends RequestHolder {
-    private String sessionKey;
+    private String token;
 
-    public GetAccountRequest(String sessionKey){
-        super(APIMethods.GET_INFORMATION);
+    public GetAccountRequest(String token){
+        super(APIMethods.AUTHENTICATION);
 
-        this.sessionKey = sessionKey;
-        setParams(Pair.make(APIKeys.SESSION, sessionKey));
+        this.token = token;
+        setParams(Pair.make(APIKeys.TOKEN, token));
     }
 
-    public String getSessionKey() {
-        return sessionKey;
+    public String getToken() {
+        return token;
     }
 
     public GetAccountResponse execute() throws ResponseException {
