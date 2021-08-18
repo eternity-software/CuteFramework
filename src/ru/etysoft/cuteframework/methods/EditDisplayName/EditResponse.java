@@ -14,7 +14,7 @@ public class EditResponse extends ResponseHandler {
 
     @Override
     public void onSuccess() {
-        status = getJsonResponse().getString(APIKeys.DATA);
+        status = getJsonResponse().getString(APIKeys.TYPE);
     }
 
     public String getStatus() throws ResponseException {

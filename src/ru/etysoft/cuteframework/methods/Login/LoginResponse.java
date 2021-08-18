@@ -9,8 +9,8 @@ import ru.etysoft.cuteframework.exceptions.ResponseException;
 public class LoginResponse extends ResponseHandler {
 
     private String sessionKey;
-    private String accountId;
-    private int expires;
+    private int accountId;
+    private long expires;
 
     public LoginResponse(String jsonResponse, String url) throws JSONException {
         super(jsonResponse, url);
@@ -20,7 +20,7 @@ public class LoginResponse extends ResponseHandler {
     public void onSuccess() {
         JSONObject jsonObject = getJsonResponse().getJSONObject(APIKeys.DATA);
         sessionKey = jsonObject.getString(APIKeys.SESSION_KEY);
-        accountId = jsonObject.getString(APIKeys.ACCOUNT_ID);
+        accountId = jsonObject.getInt(APIKeys.ACCOUNT_ID);
         expires = jsonObject.getInt(APIKeys.EXPIRES);
     }
 

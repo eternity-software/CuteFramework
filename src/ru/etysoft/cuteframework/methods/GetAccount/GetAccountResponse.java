@@ -19,13 +19,12 @@ public class GetAccountResponse extends ResponseHandler {
     @Override
     public void onSuccess() {
         JSONObject data = getJsonResponse().getJSONObject(APIKeys.DATA);
-        JSONObject account = data.getJSONObject(APIKeys.ACCOUNT);
-        confirm = account.getString(APIKeys.CONFIRM);
-        id = account.getInt(APIKeys.ID);
-        login = account.getString(APIKeys.LOGIN);
-        email = account.getString(APIKeys.EMAIL);
-        password = account.getString(APIKeys.PASSWORD);
-        display_name = account.getString(APIKeys.DISPLAY_NAME);
+        confirm = data.getString(APIKeys.CONFIRM);
+        id = data.getInt(APIKeys.ID);
+        login = data.getString(APIKeys.LOGIN);
+        email = data.getString(APIKeys.EMAIL);
+        password = data.getString(APIKeys.PASSWORD);
+        display_name = data.getString(APIKeys.DISPLAY_NAME);
 
     }
     public String id(){

@@ -1,6 +1,12 @@
 package ru.etysoft.cuteframework;
 
 
+import ru.etysoft.cuteframework.methods.Confirmation.ConfirmCodeRequest;
+import ru.etysoft.cuteframework.methods.Confirmation.ConfirmCodeResponse;
+import ru.etysoft.cuteframework.methods.Confirmation.ConfirmationRequest;
+import ru.etysoft.cuteframework.methods.Confirmation.ConfirmationResponse;
+import ru.etysoft.cuteframework.methods.EditDisplayName.EditRequest;
+import ru.etysoft.cuteframework.methods.EditDisplayName.EditResponse;
 import ru.etysoft.cuteframework.methods.Login.LoginRequest;
 import ru.etysoft.cuteframework.methods.GetAccount.GetAccountRequest;
 import ru.etysoft.cuteframework.methods.Registration.RegistrationRequest;
@@ -26,6 +32,16 @@ public class Methods {
     public static GetAccountResponse getInfo(String sessionKey) throws ResponseException {
         return (new GetAccountRequest(sessionKey).execute());
     }
+    public static EditResponse editDisplayName(String token, String newName) throws ResponseException{
+        return (new EditRequest(token,newName).execute());
+    }
+    public static ConfirmCodeResponse sendConfirmCode(String token) throws ResponseException{
+        return (new ConfirmCodeRequest(token).execute());
+    }
+    public static ConfirmationResponse confirmation(String token, int code) throws ResponseException{
+        return (new ConfirmationRequest(token, code).execute());
+    }
+
 
 
     public static void setApiVersion(String apiVersion) {

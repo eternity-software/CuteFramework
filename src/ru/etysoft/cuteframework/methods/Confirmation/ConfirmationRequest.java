@@ -11,12 +11,12 @@ import ru.etysoft.cuteframework.requests.RequestHolder;
 public class ConfirmationRequest extends RequestHolder {
     private String token;
     private String code;
-    public ConfirmationRequest(String token, String code) {
+    public ConfirmationRequest(String token, int code) {
         super(APIMethods.CONFIRMATION);
-        this.code = code;
+        this.code = String.valueOf(code);
         this.token = token;
-        setParams(Pair.make(APIKeys.TOKEN, token),
-                Pair.make(APIKeys.CODE, code));
+        setParams(Pair.make(APIKeys.TOKEN, this.token),
+                Pair.make(APIKeys.CODE, this.code));
     }
 
 
