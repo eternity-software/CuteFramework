@@ -17,7 +17,7 @@ public class AddAdminRequest extends RequestHolder {
     private String token, chatId, accountId;
 
     public AddAdminRequest(String token, String chatId, String accountId) {
-        super(APIMethods.Chat.CREATE);
+        super(APIMethods.Chat.ADD_ADMIN);
         this.accountId = accountId;
         this.chatId = chatId;
         this.token = token;

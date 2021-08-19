@@ -7,7 +7,6 @@ public class AuthenticationResponse extends ResponseHandler {
 
     public AuthenticationResponse(String jsonResponse, String url) throws JSONException {
         super(jsonResponse, url);
-
     }
 
     @Override

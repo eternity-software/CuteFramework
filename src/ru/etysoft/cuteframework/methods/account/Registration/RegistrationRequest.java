@@ -1,5 +1,6 @@
 package ru.etysoft.cuteframework.methods.account.Registration;
 
+import ru.etysoft.cuteframework.Methods;
 import ru.etysoft.cuteframework.data.APIMethods;
 import ru.etysoft.cuteframework.requests.POST;
 import ru.etysoft.cuteframework.requests.RequestHolder;
@@ -13,14 +14,14 @@ public class RegistrationRequest extends RequestHolder {
     private String login;
     private String email;
     private String password;
-    private String display_name;
+    private String displayName;
 
-    public RegistrationRequest(String login, String email, String password, String display_name) {
+    public RegistrationRequest(String login, String email, String password, String displayName) {
         super(APIMethods.Account.REGISTRATION);
         this.login = login;
         this.email = email;
         this.password = password;
-        this.display_name = display_name;
+        this.displayName = displayName;
     }
 
     public RegistrationResponse execute() throws ResponseException {
@@ -28,10 +29,13 @@ public class RegistrationRequest extends RequestHolder {
         hashMap.put(APIKeys.LOGIN, login);
         hashMap.put(APIKeys.EMAIL, email);
         hashMap.put(APIKeys.PASSWORD, password);
-        hashMap.put(APIKeys.DISPLAY_NAME, display_name);
-        String response = POST.execute("https://api.mcute.ru/account/create", hashMap, "create");
+        hashMap.put(APIKeys.DISPLAY_NAME, displayName);
+
+        String url = Methods.domain + APIMethods.Account.REGISTRATION;
+
+        String response = POST.execute(url, hashMap, APIMethods.Account.REGISTRATION);
         System.out.println(response);
-        return new RegistrationResponse(response, response);
+        return new RegistrationResponse(response, url);
     }
 
     public String getPassword() {
@@ -46,7 +50,7 @@ public class RegistrationRequest extends RequestHolder {
         return email;
     }
 
-    public String getDisplay_name() { return display_name;
+    public String getDisplayName() { return displayName;
     }
 }
 

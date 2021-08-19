@@ -1,5 +1,7 @@
 package ru.etysoft.cuteframework.requests;
 
+import ru.etysoft.cuteframework.Methods;
+
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -25,6 +27,8 @@ public abstract class RequestHolder {
     public Set<Pair> getParams() {
         return params;
     }
+
+    public String getUrl() { return Methods.domain + getMethod(); }
 
     public Request makeRequest() {
         return new Request(method, params);
