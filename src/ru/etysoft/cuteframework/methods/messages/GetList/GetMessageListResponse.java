@@ -14,7 +14,7 @@ import java.util.List;
 
 public class GetMessageListResponse extends ResponseHandler {
 
-    private List<Message> messages = new ArrayList<>();
+    private List<Message> messages;
 
     public GetMessageListResponse(String jsonResponse, String url) throws JSONException {
         super(jsonResponse, url);
@@ -23,6 +23,8 @@ public class GetMessageListResponse extends ResponseHandler {
     @Override
     public void onSuccess() {
         JSONArray jsonArray = getJsonResponse().getJSONArray(APIKeys.MESSAGES);
+
+        messages = new ArrayList<>();
 
         for(int i = 0; i < jsonArray.length(); i++)
         {
@@ -40,7 +42,7 @@ public class GetMessageListResponse extends ResponseHandler {
     }
 
     public List<Message> getMessages() throws ResponseException {
-        if(!isSuccess()) throw new ResponseException("Messages cannot be received! (isn't success!)");
+        if(messages == null) throw new ResponseException("Messages is null! (isn't success!)");
         return messages;
     }
 }

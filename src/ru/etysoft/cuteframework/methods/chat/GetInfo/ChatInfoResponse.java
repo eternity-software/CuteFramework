@@ -15,7 +15,7 @@ import java.util.List;
 public class ChatInfoResponse extends ResponseHandler {
 
     private Chat chat;
-    private List<ChatMember> memberList = new ArrayList<>();
+    private List<ChatMember> memberList;
 
     public ChatInfoResponse(String jsonResponse, String url) throws JSONException {
         super(jsonResponse, url);
@@ -35,6 +35,7 @@ public class ChatInfoResponse extends ResponseHandler {
 
         JSONArray jsonArray = chatObj.getJSONArray("members");
 
+        memberList = new ArrayList<>();
         for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject memberObj = jsonArray.getJSONObject(i);
             String displayName = memberObj.getString(APIKeys.DISPLAY_NAME);
@@ -48,7 +49,7 @@ public class ChatInfoResponse extends ResponseHandler {
     }
 
     public List<ChatMember> getMembers() throws ResponseException {
-        if(!isSuccess()) throw new ResponseException("Members cannot be received! (isn't success!)");
+        if(memberList == null) throw new ResponseException("Members is null! (isn't success!)");
         return memberList;
     }
 

@@ -14,7 +14,7 @@ import java.util.List;
 public class ChatListResponse extends ResponseHandler {
 
 
-    private List<Chat> chats = new ArrayList<Chat>();
+    private List<Chat> chats;
 
 
     public ChatListResponse(String jsonResponse, String url) throws JSONException {
@@ -26,13 +26,17 @@ public class ChatListResponse extends ResponseHandler {
         JSONObject jsonObject = getJsonResponse().getJSONObject(APIKeys.DATA);
         JSONArray jsonArray = jsonObject.getJSONArray(APIKeys.CHATS);
 
+        chats = new ArrayList<>();
+
         for (int i = 0; i < jsonArray.length(); i++)
         {
+
             JSONObject chatObj = jsonArray.getJSONObject(i);
             String name = chatObj.getString(APIKeys.NAME);
             String description = chatObj.getString(APIKeys.DESCRIPTION);
             int accountId = chatObj.getInt(APIKeys.ACCOUNT_ID);
             int id = chatObj.getInt(APIKeys.ID);
+            System.out.println("Processed " + id);
             String type = chatObj.getString(APIKeys.TYPE);
             String selfStatus = chatObj.getString(APIKeys.SELF_STATUS);
 
@@ -42,7 +46,7 @@ public class ChatListResponse extends ResponseHandler {
     }
 
     public List<Chat> getChats() throws ResponseException {
-        if(!isSuccess()) throw new ResponseException("Chats cannot be received! (isn't success!)");
+        if(chats == null) throw new ResponseException("Chats is null! (isn't success!)");
         return chats;
     }
 }

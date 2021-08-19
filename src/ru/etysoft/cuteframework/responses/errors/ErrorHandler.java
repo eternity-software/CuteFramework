@@ -14,6 +14,8 @@ public class ErrorHandler {
 
     public ErrorHandler(String jsonResponse) throws JSONException {
         this.jsonResponse = jsonResponse;
+
+        //TODO: Обработка не работает. Переписать под новое API
         errorCodes = new JSONArrayList(jsonResponse);
     }
 

@@ -20,8 +20,8 @@ public class ChatListRequest extends RequestHolder {
         return token;
     }
 
-    public AuthenticationResponse execute() throws ResponseException {
+    public ChatListResponse execute() throws ResponseException {
         Request request = makeRequest();
-        return new AuthenticationResponse(request.processAPI(), request.getFormattedURL());
+        return new ChatListResponse(request.processAPI(), request.getFormattedURL());
     }
 }

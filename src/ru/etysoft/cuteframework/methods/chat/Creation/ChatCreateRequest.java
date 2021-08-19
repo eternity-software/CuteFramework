@@ -35,7 +35,7 @@ public class ChatCreateRequest extends RequestHolder {
         String url = Methods.domain + APIMethods.Chat.CREATE;
 
         String response = POST.execute(url, hashMap, APIMethods.Chat.CREATE);
-
+        System.out.println(response);
         return new ChatCreateResponse(response, url);
     }
 
