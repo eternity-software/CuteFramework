@@ -1,4 +1,4 @@
-package ru.etysoft.cuteframework.methods.EditDisplayName;
+package ru.etysoft.cuteframework.methods.account.EditDisplayName;
 
 import ru.etysoft.cuteframework.data.APIKeys;
 import ru.etysoft.cuteframework.data.APIMethods;
@@ -12,7 +12,7 @@ public class EditRequest extends RequestHolder {
     private String display_name;
 
     public EditRequest(String token, String display_name){
-        super(APIMethods.EDIT);
+        super(APIMethods.Account.EDIT);
         this.token = token;
         this.display_name = display_name;
         setParams(Pair.make(APIKeys.TOKEN, token),

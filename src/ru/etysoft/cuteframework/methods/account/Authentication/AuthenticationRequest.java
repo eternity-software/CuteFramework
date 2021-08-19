@@ -1,9 +1,8 @@
-package ru.etysoft.cuteframework.methods.Authentication;
+package ru.etysoft.cuteframework.methods.account.Authentication;
 
 import ru.etysoft.cuteframework.data.APIKeys;
 import ru.etysoft.cuteframework.data.APIMethods;
 import ru.etysoft.cuteframework.exceptions.ResponseException;
-import ru.etysoft.cuteframework.methods.GetAccount.GetAccountResponse;
 import ru.etysoft.cuteframework.requests.Pair;
 import ru.etysoft.cuteframework.requests.Request;
 import ru.etysoft.cuteframework.requests.RequestHolder;
@@ -11,7 +10,7 @@ import ru.etysoft.cuteframework.requests.RequestHolder;
 public class AuthenticationRequest extends RequestHolder {
     private String token;
     public AuthenticationRequest(String token) {
-        super(APIMethods.AUTHENTICATION);
+        super(APIMethods.Account.AUTHENTICATION);
         this.token = token;
         setParams(Pair.make(APIKeys.TOKEN, token));
     }

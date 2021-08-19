@@ -1,8 +1,6 @@
-package ru.etysoft.cuteframework.methods.Authentication;
+package ru.etysoft.cuteframework.methods.account.Authentication;
 
 import org.json.JSONException;
-import org.json.JSONObject;
-import ru.etysoft.cuteframework.data.APIKeys;
 import ru.etysoft.cuteframework.responses.ResponseHandler;
 
 public class AuthenticationResponse extends ResponseHandler {

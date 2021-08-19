@@ -1,19 +1,14 @@
 package ru.etysoft.cuteframework;
 
 
-import org.junit.Assert;
-
-
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
-import ru.etysoft.cuteframework.methods.Confirmation.ConfirmCodeRequest;
-import ru.etysoft.cuteframework.methods.Confirmation.ConfirmCodeResponse;
-import ru.etysoft.cuteframework.methods.Confirmation.ConfirmationResponse;
-import ru.etysoft.cuteframework.methods.EditDisplayName.EditResponse;
-import ru.etysoft.cuteframework.methods.GetAccount.GetAccountResponse;
-import ru.etysoft.cuteframework.methods.Login.LoginResponse;
-import ru.etysoft.cuteframework.methods.Registration.RegistrationResponse;
+import ru.etysoft.cuteframework.methods.account.Confirmation.ConfirmCodeResponse;
+import ru.etysoft.cuteframework.methods.account.Confirmation.ConfirmationResponse;
+import ru.etysoft.cuteframework.methods.account.EditDisplayName.EditResponse;
+import ru.etysoft.cuteframework.methods.account.GetAccount.GetAccountResponse;
+import ru.etysoft.cuteframework.methods.account.Login.LoginResponse;
 import ru.etysoft.cuteframework.exceptions.ResponseException;
 
 @FixMethodOrder(MethodSorters.JVM)
@@ -42,12 +37,10 @@ public class MethodsTest {
 
 
 
-            System.out.println(getAccountResponse.getConfirm());
-            System.out.println(getAccountResponse.getLogin());
-            System.out.println(getAccountResponse.getDisplay_name());
+
             editResponse = Methods.editDisplayName(sessionKey, newName);
             System.out.println(editResponse.getStatus());
-            System.out.println(getAccountResponse.getDisplay_name());
+            System.out.println(getAccountResponse.getDisplayName());
         } catch (ResponseException e) {
             e.printStackTrace();
         }

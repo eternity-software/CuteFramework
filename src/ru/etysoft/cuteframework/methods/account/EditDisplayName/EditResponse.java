@@ -1,4 +1,4 @@
-package ru.etysoft.cuteframework.methods.EditDisplayName;
+package ru.etysoft.cuteframework.methods.account.EditDisplayName;
 
 import org.json.JSONException;
 import ru.etysoft.cuteframework.data.APIKeys;

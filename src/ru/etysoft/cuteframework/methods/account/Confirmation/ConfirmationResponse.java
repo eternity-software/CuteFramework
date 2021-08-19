@@ -1,4 +1,4 @@
-package ru.etysoft.cuteframework.methods.Confirmation;
+package ru.etysoft.cuteframework.methods.account.Confirmation;
 
 import org.json.JSONException;
 import ru.etysoft.cuteframework.data.APIKeys;

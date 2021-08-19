@@ -1,4 +1,4 @@
-package ru.etysoft.cuteframework.methods.Registration;
+package ru.etysoft.cuteframework.methods.account.Registration;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -18,7 +18,7 @@ public class RegistrationResponse extends ResponseHandler {
     @Override
     public void onSuccess() {
         JSONObject jsonObject = getJsonResponse().getJSONObject(APIKeys.DATA);
-        sessionKey = jsonObject.getString(APIKeys.SESSION_KEY);
+        sessionKey = jsonObject.getString(APIKeys.TOKEN);
         accountId = jsonObject.getInt(APIKeys.ACCOUNT_ID);
         expires = jsonObject.getInt(APIKeys.EXPIRES);
     }

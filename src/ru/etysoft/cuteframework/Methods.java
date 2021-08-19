@@ -1,18 +1,18 @@
 package ru.etysoft.cuteframework;
 
 
-import ru.etysoft.cuteframework.methods.Confirmation.ConfirmCodeRequest;
-import ru.etysoft.cuteframework.methods.Confirmation.ConfirmCodeResponse;
-import ru.etysoft.cuteframework.methods.Confirmation.ConfirmationRequest;
-import ru.etysoft.cuteframework.methods.Confirmation.ConfirmationResponse;
-import ru.etysoft.cuteframework.methods.EditDisplayName.EditRequest;
-import ru.etysoft.cuteframework.methods.EditDisplayName.EditResponse;
-import ru.etysoft.cuteframework.methods.Login.LoginRequest;
-import ru.etysoft.cuteframework.methods.GetAccount.GetAccountRequest;
-import ru.etysoft.cuteframework.methods.Registration.RegistrationRequest;
-import ru.etysoft.cuteframework.methods.Login.LoginResponse;
-import ru.etysoft.cuteframework.methods.GetAccount.GetAccountResponse;
-import ru.etysoft.cuteframework.methods.Registration.RegistrationResponse;
+import ru.etysoft.cuteframework.methods.account.Confirmation.ConfirmCodeRequest;
+import ru.etysoft.cuteframework.methods.account.Confirmation.ConfirmCodeResponse;
+import ru.etysoft.cuteframework.methods.account.Confirmation.ConfirmationRequest;
+import ru.etysoft.cuteframework.methods.account.Confirmation.ConfirmationResponse;
+import ru.etysoft.cuteframework.methods.account.EditDisplayName.EditRequest;
+import ru.etysoft.cuteframework.methods.account.EditDisplayName.EditResponse;
+import ru.etysoft.cuteframework.methods.account.Login.LoginRequest;
+import ru.etysoft.cuteframework.methods.account.GetAccount.GetAccountRequest;
+import ru.etysoft.cuteframework.methods.account.Registration.RegistrationRequest;
+import ru.etysoft.cuteframework.methods.account.Login.LoginResponse;
+import ru.etysoft.cuteframework.methods.account.GetAccount.GetAccountResponse;
+import ru.etysoft.cuteframework.methods.account.Registration.RegistrationResponse;
 import ru.etysoft.cuteframework.exceptions.ResponseException;
 
 public class Methods {

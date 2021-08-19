@@ -1,4 +1,4 @@
-package ru.etysoft.cuteframework.methods.Login;
+package ru.etysoft.cuteframework.methods.account.Login;
 
 import ru.etysoft.cuteframework.data.APIMethods;
 import ru.etysoft.cuteframework.requests.Pair;
@@ -13,7 +13,7 @@ public class LoginRequest extends RequestHolder {
     private String password;
 
     public LoginRequest(String login, String password) {
-        super(APIMethods.LOGIN);
+        super(APIMethods.Account.LOGIN);
         this.login = login;
         this.password = password;
         setParams(Pair.make(APIKeys.LOGIN, login),

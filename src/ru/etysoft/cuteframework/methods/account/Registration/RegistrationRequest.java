@@ -1,12 +1,10 @@
-package ru.etysoft.cuteframework.methods.Registration;
+package ru.etysoft.cuteframework.methods.account.Registration;
 
 import ru.etysoft.cuteframework.data.APIMethods;
 import ru.etysoft.cuteframework.requests.POST;
-import ru.etysoft.cuteframework.requests.Pair;
 import ru.etysoft.cuteframework.requests.RequestHolder;
 import ru.etysoft.cuteframework.data.APIKeys;
 import ru.etysoft.cuteframework.exceptions.ResponseException;
-import ru.etysoft.cuteframework.requests.Request;
 
 import java.util.HashMap;
 
@@ -18,7 +16,7 @@ public class RegistrationRequest extends RequestHolder {
     private String display_name;
 
     public RegistrationRequest(String login, String email, String password, String display_name) {
-        super(APIMethods.REGISTRATION);
+        super(APIMethods.Account.REGISTRATION);
         this.login = login;
         this.email = email;
         this.password = password;

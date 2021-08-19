@@ -1,6 +1,5 @@
-package ru.etysoft.cuteframework.methods.Confirmation;
+package ru.etysoft.cuteframework.methods.account.Confirmation;
 
-import org.json.JSONException;
 import ru.etysoft.cuteframework.data.APIKeys;
 import ru.etysoft.cuteframework.data.APIMethods;
 import ru.etysoft.cuteframework.exceptions.ResponseException;
@@ -11,7 +10,7 @@ import ru.etysoft.cuteframework.requests.RequestHolder;
 public class ConfirmCodeRequest extends RequestHolder {
     private String token;
     public ConfirmCodeRequest(String token){
-        super(APIMethods.CONFIRMATION_CODE);
+        super(APIMethods.Account.CONFIRMATION_CODE);
         this.token = token;
         setParams(Pair.make(APIKeys.TOKEN, token));
     }

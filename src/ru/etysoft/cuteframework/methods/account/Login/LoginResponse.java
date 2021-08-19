@@ -1,4 +1,4 @@
-package ru.etysoft.cuteframework.methods.Login;
+package ru.etysoft.cuteframework.methods.account.Login;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -19,7 +19,7 @@ public class LoginResponse extends ResponseHandler {
     @Override
     public void onSuccess() {
         JSONObject jsonObject = getJsonResponse().getJSONObject(APIKeys.DATA);
-        sessionKey = jsonObject.getString(APIKeys.SESSION_KEY);
+        sessionKey = jsonObject.getString(APIKeys.TOKEN);
         accountId = jsonObject.getInt(APIKeys.ACCOUNT_ID);
         expires = jsonObject.getInt(APIKeys.EXPIRES);
     }

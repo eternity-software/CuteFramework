@@ -1,4 +1,4 @@
-package ru.etysoft.cuteframework.methods.GetAccount;
+package ru.etysoft.cuteframework.methods.account.GetAccount;
 
 
 import org.json.JSONException;
@@ -27,7 +27,8 @@ public class GetAccountResponse extends ResponseHandler {
         display_name = data.getString(APIKeys.DISPLAY_NAME);
 
     }
-    public String id(){
+
+    public String getId(){
         return String.valueOf(id);
     }
 
@@ -47,9 +48,7 @@ public class GetAccountResponse extends ResponseHandler {
         return login;
     }
 
-    public String getDisplay_name() {
+    public String getDisplayName() {
         return display_name;
     }
-
-
 }

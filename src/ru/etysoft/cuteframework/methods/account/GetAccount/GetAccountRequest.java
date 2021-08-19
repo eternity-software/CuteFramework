@@ -1,4 +1,4 @@
-package ru.etysoft.cuteframework.methods.GetAccount;
+package ru.etysoft.cuteframework.methods.account.GetAccount;
 
 import ru.etysoft.cuteframework.data.APIMethods;
 import ru.etysoft.cuteframework.requests.Pair;
@@ -11,7 +11,7 @@ public class GetAccountRequest extends RequestHolder {
     private String token;
 
     public GetAccountRequest(String token){
-        super(APIMethods.AUTHENTICATION);
+        super(APIMethods.Account.AUTHENTICATION);
 
         this.token = token;
         setParams(Pair.make(APIKeys.TOKEN, token));
