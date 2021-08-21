@@ -22,7 +22,7 @@ public class GetMessageListResponse extends ResponseHandler {
 
     @Override
     public void onSuccess() {
-        JSONArray jsonArray = getJsonResponse().getJSONArray(APIKeys.MESSAGES);
+        JSONArray jsonArray = getJsonResponse().getJSONObject(APIKeys.DATA).getJSONArray(APIKeys.MESSAGES);
 
         messages = new ArrayList<>();
 

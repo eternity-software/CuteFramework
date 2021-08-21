@@ -21,13 +21,13 @@ public class SendMessageRequest extends RequestHolder {
         this.token = token;
     }
 
-    public RegistrationResponse execute() throws ResponseException {
+    public SendMessageResponse execute() throws ResponseException {
         HashMap<String, Object> hashMap = new HashMap<String, Object>();
         hashMap.put(APIKeys.TOKEN, token);
         hashMap.put(APIKeys.CHAT_ID, chatId);
         hashMap.put(APIKeys.TEXT, text);
 
         String response = POST.execute(getUrl(), hashMap, getMethod());
-        return new RegistrationResponse(response, getUrl());
+        return new SendMessageResponse(response, getUrl());
     }
 }
