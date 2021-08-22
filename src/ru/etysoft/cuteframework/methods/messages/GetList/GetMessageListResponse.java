@@ -33,10 +33,11 @@ public class GetMessageListResponse extends ResponseHandler {
             int accountId = messageObj.getInt(APIKeys.ACCOUNT_ID);
             int chatId = messageObj.getInt(APIKeys.CHAT_ID);
             String text = messageObj.getString(APIKeys.TEXT);
-            String activity = messageObj.getString(APIKeys.ACTIVITY);
+            String selfStatus = messageObj.getString(APIKeys.SELF_STATUS);
+            String displayName = messageObj.getString(APIKeys.DISPLAY_NAME);
             String time = messageObj.getString(APIKeys.TIME);
 
-            Message message = new Message(id, accountId, chatId, text, activity, time);
+            Message message = new Message(id, accountId, chatId, text, selfStatus, time, displayName);
             messages.add(message);
         }
     }

@@ -5,16 +5,22 @@ public class Message {
     private int accountId;
     private int chatId;
     private String text;
-    private String activity;
+    private String selfStatus;
     private String time;
+    private String displayName;
 
-    public Message(int id, int accountId, int chatId, String text, String activity, String time) {
+    public Message(int id, int accountId, int chatId, String text, String selfStatus, String time, String displayName) {
         this.id = id;
         this.accountId = accountId;
         this.chatId = chatId;
         this.text = text;
-        this.activity = activity;
+        this.selfStatus = selfStatus;
         this.time = time;
+        this.displayName = displayName;
+    }
+
+    public String getDisplayName() {
+        return displayName;
     }
 
     public int getId() {
@@ -33,8 +39,8 @@ public class Message {
         return text;
     }
 
-    public String getActivity() {
-        return activity;
+    public String getSelfStatus() {
+        return selfStatus;
     }
 
     public String getTime() {

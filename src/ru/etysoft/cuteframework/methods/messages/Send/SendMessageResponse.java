@@ -31,7 +31,7 @@ public class SendMessageResponse extends ResponseHandler {
 
     @Override
     public void onSuccess() {
-        JSONObject respObj = getJsonResponse();
+        JSONObject respObj = getJsonResponse().getJSONObject(APIKeys.DATA);
         time = respObj.getString(APIKeys.TIME);
         text = respObj.getString(APIKeys.TEXT);
         messageId = respObj.getString(APIKeys.MESSAGE_ID);
