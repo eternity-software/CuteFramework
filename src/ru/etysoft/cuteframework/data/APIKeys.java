@@ -34,5 +34,9 @@ public class APIKeys {
     public final static String SELF_STATUS = "selfStatus";
     public final static String ID = "id";
     public final static String MESSAGE_ID = "messageId";
+    public final static String MESSAGE_TEXT = "messageText";
+    public final static String MESSAGE_TIME = "messageTime";
+    public final static String MESSAGE_READ = "messageRead";
+    public final static String MESSAGE_SENDER_DISPLAY_NAME = "messageSenderDisplayName";
 }
 

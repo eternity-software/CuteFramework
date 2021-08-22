@@ -46,4 +46,11 @@ public class Message {
     public String getTime() {
         return time;
     }
+
+    public static class Status
+    {
+        public static final String AVAILABLE = "Y";
+        public static final String DELETED = "N";
+    }
+
 }

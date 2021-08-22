@@ -36,11 +36,15 @@ public class ChatListResponse extends ResponseHandler {
             String description = chatObj.getString(APIKeys.DESCRIPTION);
             int accountId = chatObj.getInt(APIKeys.ACCOUNT_ID);
             int id = chatObj.getInt(APIKeys.ID);
-            System.out.println("Processed " + id);
+            String lastMessageTime = chatObj.getString(APIKeys.MESSAGE_TIME);
+            String lastMessageText = chatObj.getString(APIKeys.MESSAGE_TEXT);
+            String lastMessageSenderName = chatObj.getString(APIKeys.MESSAGE_SENDER_DISPLAY_NAME);
+            boolean isRead = chatObj.getInt(APIKeys.MESSAGE_READ) != 0;
             String type = chatObj.getString(APIKeys.TYPE);
             String selfStatus = chatObj.getString(APIKeys.SELF_STATUS);
 
-            Chat chat = new Chat(name, id, accountId, type, description, selfStatus);
+            Chat chat = new Chat(name, id, accountId, type, description, selfStatus,
+                    lastMessageText, lastMessageSenderName, lastMessageTime, isRead);
             chats.add(chat);
         }
     }
