@@ -6,6 +6,7 @@ import org.json.JSONObject;
 import ru.etysoft.cuteframework.data.APIKeys;
 import ru.etysoft.cuteframework.exceptions.ResponseException;
 import ru.etysoft.cuteframework.methods.chat.Chat;
+import ru.etysoft.cuteframework.methods.chat.ChatSnippet;
 import ru.etysoft.cuteframework.responses.ResponseHandler;
 
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ import java.util.List;
 public class ChatListResponse extends ResponseHandler {
 
 
-    private List<Chat> chats;
+    private List<ChatSnippet> chats;
 
 
     public ChatListResponse(String jsonResponse, String url) throws JSONException {
@@ -43,13 +44,13 @@ public class ChatListResponse extends ResponseHandler {
             String type = chatObj.getString(APIKeys.TYPE);
             String selfStatus = chatObj.getString(APIKeys.SELF_STATUS);
 
-            Chat chat = new Chat(name, id, accountId, type, description, selfStatus,
+            ChatSnippet chat = new ChatSnippet(id, accountId, type, name, description, selfStatus,
                     lastMessageText, lastMessageSenderName, lastMessageTime, isRead);
             chats.add(chat);
         }
     }
 
-    public List<Chat> getChats() throws ResponseException {
+    public List<ChatSnippet> getChats() throws ResponseException {
         if(chats == null) throw new ResponseException("Chats is null! (isn't success!)");
         return chats;
     }

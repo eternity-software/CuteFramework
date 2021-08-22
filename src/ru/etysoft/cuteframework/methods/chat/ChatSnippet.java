@@ -1,24 +1,46 @@
 package ru.etysoft.cuteframework.methods.chat;
 
-public class Chat {
-
+public class ChatSnippet {
     private int id;
     private int accountId;
     private String type;
     private String name;
     private String description;
     private String selfStatus;
+    private String lastMessageText;
+    private String lastMessageSenderDisplayName;
+    private String lastMessageTime;
+    private boolean isRead;
 
 
-
-    public Chat(String name, int id, int accountId, String type, String description, String selfStatus)
-    {
+    public ChatSnippet(int id, int accountId, String type, String name, String description, String selfStatus,
+                       String lastMessageText, String lastMessageSenderDisplayName, String lastMessageTime, boolean isRead) {
         this.id = id;
         this.accountId = accountId;
         this.type = type;
         this.name = name;
         this.description = description;
         this.selfStatus = selfStatus;
+        this.lastMessageText = lastMessageText;
+        this.lastMessageSenderDisplayName = lastMessageSenderDisplayName;
+        this.lastMessageTime = lastMessageTime;
+        this.isRead = isRead;
+    }
+
+    public String getLastMessageText() {
+        return lastMessageText;
+    }
+
+    public String getLastMessageSenderDisplayName() {
+        return lastMessageSenderDisplayName;
+    }
+
+    public String getLastMessageTime() {
+        return lastMessageTime;
+    }
+
+    public boolean isRead() {
+        return isRead;
     }
 
     public String getType() {
