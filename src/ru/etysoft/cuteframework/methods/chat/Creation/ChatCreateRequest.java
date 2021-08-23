@@ -1,5 +1,6 @@
 package ru.etysoft.cuteframework.methods.chat.Creation;
 
+import ru.etysoft.cuteframework.Logger;
 import ru.etysoft.cuteframework.Methods;
 import ru.etysoft.cuteframework.data.APIKeys;
 import ru.etysoft.cuteframework.data.APIMethods;
@@ -35,7 +36,7 @@ public class ChatCreateRequest extends RequestHolder {
         String url = Methods.domain + APIMethods.Chat.CREATE;
 
         String response = POST.execute(url, hashMap, APIMethods.Chat.CREATE);
-        System.out.println(response);
+        Logger.logResponse(response, getMethod());
         return new ChatCreateResponse(response, url);
     }
 

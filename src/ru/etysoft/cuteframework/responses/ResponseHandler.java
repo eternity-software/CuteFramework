@@ -31,8 +31,15 @@ public abstract class ResponseHandler {
      *
      * @return Returns a boolean (if "type" equals "success")
      */
-    public boolean isSuccess() throws JSONException {
-        return jsonResponse.getString(APIKeys.TYPE).equals("success");
+    public boolean isSuccess()  {
+        try
+        {
+            return jsonResponse.getString(APIKeys.TYPE).equals("success");
+        }
+       catch (JSONException e)
+       {
+           return false;
+       }
     }
 
     public abstract void onSuccess();

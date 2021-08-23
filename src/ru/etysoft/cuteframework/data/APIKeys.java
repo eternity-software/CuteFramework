@@ -22,6 +22,7 @@ public class APIKeys {
     public final static String DISPLAY_NAME = "displayName";
     public final static String TOKEN = "token";
     public final static String CHATS = "chats";
+    public final static String CHAT = "chat";
     public final static String MESSAGES = "messages";
     public final static String TEXT = "text";
     public final static String TIME = "time";

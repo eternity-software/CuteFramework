@@ -21,7 +21,7 @@ public class POST {
 
         try {
 
-            String debugInfo = url + ":\nPARAMS:";
+            String debugInfo = methodName + "<< POST\n> Request params";
 
             String result;
             OkHttpClient client = new OkHttpClient();
@@ -49,6 +49,7 @@ public class POST {
                     .url(url)
                     .post(requestBodyBuilder.build())
                     .build();
+
             System.out.println(debugInfo);
             try (Response response = client.newCall(request).execute()) {
                 if (!response.isSuccessful())

@@ -1,5 +1,6 @@
 package ru.etysoft.cuteframework.methods.account.Registration;
 
+import ru.etysoft.cuteframework.Logger;
 import ru.etysoft.cuteframework.Methods;
 import ru.etysoft.cuteframework.data.APIMethods;
 import ru.etysoft.cuteframework.requests.POST;
@@ -34,7 +35,7 @@ public class RegistrationRequest extends RequestHolder {
         String url = Methods.domain + APIMethods.Account.REGISTRATION;
 
         String response = POST.execute(url, hashMap, APIMethods.Account.REGISTRATION);
-        System.out.println(response);
+        Logger.logResponse(response, getMethod());
         return new RegistrationResponse(response, url);
     }
 

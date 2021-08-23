@@ -1,8 +1,10 @@
 package ru.etysoft.cuteframework.methods.chat.GetInfo;
 
+import com.sun.jnlp.ApiDialog;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.omg.CORBA.DATA_CONVERSION;
 import ru.etysoft.cuteframework.data.APIKeys;
 import ru.etysoft.cuteframework.exceptions.ResponseException;
 import ru.etysoft.cuteframework.methods.chat.Chat;
@@ -23,7 +25,7 @@ public class ChatInfoResponse extends ResponseHandler {
 
     @Override
     public void onSuccess() {
-        JSONObject chatObj = getJsonResponse();
+        JSONObject chatObj = getJsonResponse().getJSONObject(APIKeys.DATA).getJSONObject(APIKeys.CHAT);
         String name = chatObj.getString(APIKeys.NAME);
         String description = chatObj.getString(APIKeys.DESCRIPTION);
         int accountId = chatObj.getInt(APIKeys.ACCOUNT_ID);

@@ -3,6 +3,7 @@ package ru.etysoft.cuteframework.requests;
 import java.util.Set;
 
 import org.jetbrains.annotations.NotNull;
+import ru.etysoft.cuteframework.Logger;
 import ru.etysoft.cuteframework.Methods;
 import ru.etysoft.cuteframework.exceptions.ResponseException;
 
@@ -61,7 +62,7 @@ public class Request {
 
     public String processAPI() throws ResponseException {
         String response = GET.execute(getFormattedURL());
-        System.out.println(method + " >> " + response);
+        Logger.logResponse(response, method);
         return response;
     }
 
