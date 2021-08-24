@@ -1,6 +1,7 @@
 package ru.etysoft.cuteframework.responses.errors;
 
 import org.json.JSONException;
+import org.json.JSONObject;
 import ru.etysoft.cuteframework.json.JSONArrayList;
 
 /**
@@ -10,21 +11,24 @@ import ru.etysoft.cuteframework.json.JSONArrayList;
 public class ErrorHandler {
 
     String jsonResponse;
-    JSONArrayList errorCodes;
+    JSONObject errorCodes;
+    String message;
+    int code;
 
     public ErrorHandler(String jsonResponse) throws JSONException {
         this.jsonResponse = jsonResponse;
 
         //TODO: Обработка не работает. Переписать под новое API
-        errorCodes = new JSONArrayList(jsonResponse);
+        errorCodes = new JSONObject(jsonResponse);
+        message = errorCodes.getJSONObject("data").getString("message");
+        code = errorCodes.getJSONObject("data").getInt("code");
     }
 
-    public boolean isSessionExpired() {
-        return errorCodes.has("Authorization unsuccessful");
+    public int getCode() {
+        return code;
     }
 
-    public String getErrorCode() {
-        return null;
+    public String getMessage() {
+        return message;
     }
-
 }
