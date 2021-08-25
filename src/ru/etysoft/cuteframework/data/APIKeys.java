@@ -2,16 +2,8 @@ package ru.etysoft.cuteframework.data;
 
 public class APIKeys {
 
-    /**
-     *  УДАЛИТЬ УДАЛИТЬ УДАЛИТЬ УДАЛИТЬ УДАЛИТЬ
-     */
-   //TODO: УДАЛИТЬ УДАЛИТЬ УДАЛИТЬ УДАЛИТЬ УДАЛИТЬ
-    public final static String ACTIVITY = "activity";
-
-    /**
-     *  УДАЛИТЬ УДАЛИТЬ УДАЛИТЬ УДАЛИТЬ УДАЛИТЬ
-     */
-
+    public final static String MESSAGE_SERVICE_DATA = "messageServiceData";
+    public final static String MESSAGE_TYPE = "messageType";
     public final static String DATA = "data";
     public final static String TYPE = "type";
     public final static String NAME = "name";
@@ -39,5 +31,7 @@ public class APIKeys {
     public final static String MESSAGE_TIME = "messageTime";
     public final static String MESSAGE_READ = "messageRead";
     public final static String MESSAGE_SENDER_DISPLAY_NAME = "messageSenderDisplayName";
+    public final static String STATUS = "statusText";
+    public final static String BIO = "bioText";
 }
 

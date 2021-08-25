@@ -1,10 +1,8 @@
 package ru.etysoft.cuteframework.methods.chat.GetInfo;
 
-import com.sun.jnlp.ApiDialog;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.omg.CORBA.DATA_CONVERSION;
 import ru.etysoft.cuteframework.data.APIKeys;
 import ru.etysoft.cuteframework.exceptions.ResponseException;
 import ru.etysoft.cuteframework.methods.chat.Chat;

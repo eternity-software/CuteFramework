@@ -7,6 +7,7 @@ import ru.etysoft.cuteframework.data.APIKeys;
 import ru.etysoft.cuteframework.exceptions.ResponseException;
 import ru.etysoft.cuteframework.methods.chat.Chat;
 import ru.etysoft.cuteframework.methods.chat.ChatSnippet;
+import ru.etysoft.cuteframework.methods.chat.ServiceData;
 import ru.etysoft.cuteframework.responses.ResponseHandler;
 
 import java.util.ArrayList;
@@ -43,9 +44,10 @@ public class ChatListResponse extends ResponseHandler {
             boolean isRead = chatObj.getInt(APIKeys.MESSAGE_READ) != 0;
             String type = chatObj.getString(APIKeys.TYPE);
             String selfStatus = chatObj.getString(APIKeys.SELF_STATUS);
-
+            String messageType = chatObj.getString(APIKeys.MESSAGE_TYPE);
+            ServiceData serviceData = new ServiceData(chatObj.getString(APIKeys.MESSAGE_SERVICE_DATA));
             ChatSnippet chat = new ChatSnippet(id, accountId, type, name, description, selfStatus,
-                    lastMessageText, lastMessageSenderName, lastMessageTime, isRead);
+                    lastMessageText, lastMessageSenderName, lastMessageTime, isRead, messageType, serviceData);
             chats.add(chat);
         }
     }

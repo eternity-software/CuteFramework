@@ -16,6 +16,8 @@ import ru.etysoft.cuteframework.methods.account.Registration.RegistrationRespons
 import ru.etysoft.cuteframework.exceptions.ResponseException;
 import ru.etysoft.cuteframework.methods.chat.ChatList.ChatListRequest;
 import ru.etysoft.cuteframework.methods.chat.ChatList.ChatListResponse;
+import ru.etysoft.cuteframework.methods.chat.Creation.ChatCreateRequest;
+import ru.etysoft.cuteframework.methods.chat.Creation.ChatCreateResponse;
 
 public class Methods {
 
@@ -45,6 +47,9 @@ public class Methods {
     }
     public static ChatListResponse getChatList(String token) throws ResponseException{
         return (new ChatListRequest(token).execute());
+    }
+    public static ChatCreateResponse createChat(String token, String name, String description, String type) throws ResponseException{
+        return (new ChatCreateRequest(token,name, description, type).execute());
     }
 
 

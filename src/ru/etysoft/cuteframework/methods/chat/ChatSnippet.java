@@ -11,10 +11,11 @@ public class ChatSnippet {
     private String lastMessageSenderDisplayName;
     private String lastMessageTime;
     private boolean isRead;
-
+    private String messageType;
+    private ServiceData serviceData;
 
     public ChatSnippet(int id, int accountId, String type, String name, String description, String selfStatus,
-                       String lastMessageText, String lastMessageSenderDisplayName, String lastMessageTime, boolean isRead) {
+                       String lastMessageText, String lastMessageSenderDisplayName, String lastMessageTime, boolean isRead, String messageType, ServiceData serviceData) {
         this.id = id;
         this.accountId = accountId;
         this.type = type;
@@ -25,10 +26,16 @@ public class ChatSnippet {
         this.lastMessageSenderDisplayName = lastMessageSenderDisplayName;
         this.lastMessageTime = lastMessageTime;
         this.isRead = isRead;
+        this.messageType = messageType;
+        this.serviceData = serviceData;
     }
 
     public String getLastMessageText() {
         return lastMessageText;
+    }
+
+    public String getMessageType() {
+        return messageType;
     }
 
     public String getLastMessageSenderDisplayName() {
@@ -65,6 +72,10 @@ public class ChatSnippet {
 
     public int getAccountId() {
         return accountId;
+    }
+
+    public ServiceData getServiceData() {
+        return serviceData;
     }
 
     public static class Types

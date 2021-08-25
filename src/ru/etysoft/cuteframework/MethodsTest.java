@@ -10,6 +10,10 @@ import ru.etysoft.cuteframework.methods.account.EditDisplayName.EditResponse;
 import ru.etysoft.cuteframework.methods.account.GetAccount.GetAccountResponse;
 import ru.etysoft.cuteframework.methods.account.Login.LoginResponse;
 import ru.etysoft.cuteframework.exceptions.ResponseException;
+import ru.etysoft.cuteframework.methods.account.Registration.RegistrationResponse;
+import ru.etysoft.cuteframework.methods.chat.ChatList.ChatListResponse;
+import ru.etysoft.cuteframework.methods.chat.ChatSnippet;
+import ru.etysoft.cuteframework.methods.chat.Creation.ChatCreateResponse;
 
 @FixMethodOrder(MethodSorters.JVM)
 public class MethodsTest {
@@ -17,30 +21,21 @@ public class MethodsTest {
     String testLogin = "kkkkkeqk1222";
     String testPassword = "q12345e6";
     String testMail = "russia1561@gmail.com";
-    String testDisplay_name = "iluxaa";
-    String sessionKey = "$2b$04$uYdJlxE42iU89TC01nkZluebKm40ZjfXOrBgEozqaghrzo1TMpzAS";
+    String testDisplay_name = "ilay";
+    String sessionKey = "$2b$04$JMxIe67RtNfVUjKtQEuxhOojGcRYRhzr5XhPpmmQgES0W4nM.TvWC";
     String newName = "abobass";
+    String desc = "z,aq,zll,azq";
     int code = 845696;
 
     @Test
     public void accountCreation() {
-//        RegistrationResponse registrationResponseHandler = null;
-        LoginResponse authorizationResponseHandler = null;
-        GetAccountResponse getAccountResponse = null;
-        EditResponse editResponse = null;
-        ConfirmCodeResponse confirmCodeRequest = null;
-        ConfirmationResponse confirmationResponse = null;
+        ChatListResponse chatListResponse = null;
         try {
-//            registrationResponseHandler = Methods.register(testLogin, testMail, testPassword, testDisplay_name);
-            authorizationResponseHandler = Methods.authorize(testLogin, testPassword);
-            getAccountResponse = Methods.getInfo(sessionKey);
+            chatListResponse = Methods.getChatList(sessionKey);
+//            chatCreateResponse = Methods.createChat(sessionKey, testDisplay_name, desc, "C");
 
-
-
-
-            editResponse = Methods.editDisplayName(sessionKey, newName);
-            System.out.println(editResponse.getStatus());
-            System.out.println(getAccountResponse.getDisplayName());
+            ChatSnippet snippet = chatListResponse.getChats().get(1);
+            System.out.println(snippet.getServiceData().getChatName());
         } catch (ResponseException e) {
             e.printStackTrace();
         }

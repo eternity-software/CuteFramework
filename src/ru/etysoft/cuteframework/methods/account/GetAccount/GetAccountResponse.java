@@ -5,10 +5,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import ru.etysoft.cuteframework.data.APIKeys;
 import ru.etysoft.cuteframework.responses.ResponseHandler;
+import ru.etysoft.cuteframework.responses.errors.ErrorHandler;
 
 public class GetAccountResponse extends ResponseHandler {
 
-    private String confirm, display_name, login, email, password;
+    private String confirm, display_name, login, email, password, status, bio;
     private int id;
 
     public GetAccountResponse(String jsonResponse, String url) throws JSONException {
@@ -25,7 +26,8 @@ public class GetAccountResponse extends ResponseHandler {
         email = data.getString(APIKeys.EMAIL);
         password = data.getString(APIKeys.PASSWORD);
         display_name = data.getString(APIKeys.DISPLAY_NAME);
-
+        status = data.getString(APIKeys.STATUS);
+        bio = data.getString(APIKeys.BIO);
     }
 
     public String getId(){
@@ -50,5 +52,18 @@ public class GetAccountResponse extends ResponseHandler {
 
     public String getDisplayName() {
         return display_name;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    @Override
+    public ErrorHandler getErrorHandler() throws JSONException {
+        return super.getErrorHandler();
     }
 }
