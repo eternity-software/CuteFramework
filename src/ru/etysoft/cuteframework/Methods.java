@@ -28,6 +28,7 @@ import ru.etysoft.cuteframework.methods.user.Get.GetUserRequest;
 import ru.etysoft.cuteframework.methods.user.Get.GetUserResponse;
 import ru.etysoft.cuteframework.methods.user.Search.SearchUserRequest;
 import ru.etysoft.cuteframework.methods.user.Search.SearchUserResponse;
+import ru.etysoft.cuteframework.requests.attachements.ImageFile;
 
 public class Methods {
 
@@ -70,7 +71,7 @@ public class Methods {
     public static SearchUserResponse searchUser(String token, String name) throws ResponseException{
         return (new SearchUserRequest(token ,name).execute());
     }
-    public static UploadImageResponse upLoadImage(Object object) throws ResponseException{
+    public static UploadImageResponse uploadImage(ImageFile object) throws ResponseException{
         return (new UploadImageRequest(object).execute());
     }
     public static ChangeAvatarResponse changeAvatar(String token, String mediaId) throws ResponseException{
