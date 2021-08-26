@@ -4,6 +4,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import ru.etysoft.cuteframework.Methods;
 import ru.etysoft.cuteframework.data.APIKeys;
+import ru.etysoft.cuteframework.exceptions.ResponseException;
 import ru.etysoft.cuteframework.responses.ResponseHandler;
 import ru.etysoft.cuteframework.responses.errors.ErrorHandler;
 
@@ -33,7 +34,9 @@ public class GetAccountResponse extends ResponseHandler {
         }
     }
 
-    public String getAvatarPath() {
+    public String getAvatarPath() throws ResponseException {
+        if(avatarPath == null)
+            throw new ResponseException("Avatar path is null fuuu");
         return Methods.domain + avatarPath;
     }
 
