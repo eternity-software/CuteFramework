@@ -30,13 +30,13 @@ public class GetAccountResponse extends ResponseHandler {
         display_name = account.getString(APIKeys.DISPLAY_NAME);
         status = account.getString(APIKeys.STATUS);
         bio = account.getString(APIKeys.BIO);
-        if (account.isNull("avatarPath")){
+        if (!account.isNull("avatarPath")){
             avatarPath = account.getString("avatarPath");
         }
     }
 
     public String getAvatarPath() throws ResponseException {
-        if(avatarPath.equals("null")) {
+        if(avatarPath == null) {
             throw new ResponseException("Avatar path is null fuuu");
         }
         return Methods.domain + avatarPath;

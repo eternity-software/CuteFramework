@@ -71,8 +71,8 @@ public class Methods {
     public static SearchUserResponse searchUser(String token, String name) throws ResponseException{
         return (new SearchUserRequest(token ,name).execute());
     }
-    public static UploadImageResponse uploadImage(ImageFile object) throws ResponseException{
-        return (new UploadImageRequest(object).execute());
+    public static UploadImageResponse uploadImage(ImageFile object, String token) throws ResponseException{
+        return (new UploadImageRequest(object, token).execute());
     }
     public static ChangeAvatarResponse changeAvatar(String token, String mediaId) throws ResponseException{
         return (new ChangeAvatarRequest(token, mediaId).execute());
