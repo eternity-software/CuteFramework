@@ -2,12 +2,13 @@ package ru.etysoft.cuteframework.methods.user.Get;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import ru.etysoft.cuteframework.Methods;
 import ru.etysoft.cuteframework.data.APIKeys;
 import ru.etysoft.cuteframework.exceptions.ResponseException;
 import ru.etysoft.cuteframework.responses.ResponseHandler;
 
 public class GetUserResponse extends ResponseHandler {
-    private String displayName, status, bio, id, onlineTime;
+    private String displayName, status, bio, id, onlineTime, avatarPath;
     public GetUserResponse(String jsonResponse, String url) throws JSONException {
         super(jsonResponse, url);
     }
@@ -23,31 +24,36 @@ public class GetUserResponse extends ResponseHandler {
         if (!jsonObject.isNull("statusText")){
             status = jsonObject.getString("statusText");
         }
+        avatarPath = String.valueOf(jsonObject.getString(APIKeys.AVATAR_PATH));
         onlineTime = String.valueOf(jsonObject.getInt("onlineTime"));
     }
 
-    public String getStatus() throws ResponseException {
-        if (status==null) throw new ResponseException("status is null");
+    public String getAvatarPath() {
+        return Methods.mediaDomain + avatarPath;
+    }
+
+    public String getStatus(){
+        if (status == null) return "";
         return status;
     }
 
-    public String getId() throws ResponseException{
-        if (id==null) throw new ResponseException("id is null");
+    public String getId() {
+        if (id == null) return "";
         return id;
     }
 
-    public String getBio() throws ResponseException{
-        if (bio==null) throw new ResponseException("bio is null");
+    public String getBio() {
+        if (bio == null)  return "";
         return bio;
     }
 
-    public String getDisplayName() throws ResponseException{
-        if (displayName==null) throw new ResponseException("displayName is null");
+    public String getDisplayName() {
+        if (displayName == null)  return "";
         return displayName;
     }
 
     public String getOnlineTime() throws ResponseException{
-        if (onlineTime==null) throw new ResponseException("onlineTime is null");
+        if (onlineTime == null) throw new ResponseException("onlineTime is null");
         return onlineTime;
     }
 

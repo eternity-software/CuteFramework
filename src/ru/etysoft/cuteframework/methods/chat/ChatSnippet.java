@@ -3,6 +3,7 @@ package ru.etysoft.cuteframework.methods.chat;
 public class ChatSnippet {
     private int id;
     private int accountId;
+    private int lastMessageSenderId;
     private String type;
     private String name;
     private String description;
@@ -15,7 +16,8 @@ public class ChatSnippet {
     private ServiceData serviceData;
 
     public ChatSnippet(int id, int accountId, String type, String name, String description, String selfStatus,
-                       String lastMessageText, String lastMessageSenderDisplayName, String lastMessageTime, boolean isRead, String messageType, ServiceData serviceData) {
+                       String lastMessageText, String lastMessageSenderDisplayName, String lastMessageTime, boolean isRead, String messageType, ServiceData serviceData,
+                       int lastMessageSenderId) {
         this.id = id;
         this.accountId = accountId;
         this.type = type;
@@ -28,6 +30,11 @@ public class ChatSnippet {
         this.isRead = isRead;
         this.messageType = messageType;
         this.serviceData = serviceData;
+        this.lastMessageSenderId = lastMessageSenderId;
+    }
+
+    public int getLastMessageSenderId() {
+        return lastMessageSenderId;
     }
 
     public String getLastMessageText() {

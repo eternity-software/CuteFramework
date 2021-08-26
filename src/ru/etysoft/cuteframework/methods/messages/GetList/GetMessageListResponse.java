@@ -38,9 +38,11 @@ public class GetMessageListResponse extends ResponseHandler {
             String displayName = messageObj.getString(APIKeys.DISPLAY_NAME);
             String time = messageObj.getString(APIKeys.TIME);
             String type = messageObj.getString(APIKeys.TYPE);
+            String avatarPath = messageObj.getString(APIKeys.AVATAR_PATH);
             JSONObject jsonObject = messageObj.getJSONObject(APIKeys.SERVICE_DATA);
             ServiceData serviceData = new ServiceData(jsonObject);
-            Message message = new Message(id, accountId, chatId, text, selfStatus, time, displayName, type, serviceData);
+            Message message = new Message(id, accountId, chatId, text, selfStatus, time, displayName, type, serviceData,
+                    avatarPath);
             messages.add(message);
         }
     }

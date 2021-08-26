@@ -1,5 +1,6 @@
 package ru.etysoft.cuteframework.methods.messages;
 
+import ru.etysoft.cuteframework.Methods;
 import ru.etysoft.cuteframework.methods.chat.ServiceData;
 
 public class Message {
@@ -11,9 +12,11 @@ public class Message {
     private String time;
     private String displayName;
     private String type;
+    private String avatarPath;
     private ServiceData serviceData;
 
-    public Message(int id, int accountId, int chatId, String text, String selfStatus, String time, String displayName, String type, ServiceData serviceData) {
+    public Message(int id, int accountId, int chatId, String text, String selfStatus, String time, String displayName, String type, ServiceData serviceData,
+                   String avatarPath) {
         this.id = id;
         this.type = type;
         this.serviceData = serviceData;
@@ -23,6 +26,7 @@ public class Message {
         this.selfStatus = selfStatus;
         this.time = time;
         this.displayName = displayName;
+        this.avatarPath = avatarPath;
     }
 
     public ServiceData getServiceData() {
@@ -31,6 +35,14 @@ public class Message {
 
     public String getType() {
         return type;
+    }
+
+    public String getAvatarPath() {
+        if(avatarPath != null)
+        {
+            return Methods.mediaDomain + avatarPath;
+        }
+        return null;
     }
 
     public String getDisplayName() {

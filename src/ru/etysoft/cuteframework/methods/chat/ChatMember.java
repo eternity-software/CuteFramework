@@ -6,12 +6,19 @@ public class ChatMember {
     private String displayName;
     private String type;
     private String selfStatus;
+    private String photo;
 
-    public ChatMember(int id, String displayName, String type, String selfStatus) {
+    public ChatMember(int id, String displayName, String type, String selfStatus,
+                      String photo) {
         this.id = id;
         this.displayName = displayName;
         this.type = type;
         this.selfStatus = selfStatus;
+        this.photo = photo;
+    }
+
+    public String getPhoto() {
+        return photo;
     }
 
     public int getId() {

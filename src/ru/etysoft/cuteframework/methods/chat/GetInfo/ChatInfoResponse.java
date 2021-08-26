@@ -3,6 +3,7 @@ package ru.etysoft.cuteframework.methods.chat.GetInfo;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import ru.etysoft.cuteframework.Methods;
 import ru.etysoft.cuteframework.data.APIKeys;
 import ru.etysoft.cuteframework.exceptions.ResponseException;
 import ru.etysoft.cuteframework.methods.chat.Chat;
@@ -31,6 +32,7 @@ public class ChatInfoResponse extends ResponseHandler {
         String type = chatObj.getString(APIKeys.TYPE);
         String selfStatus = chatObj.getString(APIKeys.SELF_STATUS);
 
+
         chat = new Chat(name, id, accountId, type, description, selfStatus);
 
         JSONArray jsonArray = chatObj.getJSONArray("members");
@@ -42,8 +44,9 @@ public class ChatInfoResponse extends ResponseHandler {
             String typeMember = memberObj.getString(APIKeys.TYPE);
             String selfStatusMember = memberObj.getString(APIKeys.SELF_STATUS);
             int memberId = memberObj.getInt(APIKeys.ID);
-
-            ChatMember chatMember = new ChatMember(memberId, displayName, typeMember, selfStatusMember);
+            String avatarPath = memberObj.getString(APIKeys.AVATAR_PATH);
+            ChatMember chatMember = new ChatMember(memberId, displayName, typeMember, selfStatusMember,
+                    Methods.domain.substring(0, Methods.domain.length() - 1) + avatarPath);
             memberList.add(chatMember);
         }
     }

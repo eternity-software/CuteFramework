@@ -33,6 +33,7 @@ import ru.etysoft.cuteframework.requests.attachements.ImageFile;
 public class Methods {
 
     public static String domain = "https://api.mcute.ru/";
+    public static String mediaDomain = "https://api.mcute.ru";
     public static String mainDomain = "https://mcute.ru/";
     public static String options = "&v=b001";
 

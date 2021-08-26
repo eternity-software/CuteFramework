@@ -39,7 +39,7 @@ public class GetAccountResponse extends ResponseHandler {
         if(avatarPath == null) {
             throw new ResponseException("Avatar path is null fuuu");
         }
-        return Methods.domain.substring(-1) + avatarPath;
+        return Methods.domain.substring(0, Methods.domain.length() - 1) + avatarPath;
     }
 
     public String getId(){

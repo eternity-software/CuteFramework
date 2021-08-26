@@ -45,10 +45,12 @@ public class ChatListResponse extends ResponseHandler {
             String type = chatObj.getString(APIKeys.TYPE);
             String selfStatus = chatObj.getString(APIKeys.SELF_STATUS);
             String messageType = chatObj.getString(APIKeys.MESSAGE_TYPE);
+            int lastMessageSenderId = chatObj.getInt(APIKeys.MESSAGE_SENDER_ID);
             String serviceObj = chatObj.getString(APIKeys.MESSAGE_SERVICE_DATA);
             ServiceData serviceData = new ServiceData(serviceObj);
             ChatSnippet chat = new ChatSnippet(id, accountId, type, name, description, selfStatus,
-                    lastMessageText, lastMessageSenderName, lastMessageTime, isRead, messageType, serviceData);
+                    lastMessageText, lastMessageSenderName, lastMessageTime, isRead, messageType, serviceData,
+                    lastMessageSenderId);
             chats.add(chat);
         }
     }
