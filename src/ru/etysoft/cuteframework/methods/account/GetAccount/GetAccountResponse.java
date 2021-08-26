@@ -36,8 +36,9 @@ public class GetAccountResponse extends ResponseHandler {
     }
 
     public String getAvatarPath() throws ResponseException {
-        if(avatarPath == null)
+        if(avatarPath.equals("null")) {
             throw new ResponseException("Avatar path is null fuuu");
+        }
         return Methods.domain + avatarPath;
     }
 
