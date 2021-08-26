@@ -78,6 +78,7 @@ public class ChatSnippet {
         return serviceData;
     }
 
+
     public static class Types
     {
         public static final String THREAD = "T";

@@ -1,7 +1,9 @@
 package ru.etysoft.cuteframework.methods.chat;
 
+import com.sun.org.apache.xalan.internal.xsltc.dom.SimpleResultTreeImpl;
 import org.json.JSONException;
 import org.json.JSONObject;
+import ru.etysoft.cuteframework.data.APIKeys;
 import ru.etysoft.cuteframework.exceptions.ResponseException;
 
 public class ServiceData {
@@ -11,10 +13,11 @@ public class ServiceData {
         if (!messageServiceData.equals("0")) {
             JSONObject jsonObject = new JSONObject(messageServiceData);
             this.messageServiceData = jsonObject;
+
         }
     }
     public ServiceData(JSONObject jsonObject){
-        if(!jsonObject.isEmpty()){
+        if(jsonObject.length() != 0){
             this.messageServiceData = jsonObject;
         }
     }
@@ -22,6 +25,10 @@ public class ServiceData {
     public String getChatName() throws ResponseException {
         if (messageServiceData == null) throw new ResponseException("No service data");
         return messageServiceData.getString("chatName");
+    }
+
+    public String getType() {
+        return messageServiceData.getString(APIKeys.TYPE);
     }
 
     public static class Types {

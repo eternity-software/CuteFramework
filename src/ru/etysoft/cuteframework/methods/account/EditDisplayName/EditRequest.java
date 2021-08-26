@@ -9,14 +9,27 @@ import ru.etysoft.cuteframework.requests.RequestHolder;
 
 public class EditRequest extends RequestHolder {
     private String token;
-    private String display_name;
+    private String displayName;
+    private String statusText;
 
-    public EditRequest(String token, String display_name){
+
+    public EditRequest(String token, String displayName){
         super(APIMethods.Account.EDIT);
         this.token = token;
-        this.display_name = display_name;
+        this.displayName = displayName;
         setParams(Pair.make(APIKeys.TOKEN, token),
-                Pair.make(APIKeys.DISPLAY_NAME, display_name));
+                Pair.make(APIKeys.DISPLAY_NAME, displayName));
+    }
+
+    public EditRequest(String token, String displayName,
+                       String statusText, String bioText){
+        super(APIMethods.Account.EDIT);
+        this.token = token;
+        this.displayName = displayName;
+        setParams(Pair.make(APIKeys.TOKEN, token),
+                Pair.make(APIKeys.DISPLAY_NAME, displayName),
+                Pair.make(APIKeys.STATUS, statusText),
+                Pair.make(APIKeys.BIO, bioText));
     }
 
     public EditResponse execute() throws ResponseException {

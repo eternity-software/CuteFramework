@@ -45,6 +45,8 @@ public class Chat {
         return accountId;
     }
 
+
+
     public static class Types
     {
         public static final String THREAD = "T";
