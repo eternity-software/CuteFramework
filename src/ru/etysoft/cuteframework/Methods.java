@@ -18,6 +18,12 @@ import ru.etysoft.cuteframework.methods.chat.ChatList.ChatListRequest;
 import ru.etysoft.cuteframework.methods.chat.ChatList.ChatListResponse;
 import ru.etysoft.cuteframework.methods.chat.Creation.ChatCreateRequest;
 import ru.etysoft.cuteframework.methods.chat.Creation.ChatCreateResponse;
+import ru.etysoft.cuteframework.methods.messages.GetList.GetMessageListRequest;
+import ru.etysoft.cuteframework.methods.messages.GetList.GetMessageListResponse;
+import ru.etysoft.cuteframework.methods.user.Get.GetUserRequest;
+import ru.etysoft.cuteframework.methods.user.Get.GetUserResponse;
+import ru.etysoft.cuteframework.methods.user.Search.SearchUserRequest;
+import ru.etysoft.cuteframework.methods.user.Search.SearchUserResponse;
 
 public class Methods {
 
@@ -48,9 +54,19 @@ public class Methods {
     public static ChatListResponse getChatList(String token) throws ResponseException{
         return (new ChatListRequest(token).execute());
     }
+    public static GetMessageListResponse getMessageList(String token, String id) throws ResponseException{
+        return (new GetMessageListRequest(token, id).execute());
+    }
     public static ChatCreateResponse createChat(String token, String name, String description, String type) throws ResponseException{
         return (new ChatCreateRequest(token,name, description, type).execute());
     }
+    public static GetUserResponse getUser(String token, String id) throws ResponseException{
+        return (new GetUserRequest(token ,id).execute());
+    }
+    public static SearchUserResponse searchUser(String token, String name) throws ResponseException{
+        return (new SearchUserRequest(token ,name).execute());
+    }
+
 
 
 

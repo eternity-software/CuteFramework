@@ -10,7 +10,6 @@ public class APIMethods {
         public final static String AUTHENTICATION = "account/auth";
         public final static String REGISTRATION = "account/create";
         public final static String EDIT = "account/edit";
-        public final static String GET_INFORMATION = "account/get";
 
     }
 
@@ -35,6 +34,11 @@ public class APIMethods {
         public final static String SEND = "message/send";
         public final static String REMOVE_FOR_SELF = "message/removeForSelf";
         public final static String REMOVE_FOR_ALL = "message/removeForAll";
+    }
+
+    public static class Users{
+        public final static String GET_USER = "users/get";
+        public final static String SEARCH_USER = "users/search";
     }
 
 

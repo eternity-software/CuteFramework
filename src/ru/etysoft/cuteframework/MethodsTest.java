@@ -14,6 +14,10 @@ import ru.etysoft.cuteframework.methods.account.Registration.RegistrationRespons
 import ru.etysoft.cuteframework.methods.chat.ChatList.ChatListResponse;
 import ru.etysoft.cuteframework.methods.chat.ChatSnippet;
 import ru.etysoft.cuteframework.methods.chat.Creation.ChatCreateResponse;
+import ru.etysoft.cuteframework.methods.messages.GetList.GetMessageListResponse;
+import ru.etysoft.cuteframework.methods.messages.Message;
+import ru.etysoft.cuteframework.methods.user.Get.GetUserResponse;
+import ru.etysoft.cuteframework.methods.user.Search.SearchUserResponse;
 
 @FixMethodOrder(MethodSorters.JVM)
 public class MethodsTest {
@@ -29,13 +33,24 @@ public class MethodsTest {
 
     @Test
     public void accountCreation() {
-        ChatListResponse chatListResponse = null;
+//        GetUserResponse getUserResponse = null;
+//        SearchUserResponse searchUserResponse = null;
+        GetMessageListResponse getMessageListResponse = null;
+        ChatListResponse response = null;
         try {
-            chatListResponse = Methods.getChatList(sessionKey);
+           response = Methods.getChatList(sessionKey);
+            ChatSnippet chatSnippet = response.getChats().get(0);
+
+            getMessageListResponse = Methods.getMessageList(sessionKey, "5");
+            for (int i = 0; i<getMessageListResponse.getMessages().size(); i++){
+                Message message = getMessageListResponse.getMessages().get(0);
+                System.out.println(message.getChatId());
+                System.out.println(message.getServiceData().getChatName());
+            }
+            System.out.println();
+//            System.out.println(searchUserResponse.getUsers().size());
 //            chatCreateResponse = Methods.createChat(sessionKey, testDisplay_name, desc, "C");
 
-            ChatSnippet snippet = chatListResponse.getChats().get(1);
-            System.out.println(snippet.getServiceData().getChatName());
         } catch (ResponseException e) {
             e.printStackTrace();
         }
