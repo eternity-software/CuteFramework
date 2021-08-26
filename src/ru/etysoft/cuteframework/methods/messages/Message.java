@@ -61,6 +61,13 @@ public class Message {
         return time;
     }
 
+    public static class Type
+    {
+        public static final String SERVICE = "service";
+        public static final String USER = "user";
+    }
+
+
     public static class Status
     {
         public static final String AVAILABLE = "Y";
