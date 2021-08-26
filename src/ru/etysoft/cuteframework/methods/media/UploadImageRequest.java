@@ -10,13 +10,13 @@ import ru.etysoft.cuteframework.requests.RequestHolder;
 
 import java.util.HashMap;
 
-public class UpLoadImageRequest extends RequestHolder {
+public class UploadImageRequest extends RequestHolder {
     private Object file;
-    public UpLoadImageRequest(Object file) {
+    public UploadImageRequest(Object file) {
         super(APIMethods.Media.UP_LOAD_IMAGE);
         this.file = file;
     }
-    public UpLoadImageResponse execute() throws ResponseException {
+    public UploadImageResponse execute() throws ResponseException {
         HashMap<String, Object> hashMap = new HashMap<String, Object>();
         hashMap.put(APIKeys.FILE, file);
 
@@ -24,7 +24,7 @@ public class UpLoadImageRequest extends RequestHolder {
 
         String response = POST.execute(url, hashMap, APIMethods.Media.UP_LOAD_IMAGE);
         Logger.logResponse(response, getMethod());
-        return new UpLoadImageResponse(response, url);
+        return new UploadImageResponse(response, url);
     }
 
 }

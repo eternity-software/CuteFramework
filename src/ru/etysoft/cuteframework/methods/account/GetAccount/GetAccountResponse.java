@@ -1,6 +1,5 @@
 package ru.etysoft.cuteframework.methods.account.GetAccount;
 
-
 import org.json.JSONException;
 import org.json.JSONObject;
 import ru.etysoft.cuteframework.data.APIKeys;

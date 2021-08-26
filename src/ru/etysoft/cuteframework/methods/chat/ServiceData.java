@@ -11,9 +11,7 @@ public class ServiceData {
 
     public ServiceData(String messageServiceData) {
         if (!messageServiceData.equals("0")) {
-            JSONObject jsonObject = new JSONObject(messageServiceData);
-            this.messageServiceData = jsonObject;
-
+            this.messageServiceData = new JSONObject(messageServiceData);
         }
     }
     public ServiceData(JSONObject jsonObject){
@@ -33,7 +31,6 @@ public class ServiceData {
 
     public static class Types {
         public static final String CHAT_CREATED = "chatCreated";
-
     }
 
 }

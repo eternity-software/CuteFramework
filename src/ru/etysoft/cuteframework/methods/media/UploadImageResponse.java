@@ -6,9 +6,9 @@ import ru.etysoft.cuteframework.data.APIKeys;
 import ru.etysoft.cuteframework.exceptions.ResponseException;
 import ru.etysoft.cuteframework.responses.ResponseHandler;
 
-public class UpLoadImageResponse extends ResponseHandler {
+public class UploadImageResponse extends ResponseHandler {
     private String mediaId;
-    public UpLoadImageResponse(String jsonResponse, String url) throws JSONException {
+    public UploadImageResponse(String jsonResponse, String url) throws JSONException {
         super(jsonResponse, url);
     }
 

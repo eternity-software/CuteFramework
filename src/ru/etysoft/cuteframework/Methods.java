@@ -20,8 +20,8 @@ import ru.etysoft.cuteframework.methods.chat.ChatList.ChatListRequest;
 import ru.etysoft.cuteframework.methods.chat.ChatList.ChatListResponse;
 import ru.etysoft.cuteframework.methods.chat.Creation.ChatCreateRequest;
 import ru.etysoft.cuteframework.methods.chat.Creation.ChatCreateResponse;
-import ru.etysoft.cuteframework.methods.media.UpLoadImageRequest;
-import ru.etysoft.cuteframework.methods.media.UpLoadImageResponse;
+import ru.etysoft.cuteframework.methods.media.UploadImageRequest;
+import ru.etysoft.cuteframework.methods.media.UploadImageResponse;
 import ru.etysoft.cuteframework.methods.messages.GetList.GetMessageListRequest;
 import ru.etysoft.cuteframework.methods.messages.GetList.GetMessageListResponse;
 import ru.etysoft.cuteframework.methods.user.Get.GetUserRequest;
@@ -70,8 +70,8 @@ public class Methods {
     public static SearchUserResponse searchUser(String token, String name) throws ResponseException{
         return (new SearchUserRequest(token ,name).execute());
     }
-    public static UpLoadImageResponse upLoadImage(Object object) throws ResponseException{
-        return (new UpLoadImageRequest(object).execute());
+    public static UploadImageResponse upLoadImage(Object object) throws ResponseException{
+        return (new UploadImageRequest(object).execute());
     }
     public static ChangeAvatarResponse changeAvatar(String token, String mediaId) throws ResponseException{
         return (new ChangeAvatarRequest(token, mediaId).execute());
