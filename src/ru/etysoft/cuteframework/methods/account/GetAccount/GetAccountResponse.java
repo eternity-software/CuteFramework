@@ -21,16 +21,17 @@ public class GetAccountResponse extends ResponseHandler {
     @Override
     public void onSuccess() {
         JSONObject data = getJsonResponse().getJSONObject(APIKeys.DATA);
-        confirm = data.getString(APIKeys.CONFIRM);
-        id = data.getInt(APIKeys.ID);
-        login = data.getString(APIKeys.LOGIN);
-        email = data.getString(APIKeys.EMAIL);
-        password = data.getString(APIKeys.PASSWORD);
-        display_name = data.getString(APIKeys.DISPLAY_NAME);
-        status = data.getString(APIKeys.STATUS);
-        bio = data.getString(APIKeys.BIO);
-        if (data.isNull("avatarPath")){
-            avatarPath = data.getString("avatarPath");
+        JSONObject account = data.getJSONObject(APIKeys.ACCOUNT);
+        confirm = account.getString(APIKeys.CONFIRM);
+        id = account.getInt(APIKeys.ID);
+        login = account.getString(APIKeys.LOGIN);
+        email = account.getString(APIKeys.EMAIL);
+        password = account.getString(APIKeys.PASSWORD);
+        display_name = account.getString(APIKeys.DISPLAY_NAME);
+        status = account.getString(APIKeys.STATUS);
+        bio = account.getString(APIKeys.BIO);
+        if (account.isNull("avatarPath")){
+            avatarPath = account.getString("avatarPath");
         }
     }
 
