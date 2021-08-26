@@ -1,6 +1,8 @@
 package ru.etysoft.cuteframework.data;
 
 public class APIKeys {
+    public final static String MEDIA_ID = "mediaId";
+    public final static String FILE = "file";
     public final static String SERVICE_DATA = "serviceData";
     public final static String MESSAGE_SERVICE_DATA = "messageServiceData";
     public final static String MESSAGE_TYPE = "messageType";

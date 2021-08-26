@@ -9,7 +9,7 @@ import ru.etysoft.cuteframework.responses.errors.ErrorHandler;
 
 public class GetAccountResponse extends ResponseHandler {
 
-    private String confirm, display_name, login, email, password, status, bio;
+    private String confirm, display_name, login, email, password, status, bio, avatarPath;
     private int id;
 
     public GetAccountResponse(String jsonResponse, String url) throws JSONException {
@@ -28,6 +28,13 @@ public class GetAccountResponse extends ResponseHandler {
         display_name = data.getString(APIKeys.DISPLAY_NAME);
         status = data.getString(APIKeys.STATUS);
         bio = data.getString(APIKeys.BIO);
+        if (data.isNull("avatarPath")){
+            avatarPath = data.getString("avatarPath");
+        }
+    }
+
+    public String getAvatarPath() {
+        return avatarPath;
     }
 
     public String getId(){

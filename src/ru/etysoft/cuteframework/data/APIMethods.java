@@ -40,6 +40,9 @@ public class APIMethods {
         public final static String GET_USER = "users/get";
         public final static String SEARCH_USER = "users/search";
     }
+    public static class Media{
+        public final static String UP_LOAD_IMAGE = "media/uploadImage";
+    }
 
 
 
