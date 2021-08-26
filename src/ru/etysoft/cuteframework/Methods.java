@@ -1,6 +1,8 @@
 package ru.etysoft.cuteframework;
 
 
+import ru.etysoft.cuteframework.methods.account.ChangeAvatar.ChangeAvatarRequest;
+import ru.etysoft.cuteframework.methods.account.ChangeAvatar.ChangeAvatarResponse;
 import ru.etysoft.cuteframework.methods.account.Confirmation.ConfirmCodeRequest;
 import ru.etysoft.cuteframework.methods.account.Confirmation.ConfirmCodeResponse;
 import ru.etysoft.cuteframework.methods.account.Confirmation.ConfirmationRequest;
@@ -70,6 +72,9 @@ public class Methods {
     }
     public static UpLoadImageResponse upLoadImage(Object object) throws ResponseException{
         return (new UpLoadImageRequest(object).execute());
+    }
+    public static ChangeAvatarResponse changeAvatar(String token, String mediaId) throws ResponseException{
+        return (new ChangeAvatarRequest(token, mediaId).execute());
     }
 
 
