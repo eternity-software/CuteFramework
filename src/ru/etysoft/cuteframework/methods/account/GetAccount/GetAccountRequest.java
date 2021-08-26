@@ -11,7 +11,7 @@ public class GetAccountRequest extends RequestHolder {
     private String token;
 
     public GetAccountRequest(String token){
-        super(APIMethods.Account.AUTHENTICATION);
+        super(APIMethods.Account.GET);
 
         this.token = token;
         setParams(Pair.make(APIKeys.TOKEN, token));

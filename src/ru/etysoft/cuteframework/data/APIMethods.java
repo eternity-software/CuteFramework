@@ -8,6 +8,7 @@ public class APIMethods {
         public final static String CONFIRMATION_CODE = "account/sendConfirmCode";
         public final static String CONFIRMATION = "account/confirm";
         public final static String AUTHENTICATION = "account/auth";
+        public final static String GET = "account/get";
         public final static String REGISTRATION = "account/create";
         public final static String EDIT = "account/edit";
         public final static String CHANGE_AVATAR = "account/changeAvatar";
