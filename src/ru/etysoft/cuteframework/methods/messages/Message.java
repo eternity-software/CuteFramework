@@ -1,5 +1,7 @@
 package ru.etysoft.cuteframework.methods.messages;
 
+import ru.etysoft.cuteframework.methods.chat.ServiceData;
+
 public class Message {
     private int id;
     private int accountId;
@@ -8,15 +10,27 @@ public class Message {
     private String selfStatus;
     private String time;
     private String displayName;
+    private String type;
+    private ServiceData serviceData;
 
-    public Message(int id, int accountId, int chatId, String text, String selfStatus, String time, String displayName) {
+    public Message(int id, int accountId, int chatId, String text, String selfStatus, String time, String displayName, String type, ServiceData serviceData) {
         this.id = id;
+        this.type = type;
+        this.serviceData = serviceData;
         this.accountId = accountId;
         this.chatId = chatId;
         this.text = text;
         this.selfStatus = selfStatus;
         this.time = time;
         this.displayName = displayName;
+    }
+
+    public ServiceData getServiceData() {
+        return serviceData;
+    }
+
+    public String getType() {
+        return type;
     }
 
     public String getDisplayName() {

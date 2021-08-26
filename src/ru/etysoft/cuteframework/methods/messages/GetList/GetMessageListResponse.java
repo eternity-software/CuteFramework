@@ -6,6 +6,7 @@ import org.json.JSONObject;
 import ru.etysoft.cuteframework.data.APIKeys;
 import ru.etysoft.cuteframework.exceptions.ResponseException;
 import ru.etysoft.cuteframework.methods.chat.Chat;
+import ru.etysoft.cuteframework.methods.chat.ServiceData;
 import ru.etysoft.cuteframework.methods.messages.Message;
 import ru.etysoft.cuteframework.responses.ResponseHandler;
 
@@ -36,8 +37,10 @@ public class GetMessageListResponse extends ResponseHandler {
             String selfStatus = messageObj.getString(APIKeys.SELF_STATUS);
             String displayName = messageObj.getString(APIKeys.DISPLAY_NAME);
             String time = messageObj.getString(APIKeys.TIME);
-
-            Message message = new Message(id, accountId, chatId, text, selfStatus, time, displayName);
+            String type = messageObj.getString(APIKeys.TYPE);
+            JSONObject jsonObject = messageObj.getJSONObject(APIKeys.SERVICE_DATA);
+            ServiceData serviceData = new ServiceData(jsonObject);
+            Message message = new Message(id, accountId, chatId, text, selfStatus, time, displayName, type, serviceData);
             messages.add(message);
         }
     }

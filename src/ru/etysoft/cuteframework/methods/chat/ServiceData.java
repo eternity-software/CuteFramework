@@ -2,30 +2,29 @@ package ru.etysoft.cuteframework.methods.chat;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import ru.etysoft.cuteframework.exceptions.ResponseException;
 
 public class ServiceData {
     private JSONObject messageServiceData;
-    private Boolean ismessagenull;
-    public ServiceData(String messageServiceData){
-        if(!messageServiceData.equals("0")){
-            ismessagenull = false;
+
+    public ServiceData(String messageServiceData) {
+        if (!messageServiceData.equals("0")) {
             JSONObject jsonObject = new JSONObject(messageServiceData);
             this.messageServiceData = jsonObject;
         }
-        else {
-            ismessagenull = true;
+    }
+    public ServiceData(JSONObject jsonObject){
+        if(!jsonObject.isEmpty()){
+            this.messageServiceData = jsonObject;
         }
     }
 
-    public String getChatName(){
-        if (!ismessagenull){
-            return messageServiceData.getString("chatName");
-        }
-        return "NO_SERVICE_MESSAGE";
-
+    public String getChatName() throws ResponseException {
+        if (messageServiceData == null) throw new ResponseException("No service data");
+        return messageServiceData.getString("chatName");
     }
-    public static class Types
-    {
+
+    public static class Types {
         public static final String CHAT_CREATED = "chatCreated";
 
     }
