@@ -12,13 +12,16 @@ import ru.etysoft.cuteframework.requests.attachements.ImageFile;
 import java.util.HashMap;
 
 public class UploadImageRequest extends RequestHolder {
-    private ImageFile file;
-    public UploadImageRequest(ImageFile file) {
+    private final String token;
+    private final ImageFile file;
+    public UploadImageRequest(ImageFile file, String token) {
         super(APIMethods.Media.UP_LOAD_IMAGE);
         this.file = file;
+        this.token = token;
     }
     public UploadImageResponse execute() throws ResponseException {
         HashMap<String, Object> hashMap = new HashMap<String, Object>();
+        hashMap.put(APIKeys.TOKEN, token);
         hashMap.put(APIKeys.FILE, file);
 
         String url = Methods.domain + APIMethods.Media.UP_LOAD_IMAGE;
