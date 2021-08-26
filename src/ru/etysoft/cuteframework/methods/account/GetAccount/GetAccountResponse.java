@@ -2,6 +2,7 @@ package ru.etysoft.cuteframework.methods.account.GetAccount;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import ru.etysoft.cuteframework.Methods;
 import ru.etysoft.cuteframework.data.APIKeys;
 import ru.etysoft.cuteframework.responses.ResponseHandler;
 import ru.etysoft.cuteframework.responses.errors.ErrorHandler;
@@ -33,7 +34,7 @@ public class GetAccountResponse extends ResponseHandler {
     }
 
     public String getAvatarPath() {
-        return avatarPath;
+        return Methods.domain + avatarPath;
     }
 
     public String getId(){
