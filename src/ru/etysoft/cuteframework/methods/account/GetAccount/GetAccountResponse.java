@@ -10,7 +10,7 @@ import ru.etysoft.cuteframework.responses.errors.ErrorHandler;
 
 public class GetAccountResponse extends ResponseHandler {
 
-    private String confirm, display_name, login, email, password, status, bio, avatarPath;
+    private String confirm, displayName, login, email, password, status, bio, avatarPath, coverPath;
     private int id;
 
     public GetAccountResponse(String jsonResponse, String url) throws JSONException {
@@ -27,19 +27,45 @@ public class GetAccountResponse extends ResponseHandler {
         login = account.getString(APIKeys.LOGIN);
         email = account.getString(APIKeys.EMAIL);
         password = account.getString(APIKeys.PASSWORD);
-        display_name = account.getString(APIKeys.DISPLAY_NAME);
-        status = account.getString(APIKeys.STATUS);
-        bio = account.getString(APIKeys.BIO);
+        displayName = account.getString(APIKeys.DISPLAY_NAME);
+        if(!account.isNull(APIKeys.STATUS))
+        {
+            status = account.getString(APIKeys.STATUS);
+        }
+        else
+        {
+            status = "";
+        }
+
+        if(!account.isNull(APIKeys.BIO))
+        {
+            bio = account.getString(APIKeys.BIO);
+        }
+        else
+        {
+            bio = "";
+        }
+        if (!account.isNull(APIKeys.COVER_PATH)){
+            coverPath = String.valueOf(account.getString(APIKeys.COVER_PATH));
+        }
+
         if (!account.isNull("avatarPath")){
             avatarPath = account.getString("avatarPath");
         }
     }
 
-    public String getAvatarPath() throws ResponseException {
-        if(avatarPath == null) {
-            throw new ResponseException("Avatar path is null fuuu");
+    public String getCoverPath() {
+        if(coverPath == null) {
+            return null;
         }
-        return Methods.domain.substring(0, Methods.domain.length() - 1) + avatarPath;
+        return Methods.mediaDomain + coverPath;
+    }
+
+    public String getAvatarPath() {
+        if(avatarPath == null) {
+           return null;
+        }
+        return Methods.mediaDomain + avatarPath;
     }
 
     public String getId(){
@@ -63,14 +89,22 @@ public class GetAccountResponse extends ResponseHandler {
     }
 
     public String getDisplayName() {
-        return display_name;
+        return displayName;
     }
 
     public String getBio() {
+        if(bio == null)
+        {
+            bio = "";
+        }
         return bio;
     }
 
     public String getStatus() {
+        if(status == null)
+        {
+            status = "";
+        }
         return status;
     }
 

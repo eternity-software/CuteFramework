@@ -15,7 +15,7 @@ public class UploadImageRequest extends RequestHolder {
     private final String token;
     private final ImageFile file;
     public UploadImageRequest(ImageFile file, String token) {
-        super(APIMethods.Media.UP_LOAD_IMAGE);
+        super(APIMethods.Media.UPLOAD_IMAGE);
         this.file = file;
         this.token = token;
     }
@@ -24,9 +24,9 @@ public class UploadImageRequest extends RequestHolder {
         hashMap.put(APIKeys.TOKEN, token);
         hashMap.put(APIKeys.FILE, file);
 
-        String url = Methods.domain + APIMethods.Media.UP_LOAD_IMAGE;
+        String url = Methods.domain + APIMethods.Media.UPLOAD_IMAGE;
 
-        String response = POST.execute(url, hashMap, APIMethods.Media.UP_LOAD_IMAGE);
+        String response = POST.execute(url, hashMap, APIMethods.Media.UPLOAD_IMAGE);
         Logger.logResponse(response, getMethod());
         return new UploadImageResponse(response, url);
     }

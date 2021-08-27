@@ -15,6 +15,7 @@ public class GET {
 
     public static String execute(String url) throws ResponseException {
         try {
+            System.out.println("CuFr GET >> " + url);
             OkHttpClient client = new OkHttpClient();
 
             Request request = new Request.Builder()

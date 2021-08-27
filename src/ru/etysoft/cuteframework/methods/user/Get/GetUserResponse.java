@@ -8,7 +8,8 @@ import ru.etysoft.cuteframework.exceptions.ResponseException;
 import ru.etysoft.cuteframework.responses.ResponseHandler;
 
 public class GetUserResponse extends ResponseHandler {
-    private String displayName, status, bio, id, onlineTime, avatarPath;
+    private String displayName, status, bio, id, onlineTime, avatarPath,
+    coverPath;
     public GetUserResponse(String jsonResponse, String url) throws JSONException {
         super(jsonResponse, url);
     }
@@ -24,11 +25,26 @@ public class GetUserResponse extends ResponseHandler {
         if (!jsonObject.isNull("statusText")){
             status = jsonObject.getString("statusText");
         }
-        avatarPath = String.valueOf(jsonObject.getString(APIKeys.AVATAR_PATH));
+
+        if(!jsonObject.isNull(APIKeys.COVER_PATH))
+        {
+            coverPath = String.valueOf(jsonObject.getString(APIKeys.COVER_PATH));
+        }
+        if(!jsonObject.isNull(APIKeys.AVATAR_PATH))
+        {
+            avatarPath = String.valueOf(jsonObject.getString(APIKeys.AVATAR_PATH));
+        }
+
         onlineTime = String.valueOf(jsonObject.getInt("onlineTime"));
     }
 
+    public String getCoverPath() throws ResponseException{
+        if(coverPath == null) return null;
+        return Methods.mediaDomain + coverPath;
+    }
+
     public String getAvatarPath() {
+        if(avatarPath == null) return null;
         return Methods.mediaDomain + avatarPath;
     }
 

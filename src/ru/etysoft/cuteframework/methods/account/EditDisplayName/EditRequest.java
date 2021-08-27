@@ -7,6 +7,9 @@ import ru.etysoft.cuteframework.requests.Pair;
 import ru.etysoft.cuteframework.requests.Request;
 import ru.etysoft.cuteframework.requests.RequestHolder;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 public class EditRequest extends RequestHolder {
     private String token;
     private String displayName;
@@ -26,10 +29,14 @@ public class EditRequest extends RequestHolder {
         super(APIMethods.Account.EDIT);
         this.token = token;
         this.displayName = displayName;
-        setParams(Pair.make(APIKeys.TOKEN, token),
-                Pair.make(APIKeys.DISPLAY_NAME, displayName),
-                Pair.make(APIKeys.STATUS, statusText),
-                Pair.make(APIKeys.BIO, bioText));
+        try {
+            setParams(Pair.make(APIKeys.TOKEN, token),
+                    Pair.make(APIKeys.DISPLAY_NAME, URLEncoder.encode(displayName, "UTF-8")),
+                    Pair.make(APIKeys.STATUS, URLEncoder.encode(statusText, "UTF-8")),
+                    Pair.make(APIKeys.BIO, URLEncoder.encode(bioText, "UTF-8")));
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
     }
 
     public EditResponse execute() throws ResponseException {

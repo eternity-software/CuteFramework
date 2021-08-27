@@ -12,7 +12,7 @@ public class APIMethods {
         public final static String REGISTRATION = "account/create";
         public final static String EDIT = "account/edit";
         public final static String CHANGE_AVATAR = "account/changeAvatar";
-
+        public final static String CHANGE_COVER = "account/changeCover";
     }
 
     public static class Chat
@@ -27,6 +27,7 @@ public class APIMethods {
         public final static String GET_LIST = "chat/getList";
         public final static String GET = "chat/get";
         public final static String LEAVE = "chat/leave";
+        public final static String CHANGE_AVATAR = "chat/changeAvatar";
         public final static String CLEAR_HISTORY = "chat/clearHistory";
     }
 
@@ -43,7 +44,7 @@ public class APIMethods {
         public final static String SEARCH_USER = "users/search";
     }
     public static class Media{
-        public final static String UP_LOAD_IMAGE = "media/uploadImage";
+        public final static String UPLOAD_IMAGE = "media/uploadImage";
     }
 
 

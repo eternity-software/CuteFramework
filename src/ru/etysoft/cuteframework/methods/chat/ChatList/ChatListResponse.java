@@ -3,6 +3,7 @@ package ru.etysoft.cuteframework.methods.chat.ChatList;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import ru.etysoft.cuteframework.Methods;
 import ru.etysoft.cuteframework.data.APIKeys;
 import ru.etysoft.cuteframework.exceptions.ResponseException;
 import ru.etysoft.cuteframework.methods.chat.Chat;
@@ -47,10 +48,19 @@ public class ChatListResponse extends ResponseHandler {
             String messageType = chatObj.getString(APIKeys.MESSAGE_TYPE);
             int lastMessageSenderId = chatObj.getInt(APIKeys.MESSAGE_SENDER_ID);
             String serviceObj = chatObj.getString(APIKeys.MESSAGE_SERVICE_DATA);
+
+            String chatAvatarPath = null;
+
+            if(!chatObj.isNull(APIKeys.AVATAR_PATH))
+            {
+                chatAvatarPath = Methods.mediaDomain + chatObj.getString(APIKeys.AVATAR_PATH);
+            }
+
+
             ServiceData serviceData = new ServiceData(serviceObj);
             ChatSnippet chat = new ChatSnippet(id, accountId, type, name, description, selfStatus,
                     lastMessageText, lastMessageSenderName, lastMessageTime, isRead, messageType, serviceData,
-                    lastMessageSenderId);
+                    lastMessageSenderId, chatAvatarPath);
             chats.add(chat);
         }
     }

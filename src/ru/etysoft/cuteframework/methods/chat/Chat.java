@@ -8,10 +8,12 @@ public class Chat {
     private String name;
     private String description;
     private String selfStatus;
+    private String avatarPath;
 
 
 
-    public Chat(String name, int id, int accountId, String type, String description, String selfStatus)
+    public Chat(String name, int id, int accountId, String type, String description, String selfStatus,
+                String avatarPath)
     {
         this.id = id;
         this.accountId = accountId;
@@ -19,6 +21,11 @@ public class Chat {
         this.name = name;
         this.description = description;
         this.selfStatus = selfStatus;
+        this.avatarPath = avatarPath;
+    }
+
+    public String getAvatarPath() {
+        return avatarPath;
     }
 
     public String getType() {

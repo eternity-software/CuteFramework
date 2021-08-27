@@ -39,6 +39,7 @@ public class APIKeys {
     public final static String USERS = "users";
     public final static String USER = "user";
     public final static String AVATAR_PATH = "avatarPath";
+    public final static String COVER_PATH = "coverPath";
     public final static String MESSAGE_SENDER_ID = "messageAuthorId";
 }
 

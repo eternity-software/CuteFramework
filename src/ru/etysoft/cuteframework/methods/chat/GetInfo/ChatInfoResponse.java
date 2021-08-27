@@ -32,8 +32,15 @@ public class ChatInfoResponse extends ResponseHandler {
         String type = chatObj.getString(APIKeys.TYPE);
         String selfStatus = chatObj.getString(APIKeys.SELF_STATUS);
 
+        String chatAvatarPath = null;
 
-        chat = new Chat(name, id, accountId, type, description, selfStatus);
+        if(!chatObj.isNull(APIKeys.AVATAR_PATH))
+        {
+            chatAvatarPath = Methods.mediaDomain + chatObj.getString(APIKeys.AVATAR_PATH);
+        }
+
+
+        chat = new Chat(name, id, accountId, type, description, selfStatus, chatAvatarPath);
 
         JSONArray jsonArray = chatObj.getJSONArray("members");
 
