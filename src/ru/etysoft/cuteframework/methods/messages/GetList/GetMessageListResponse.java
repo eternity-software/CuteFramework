@@ -1,12 +1,11 @@
 package ru.etysoft.cuteframework.methods.messages.GetList;
 
-import com.sun.corba.se.impl.oa.poa.AOMEntry;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import ru.etysoft.cuteframework.data.APIKeys;
 import ru.etysoft.cuteframework.exceptions.ResponseException;
-import ru.etysoft.cuteframework.methods.chat.Chat;
 import ru.etysoft.cuteframework.methods.chat.ServiceData;
 import ru.etysoft.cuteframework.methods.messages.AttachmentData;
 import ru.etysoft.cuteframework.methods.messages.Message;
@@ -25,7 +24,7 @@ public class GetMessageListResponse extends ResponseHandler {
 
     @Override
     public void onSuccess() {
-        JSONArray jsonArray = getJsonResponse().getJSONObject(APIKeys.DATA).getJSONArray(APIKeys.MESSAGES);
+        JSONArray jsonArray = getJsonResponse().getJSONObject(APIKeys.DATA).getJSONArray(APIKeys.Message.MESSAGES);
 
         messages = new ArrayList<>();
 
@@ -46,19 +45,19 @@ public class GetMessageListResponse extends ResponseHandler {
             String attachmentPath = null;
             AttachmentData attachmentData = null;
 
-            if(!messageObj.isNull(APIKeys.ATTACHMENT_PATH))
+            if(!messageObj.isNull(APIKeys.Attachment.ATTACHMENT_PATH))
             {
-                attachmentPath = messageObj.getString(APIKeys.ATTACHMENT_PATH);
-                JSONObject attachmentDataObj = messageObj.getJSONObject(APIKeys.ATTACHMENT_DATA);
+                attachmentPath = messageObj.getString(APIKeys.Attachment.ATTACHMENT_PATH);
+                JSONObject attachmentDataObj = messageObj.getJSONObject(APIKeys.Attachment.ATTACHMENT_DATA);
                 attachmentData = AttachmentData.fromJSON(attachmentDataObj);
             }
 
-            if(!messageObj.isNull(APIKeys.ATTACHMENT_TYPE))
+            if(!messageObj.isNull(APIKeys.Attachment.ATTACHMENT_TYPE))
             {
-                attachmentType = messageObj.getString(APIKeys.ATTACHMENT_TYPE);
+                attachmentType = messageObj.getString(APIKeys.Attachment.ATTACHMENT_TYPE);
             }
 
-            JSONObject jsonObject = messageObj.getJSONObject(APIKeys.SERVICE_DATA);
+            JSONObject jsonObject = messageObj.getJSONObject(APIKeys.Message.SERVICE_DATA);
 
 
 

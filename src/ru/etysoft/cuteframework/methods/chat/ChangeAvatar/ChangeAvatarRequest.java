@@ -13,7 +13,7 @@ public class ChangeAvatarRequest extends RequestHolder {
         super(APIMethods.Chat.CHANGE_AVATAR);
         this.mediaId = mediaId;
         this.token = token;
-        setParams(Pair.make(APIKeys.TOKEN, token), Pair.make(APIKeys.MEDIA_ID, mediaId),
+        setParams(Pair.make(APIKeys.TOKEN, token), Pair.make(APIKeys.Media.MEDIA_ID, mediaId),
                 Pair.make(APIKeys.CHAT_ID, chatId));
     }
     public ChangeAvatarResponse execute() throws ResponseException {

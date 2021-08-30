@@ -53,12 +53,12 @@ public class SendMessageResponse extends ResponseHandler {
         time = respObj.getString(APIKeys.TIME);
         text = respObj.getString(APIKeys.TEXT);
         id = respObj.getString(APIKeys.ID);
-        if(respObj.has(APIKeys.ATTACHMENT_TYPE))
+        if(respObj.has(APIKeys.Attachment.ATTACHMENT_TYPE))
         {
-            attachmentType = respObj.getString(APIKeys.ATTACHMENT_TYPE);
-            attachmentPath = respObj.getString(APIKeys.ATTACHMENT_PATH);
+            attachmentType = respObj.getString(APIKeys.Attachment.ATTACHMENT_TYPE);
+            attachmentPath = respObj.getString(APIKeys.Attachment.ATTACHMENT_PATH);
             attachmentData = AttachmentData.fromJSON(
-                    respObj.getJSONObject(APIKeys.ATTACHMENT_DATA));
+                    respObj.getJSONObject(APIKeys.Attachment.ATTACHMENT_DATA));
         }
 
     }

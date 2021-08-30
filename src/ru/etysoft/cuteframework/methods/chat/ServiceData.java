@@ -1,7 +1,6 @@
 package ru.etysoft.cuteframework.methods.chat;
 
-import com.sun.org.apache.xalan.internal.xsltc.dom.SimpleResultTreeImpl;
-import org.json.JSONException;
+
 import org.json.JSONObject;
 import ru.etysoft.cuteframework.data.APIKeys;
 import ru.etysoft.cuteframework.exceptions.ResponseException;
@@ -20,6 +19,16 @@ public class ServiceData {
         }
     }
 
+    public String getDisplayName() throws ResponseException {
+        if (messageServiceData == null) throw new ResponseException("No service data");
+        return messageServiceData.getString(APIKeys.DISPLAY_NAME);
+    }
+
+    public int getAccountId() throws ResponseException {
+        if (messageServiceData == null) throw new ResponseException("No service data");
+        return messageServiceData.getInt(APIKeys.ACCOUNT_ID);
+    }
+
     public String getChatName() throws ResponseException {
         if (messageServiceData == null) throw new ResponseException("No service data");
         return messageServiceData.getString("chatName");
@@ -31,6 +40,7 @@ public class ServiceData {
 
     public static class Types {
         public static final String CHAT_CREATED = "chatCreated";
+        public static final String ADD_MEMBER = "addMember";
     }
 
 }

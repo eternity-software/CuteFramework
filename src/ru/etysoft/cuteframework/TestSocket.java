@@ -1,8 +1,8 @@
 package ru.etysoft.cuteframework;
 
-import ru.etysoft.cuteframework.sockets.APISocket;
+import ru.etysoft.cuteframework.sockets.TCPSocket;
 
-public class TestSocket extends APISocket {
+public class TestSocket extends TCPSocket {
     public TestSocket(String host, int port) {
         super(host, port, "TestSocket");
     }

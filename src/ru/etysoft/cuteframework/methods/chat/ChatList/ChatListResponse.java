@@ -6,7 +6,6 @@ import org.json.JSONObject;
 import ru.etysoft.cuteframework.Methods;
 import ru.etysoft.cuteframework.data.APIKeys;
 import ru.etysoft.cuteframework.exceptions.ResponseException;
-import ru.etysoft.cuteframework.methods.chat.Chat;
 import ru.etysoft.cuteframework.methods.chat.ChatSnippet;
 import ru.etysoft.cuteframework.methods.chat.ServiceData;
 import ru.etysoft.cuteframework.responses.ResponseHandler;
@@ -39,15 +38,15 @@ public class ChatListResponse extends ResponseHandler {
             String description = chatObj.getString(APIKeys.DESCRIPTION);
             int accountId = chatObj.getInt(APIKeys.ACCOUNT_ID);
             int id = chatObj.getInt(APIKeys.ID);
-            String lastMessageTime = chatObj.getString(APIKeys.MESSAGE_TIME);
-            String lastMessageText = chatObj.getString(APIKeys.MESSAGE_TEXT);
-            String lastMessageSenderName = chatObj.getString(APIKeys.MESSAGE_SENDER_DISPLAY_NAME);
-            boolean isRead = chatObj.getInt(APIKeys.MESSAGE_READ) != 0;
+            String lastMessageTime = chatObj.getString(APIKeys.Message.MESSAGE_TIME);
+            String lastMessageText = chatObj.getString(APIKeys.Message.MESSAGE_TEXT);
+            String lastMessageSenderName = chatObj.getString(APIKeys.Message.MESSAGE_SENDER_DISPLAY_NAME);
+            boolean isRead = chatObj.getInt(APIKeys.Message.MESSAGE_READ) != 0;
             String type = chatObj.getString(APIKeys.TYPE);
             String selfStatus = chatObj.getString(APIKeys.SELF_STATUS);
-            String messageType = chatObj.getString(APIKeys.MESSAGE_TYPE);
-            int lastMessageSenderId = chatObj.getInt(APIKeys.MESSAGE_SENDER_ID);
-            String serviceObj = chatObj.getString(APIKeys.MESSAGE_SERVICE_DATA);
+            String messageType = chatObj.getString(APIKeys.Message.MESSAGE_TYPE);
+            int lastMessageSenderId = chatObj.getInt(APIKeys.Message.MESSAGE_SENDER_ID);
+            String serviceObj = chatObj.getString(APIKeys.Message.MESSAGE_SERVICE_DATA);
 
             String chatAvatarPath = null;
 

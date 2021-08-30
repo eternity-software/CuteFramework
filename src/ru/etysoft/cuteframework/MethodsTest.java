@@ -4,22 +4,16 @@ package ru.etysoft.cuteframework;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
-import ru.etysoft.cuteframework.exceptions.SocketNotStartedException;
-import ru.etysoft.cuteframework.methods.account.Confirmation.ConfirmCodeResponse;
-import ru.etysoft.cuteframework.methods.account.Confirmation.ConfirmationResponse;
-import ru.etysoft.cuteframework.methods.account.EditDisplayName.EditResponse;
-import ru.etysoft.cuteframework.methods.account.GetAccount.GetAccountResponse;
-import ru.etysoft.cuteframework.methods.account.Login.LoginResponse;
 import ru.etysoft.cuteframework.exceptions.ResponseException;
-import ru.etysoft.cuteframework.methods.account.Registration.RegistrationResponse;
 import ru.etysoft.cuteframework.methods.chat.ChatList.ChatListResponse;
 import ru.etysoft.cuteframework.methods.chat.ChatSnippet;
-import ru.etysoft.cuteframework.methods.chat.Creation.ChatCreateResponse;
 import ru.etysoft.cuteframework.methods.messages.GetList.GetMessageListResponse;
 import ru.etysoft.cuteframework.methods.messages.Message;
-import ru.etysoft.cuteframework.methods.user.Get.GetUserResponse;
-import ru.etysoft.cuteframework.methods.user.Search.SearchUserResponse;
-import ru.etysoft.cuteframework.sockets.Server;
+import ru.etysoft.cuteframework.sockets.WebSocket;
+import ru.etysoft.cuteframework.sockets.methods.Messages.MessagesSocket;
+
+import java.net.URI;
+import java.net.URISyntaxException;
 
 @FixMethodOrder(MethodSorters.JVM)
 public class MethodsTest {
@@ -70,22 +64,39 @@ public class MethodsTest {
 //        });
 //        thread.start();
 
-        TestSocket testSocket = new TestSocket(Methods.longpollDomain, 8181);
-        testSocket.start();
-        int i = 0;
+
         try {
 
-            testSocket.sendJSONString("");
-
-
-        } catch (Exception e) {
+            MessagesSocket messagesSocket = new MessagesSocket("$2b$04$rjWOW/H2TQr1SRTjuKuDl.hrMzFCUOux2vWq8Rlq6eyrzlCRTCeaa", "2",
+                    new MessagesSocket.MessageReceiveHandler() {
+                        @Override
+                        public void onMessageReceive(Message message) {
+                            System.out.println("MEssage text: " + message.getText());
+                        }
+                    });
+           Thread.sleep(100000);
+        } catch (URISyntaxException | InterruptedException e) {
             e.printStackTrace();
         }
-        while (true)
-        {
 
-
-        }
+//        TestSocket testSocket = new TestSocket(Methods.longpollDomain, 8181);
+//        testSocket.start();
+//        TestSocket testSocket2 = new TestSocket(Methods.longpollDomain, 8181);
+//        testSocket2.start();
+//        int i = 0;
+//        try {
+//
+//
+//
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        while (true)
+//        {
+//
+//
+//        }
 
     }
 

@@ -1,5 +1,9 @@
 package ru.etysoft.cuteframework.methods.chat;
 
+import org.json.JSONObject;
+import ru.etysoft.cuteframework.Methods;
+import ru.etysoft.cuteframework.data.APIKeys;
+
 public class ChatSnippet {
     private int id;
     private int accountId;
@@ -33,6 +37,29 @@ public class ChatSnippet {
         this.serviceData = serviceData;
         this.lastMessageSenderId = lastMessageSenderId;
         this.avatarPath = avatarPath;
+    }
+
+    public ChatSnippet(JSONObject chatObj) {
+        name = chatObj.getString(APIKeys.NAME);
+        description = chatObj.getString(APIKeys.DESCRIPTION);
+        accountId = chatObj.getInt(APIKeys.ACCOUNT_ID);
+        id = chatObj.getInt(APIKeys.ID);
+        lastMessageTime = chatObj.getString(APIKeys.Message.MESSAGE_TIME);
+        lastMessageText = chatObj.getString(APIKeys.Message.MESSAGE_TEXT);
+        lastMessageSenderDisplayName = chatObj.getString(APIKeys.Message.MESSAGE_SENDER_DISPLAY_NAME);
+        isRead = chatObj.getInt(APIKeys.Message.MESSAGE_READ) != 0;
+        type = chatObj.getString(APIKeys.TYPE);
+        selfStatus = chatObj.getString(APIKeys.SELF_STATUS);
+        messageType = chatObj.getString(APIKeys.Message.MESSAGE_TYPE);
+        lastMessageSenderId = chatObj.getInt(APIKeys.Message.MESSAGE_SENDER_ID);
+        String serviceObj = chatObj.getString(APIKeys.Message.MESSAGE_SERVICE_DATA);
+
+
+        if (!chatObj.isNull(APIKeys.AVATAR_PATH)) {
+            avatarPath = Methods.mediaDomain + chatObj.getString(APIKeys.AVATAR_PATH);
+        }
+
+        serviceData = new ServiceData(serviceObj);
     }
 
     public String getAvatarPath() {
@@ -92,15 +119,13 @@ public class ChatSnippet {
     }
 
 
-    public static class Types
-    {
+    public static class Types {
         public static final String THREAD = "T";
         public static final String CONVERSATION = "C";
         public static final String PRIVATE = "P";
     }
 
-    public static class Status
-    {
+    public static class Status {
         public static final String JOINED = "Y";
         public static final String LEAVED = "N";
         public static final String BLOCKED = "B";

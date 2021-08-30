@@ -1,10 +1,8 @@
 package ru.etysoft.cuteframework.methods.messages.Send;
 
-import ru.etysoft.cuteframework.Methods;
 import ru.etysoft.cuteframework.data.APIKeys;
 import ru.etysoft.cuteframework.data.APIMethods;
 import ru.etysoft.cuteframework.exceptions.ResponseException;
-import ru.etysoft.cuteframework.methods.account.Registration.RegistrationResponse;
 import ru.etysoft.cuteframework.requests.POST;
 import ru.etysoft.cuteframework.requests.RequestHolder;
 
@@ -37,7 +35,7 @@ public class SendMessageRequest extends RequestHolder {
 
         if(mediaId != null)
         {
-            hashMap.put(APIKeys.MEDIA_ID, mediaId);
+            hashMap.put(APIKeys.Media.MEDIA_ID, mediaId);
         }
 
         String response = POST.execute(getUrl(), hashMap, getMethod());

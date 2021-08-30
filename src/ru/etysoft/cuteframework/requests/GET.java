@@ -33,11 +33,11 @@ public class GET {
     }
 
 
-    public static String executeForTimeout(String url, int timeDelay) throws ResponseException {
+    public static String executeForTimeout(String url, int secondsTimeout) throws ResponseException {
         try {
-            OkHttpClient client = new OkHttpClient.Builder().connectTimeout(timeDelay, TimeUnit.SECONDS)
-                    .writeTimeout(timeDelay, TimeUnit.SECONDS)
-                    .readTimeout(timeDelay, TimeUnit.SECONDS).build();
+            OkHttpClient client = new OkHttpClient.Builder().connectTimeout(secondsTimeout, TimeUnit.SECONDS)
+                    .writeTimeout(secondsTimeout, TimeUnit.SECONDS)
+                    .readTimeout(secondsTimeout, TimeUnit.SECONDS).build();
 
             Request request = new Request.Builder()
                     .url(url)

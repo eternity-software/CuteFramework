@@ -15,7 +15,7 @@ public class UploadImageResponse extends ResponseHandler {
     @Override
     public void onSuccess() {
         JSONObject jsonObject = getJsonResponse().getJSONObject(APIKeys.DATA);
-        mediaId = jsonObject.getString(APIKeys.MEDIA_ID);
+        mediaId = jsonObject.getString(APIKeys.Media.MEDIA_ID);
     }
 
     public String getMediaId() throws ResponseException {

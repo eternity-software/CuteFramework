@@ -1,8 +1,12 @@
 package ru.etysoft.cuteframework;
 
-import com.sun.org.apache.xalan.internal.xsltc.dom.SimpleResultTreeImpl;
+
 
 public class Logger {
+    public static void logSocket(String data, String name)
+    {
+        System.out.println("WebSocket " + name +" >> " + data);
+    }
     public static void logResponse(String response, String method)
     {
         System.out.println(method + " >> " + response);

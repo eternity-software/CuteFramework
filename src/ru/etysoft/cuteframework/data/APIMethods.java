@@ -1,5 +1,8 @@
 package ru.etysoft.cuteframework.data;
 
+/**
+ * List of all model/method keys
+ */
 public class APIMethods {
 
     public static class Account

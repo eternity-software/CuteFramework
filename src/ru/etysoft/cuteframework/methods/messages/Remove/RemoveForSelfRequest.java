@@ -12,7 +12,7 @@ public class RemoveForSelfRequest extends RequestHolder {
     public RemoveForSelfRequest(String token, String messageId) {
         super(APIMethods.Message.REMOVE_FOR_SELF);
         setParams(Pair.make(APIKeys.TOKEN, token),
-                Pair.make(APIKeys.MESSAGE_ID, messageId));
+                Pair.make(APIKeys.Message.MESSAGE_ID, messageId));
     }
 
 

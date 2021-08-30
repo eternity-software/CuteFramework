@@ -1,5 +1,7 @@
 package ru.etysoft.cuteframework.sockets;
 
+import org.json.JSONObject;
+
 public abstract class Event {
 
     String eventString;
@@ -8,6 +10,7 @@ public abstract class Event {
     {
         this.eventString = eventString;
     }
+
 
 
 }

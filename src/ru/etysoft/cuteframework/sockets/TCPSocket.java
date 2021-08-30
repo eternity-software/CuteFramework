@@ -11,7 +11,10 @@ import java.net.UnknownHostException;
 import static java.lang.System.in;
 import static java.lang.System.out;
 
-public abstract class APISocket {
+/**
+ *  TCPSocket Client
+ */
+public abstract class TCPSocket {
 
     private int port;
     private String host;
@@ -19,33 +22,13 @@ public abstract class APISocket {
     private boolean isStarted;
     private String name;
 
-    public APISocket(String host, int port, String name) {
+    public TCPSocket(String host, int port, String name) {
         this.port = port;
         this.host = host;
         this.name = name;
     }
 
-    public JSONObject prepareData()
-    {
-        JSONObject jsonData = new JSONObject();
 
-      // String[] methodPath = method.split("/");
-
-
-        JSONObject requestObj = new JSONObject();
-        requestObj.put("model", "message");
-        requestObj.put("method", "getList");
-        requestObj.put("version", "0.0.1");
-        requestObj.put("action", "listen");
-
-        JSONObject params = new JSONObject();
-        params.put("token", "$2b$04$rjWOW/H2TQr1SRTjuKuDl.hrMzFCUOux2vWq8Rlq6eyrzlCRTCeaa");
-        params.put("chatId", "1");
-
-        jsonData.put("request", requestObj);
-        jsonData.put("params", params);
-        return jsonData;
-    }
 
     public void start() {
 
@@ -120,9 +103,7 @@ public abstract class APISocket {
         }
     }
 
-    public void sendJSONString(String stringToServer) throws SocketNotStartedException {
-       sendString(prepareData().toString());
-    }
+
 
     public void preReceive(String eventString) {
         System.out.println("[SOCKET] " + name + " >> New event received: " + eventString);
