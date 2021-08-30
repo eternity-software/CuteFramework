@@ -4,6 +4,7 @@ package ru.etysoft.cuteframework;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
+import ru.etysoft.cuteframework.exceptions.SocketNotStartedException;
 import ru.etysoft.cuteframework.methods.account.Confirmation.ConfirmCodeResponse;
 import ru.etysoft.cuteframework.methods.account.Confirmation.ConfirmationResponse;
 import ru.etysoft.cuteframework.methods.account.EditDisplayName.EditResponse;
@@ -18,6 +19,7 @@ import ru.etysoft.cuteframework.methods.messages.GetList.GetMessageListResponse;
 import ru.etysoft.cuteframework.methods.messages.Message;
 import ru.etysoft.cuteframework.methods.user.Get.GetUserResponse;
 import ru.etysoft.cuteframework.methods.user.Search.SearchUserResponse;
+import ru.etysoft.cuteframework.sockets.Server;
 
 @FixMethodOrder(MethodSorters.JVM)
 public class MethodsTest {
@@ -55,6 +57,35 @@ public class MethodsTest {
             e.printStackTrace();
         }
 //        Assert.assertTrue(authorizationResponseHandler.isSuccess() && registrationResponseHandler.isSuccess());
+
+    }
+
+    @Test
+    public void socketTest() {
+//        Thread thread = new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                Server.start();
+//            }
+//        });
+//        thread.start();
+
+        TestSocket testSocket = new TestSocket(Methods.longpollDomain, 8181);
+        testSocket.start();
+        int i = 0;
+        try {
+
+            testSocket.sendJSONString("");
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        while (true)
+        {
+
+
+        }
 
     }
 

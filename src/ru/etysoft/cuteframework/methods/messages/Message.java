@@ -14,9 +14,12 @@ public class Message {
     private String type;
     private String avatarPath;
     private ServiceData serviceData;
+    private String attachmentPath;
+    private String attachmentType;
+    private AttachmentData attachmentData;
 
     public Message(int id, int accountId, int chatId, String text, String selfStatus, String time, String displayName, String type, ServiceData serviceData,
-                   String avatarPath) {
+                   String avatarPath, String attachmentPath, String attachmentType, AttachmentData attachmentData) {
         this.id = id;
         this.type = type;
         this.serviceData = serviceData;
@@ -27,6 +30,21 @@ public class Message {
         this.time = time;
         this.displayName = displayName;
         this.avatarPath = avatarPath;
+        this.attachmentPath = attachmentPath;
+        this.attachmentType = attachmentType;
+        this.attachmentData = attachmentData;
+    }
+
+    public AttachmentData getAttachmentData() {
+        return attachmentData;
+    }
+
+    public String getAttachmentPath() {
+        return Methods.mediaDomain + attachmentPath;
+    }
+
+    public String getAttachmentType() {
+        return attachmentType;
     }
 
     public ServiceData getServiceData() {

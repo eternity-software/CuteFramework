@@ -35,6 +35,7 @@ public class Methods {
     public static String domain = "https://api.mcute.ru/";
     public static String mediaDomain = "https://api.mcute.ru";
     public static String mainDomain = "https://mcute.ru/";
+    public static String longpollDomain = "longpoll.mcute.ru";
     public static String options = "&v=b001";
 
     public static LoginResponse authorize(String login, String password) throws ResponseException {

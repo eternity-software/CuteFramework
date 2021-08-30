@@ -10,6 +10,9 @@ import ru.etysoft.cuteframework.responses.ResponseHandler;
 public class GetUserResponse extends ResponseHandler {
     private String displayName, status, bio, id, onlineTime, avatarPath,
     coverPath;
+
+    private int friendId;
+    private boolean isFriend;
     public GetUserResponse(String jsonResponse, String url) throws JSONException {
         super(jsonResponse, url);
     }
@@ -35,7 +38,19 @@ public class GetUserResponse extends ResponseHandler {
             avatarPath = String.valueOf(jsonObject.getString(APIKeys.AVATAR_PATH));
         }
 
+        isFriend = jsonObject.getBoolean(APIKeys.IS_FRIEND);
+
+        if(isFriend)
+        {
+            friendId = jsonObject.getInt(APIKeys.FRIEND_ID);
+        }
+
+
         onlineTime = String.valueOf(jsonObject.getInt("onlineTime"));
+    }
+
+    public int getFriendId() {
+        return friendId;
     }
 
     public String getCoverPath() throws ResponseException{
@@ -61,6 +76,10 @@ public class GetUserResponse extends ResponseHandler {
     public String getBio() {
         if (bio == null)  return "";
         return bio;
+    }
+
+    public boolean isFriend() {
+        return isFriend;
     }
 
     public String getDisplayName() {

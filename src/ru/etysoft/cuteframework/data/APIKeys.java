@@ -41,5 +41,18 @@ public class APIKeys {
     public final static String AVATAR_PATH = "avatarPath";
     public final static String COVER_PATH = "coverPath";
     public final static String MESSAGE_SENDER_ID = "messageAuthorId";
+    public final static String ATTACHMENT_TYPE = "attachmentType";
+    public final static String ATTACHMENT_PATH = "attachmentPath";
+    public final static String ATTACHMENT_DATA = "attachmentData";
+    public final static String ATTACHMENT_WIDTH = "width";
+    public final static String ATTACHMENT_HEIGHT = "height";
+    public final static String FRIEND_ID = "friendId";
+    public final static String ONLINE_TIME = "onlineTime";
+    public final static String FRIENDS = "friends";
+    public final static String REQUESTS = "requests";
+    public final static String REQUEST_ID = "requestId";
+    public final static String IS_FRIEND = "isFriend";
+    public final static String RECIPIENT_ACCOUNT_ID = "recipientAccountId";
 }
+
 

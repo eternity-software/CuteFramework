@@ -43,11 +43,20 @@ public class APIMethods {
         public final static String GET_USER = "users/get";
         public final static String SEARCH_USER = "users/search";
     }
+
     public static class Media{
         public final static String UPLOAD_IMAGE = "media/uploadImage";
     }
 
-
+    public static class Friend {
+        public final static String GET_FRIENDS = "friend/getFriends";
+        public final static String SEND_REQUEST = "friend/sendRequest";
+        public final static String ACCEPT_REQUEST = "friend/acceptRequest";
+        public final static String GET_INCOMING_REQUESTS = "friend/getIncomingRequests";
+        public final static String GET_OUTGOING_REQUESTS = "friend/getOutgoingRequests";
+        public final static String DECLINE_REQUEST = "friend/declineRequest";
+        public final static String REMOVE = "friend/remove";
+    }
 
 }
 
