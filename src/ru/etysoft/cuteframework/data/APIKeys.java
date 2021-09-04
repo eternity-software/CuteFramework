@@ -62,6 +62,8 @@ public class APIKeys {
     public final static String USERS = "users";
     public final static String USER = "user";
     public final static String AVATAR_PATH = "avatarPath";
+    public final static String AVATAR = "avatar";
+    public final static String COVER = "cover";
     public final static String COVER_PATH = "coverPath";
     public final static String FRIEND_ID = "friendId";
     public final static String ONLINE_TIME = "onlineTime";

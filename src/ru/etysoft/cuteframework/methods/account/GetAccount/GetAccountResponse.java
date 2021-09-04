@@ -4,13 +4,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import ru.etysoft.cuteframework.Methods;
 import ru.etysoft.cuteframework.data.APIKeys;
-import ru.etysoft.cuteframework.exceptions.ResponseException;
 import ru.etysoft.cuteframework.responses.ResponseHandler;
 import ru.etysoft.cuteframework.responses.errors.ErrorHandler;
 
 public class GetAccountResponse extends ResponseHandler {
 
-    private String confirm, displayName, login, email, password, status, bio, avatarPath, coverPath;
+    private String confirm, displayName, login, email, status, bio, avatar, cover;
     private int id;
 
     public GetAccountResponse(String jsonResponse, String url) throws JSONException {
@@ -26,46 +25,30 @@ public class GetAccountResponse extends ResponseHandler {
         id = account.getInt(APIKeys.ID);
         login = account.getString(APIKeys.LOGIN);
         email = account.getString(APIKeys.EMAIL);
-        password = account.getString(APIKeys.PASSWORD);
         displayName = account.getString(APIKeys.DISPLAY_NAME);
-        if(!account.isNull(APIKeys.STATUS))
-        {
-            status = account.getString(APIKeys.STATUS);
-        }
-        else
-        {
-            status = "";
+        status = account.getString(APIKeys.STATUS);
+        bio = account.getString(APIKeys.BIO);
+        if (!account.isNull(APIKeys.COVER)){
+            cover = String.valueOf(account.getString(APIKeys.COVER));
         }
 
-        if(!account.isNull(APIKeys.BIO))
-        {
-            bio = account.getString(APIKeys.BIO);
-        }
-        else
-        {
-            bio = "";
-        }
-        if (!account.isNull(APIKeys.COVER_PATH)){
-            coverPath = String.valueOf(account.getString(APIKeys.COVER_PATH));
-        }
-
-        if (!account.isNull("avatarPath")){
-            avatarPath = account.getString("avatarPath");
+        if (!account.isNull(account.getString(APIKeys.AVATAR))){
+            avatar = account.getString(APIKeys.AVATAR);
         }
     }
 
-    public String getCoverPath() {
-        if(coverPath == null) {
+    public String getCover() {
+        if(cover == null) {
             return null;
         }
-        return Methods.mediaDomain + coverPath;
+        return Methods.mediaDomain + cover;
     }
 
-    public String getAvatarPath() {
-        if(avatarPath == null) {
+    public String getAvatar() {
+        if(avatar == null) {
            return null;
         }
-        return Methods.mediaDomain + avatarPath;
+        return Methods.mediaDomain + avatar;
     }
 
     public String getId(){
@@ -80,10 +63,6 @@ public class GetAccountResponse extends ResponseHandler {
         return email;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
     public String getLogin() {
         return login;
     }
@@ -93,18 +72,10 @@ public class GetAccountResponse extends ResponseHandler {
     }
 
     public String getBio() {
-        if(bio == null)
-        {
-            bio = "";
-        }
         return bio;
     }
 
     public String getStatus() {
-        if(status == null)
-        {
-            status = "";
-        }
         return status;
     }
 

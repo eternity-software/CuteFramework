@@ -8,9 +8,7 @@ import ru.etysoft.cuteframework.exceptions.ResponseException;
 
 public class RegistrationResponse extends ResponseHandler {
 
-    private String sessionKey;
-    private int accountId;
-    private long expires;
+    private String token, id, expires;
     public RegistrationResponse(String jsonResponse, String url) throws JSONException {
         super(jsonResponse, url);
     }
@@ -18,15 +16,24 @@ public class RegistrationResponse extends ResponseHandler {
     @Override
     public void onSuccess() {
         JSONObject jsonObject = getJsonResponse().getJSONObject(APIKeys.DATA);
-        sessionKey = jsonObject.getString(APIKeys.TOKEN);
-        accountId = jsonObject.getInt(APIKeys.ACCOUNT_ID);
-        expires = jsonObject.getInt(APIKeys.EXPIRES);
+        token = jsonObject.getString(APIKeys.TOKEN);
+        id = String.valueOf(jsonObject.getInt(APIKeys.ID));
+        expires = String.valueOf(jsonObject.getInt(APIKeys.EXPIRES));
     }
 
 
-    public String getSessionKey() throws ResponseException {
-        if(sessionKey == null) throw new ResponseException("Session key is null");
-        return sessionKey;
+    public String getToken() throws ResponseException {
+        if(token == null) throw new ResponseException("token is null");
+        return token;
     }
 
+    public String getId() throws ResponseException{
+        if(id == null) throw new ResponseException("id is null");
+        return id;
+    }
+
+    public String getExpires() throws ResponseException{
+        if(expires == null) throw new ResponseException("expires is null");
+        return expires;
+    }
 }
