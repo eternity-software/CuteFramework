@@ -20,7 +20,7 @@ public class LoginResponse extends ResponseHandler {
     public void onSuccess() {
         JSONObject jsonObject = getJsonResponse().getJSONObject(APIKeys.DATA);
         sessionKey = jsonObject.getString(APIKeys.TOKEN);
-        accountId = jsonObject.getInt(APIKeys.ACCOUNT_ID);
+        accountId = jsonObject.getInt(APIKeys.ID);
         expires = jsonObject.getInt(APIKeys.EXPIRES);
     }
 

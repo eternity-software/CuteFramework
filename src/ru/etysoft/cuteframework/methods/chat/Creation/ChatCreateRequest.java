@@ -1,13 +1,13 @@
 package ru.etysoft.cuteframework.methods.chat.Creation;
 
 import ru.etysoft.cuteframework.Logger;
-import ru.etysoft.cuteframework.Methods;
+import ru.etysoft.cuteframework.CuteFramework;
 import ru.etysoft.cuteframework.data.APIKeys;
 import ru.etysoft.cuteframework.data.APIMethods;
 import ru.etysoft.cuteframework.exceptions.ResponseException;
-import ru.etysoft.cuteframework.methods.account.Login.LoginResponse;
-import ru.etysoft.cuteframework.methods.account.Registration.RegistrationResponse;
+import ru.etysoft.cuteframework.methods.chat.ChatList.ChatListResponse;
 import ru.etysoft.cuteframework.requests.POST;
+import ru.etysoft.cuteframework.requests.Pair;
 import ru.etysoft.cuteframework.requests.Request;
 import ru.etysoft.cuteframework.requests.RequestHolder;
 
@@ -24,20 +24,15 @@ public class ChatCreateRequest extends RequestHolder {
         this.name = name;
         this.description = description;
         this.type = type;
+        setParams(Pair.make(APIKeys.TOKEN, token),
+                Pair.make(APIKeys.NAME, name),
+                Pair.make(APIKeys.DESCRIPTION, description),
+                Pair.make(APIKeys.TYPE, type));
     }
 
     public ChatCreateResponse execute() throws ResponseException {
-        HashMap<String, Object> hashMap = new HashMap<String, Object>();
-        hashMap.put(APIKeys.TOKEN, token);
-        hashMap.put(APIKeys.NAME, name);
-        hashMap.put(APIKeys.DESCRIPTION, description);
-        hashMap.put(APIKeys.TYPE, type);
-
-        String url = Methods.domain + APIMethods.Chat.CREATE;
-
-        String response = POST.execute(url, hashMap, APIMethods.Chat.CREATE);
-        Logger.logResponse(response, getMethod());
-        return new ChatCreateResponse(response, url);
+        Request request = makeRequest();
+        return new ChatCreateResponse(request.processAPI(), request.getFormattedURL());
     }
 
     public String getToken() {

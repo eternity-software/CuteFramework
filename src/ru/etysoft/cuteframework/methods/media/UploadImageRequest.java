@@ -1,7 +1,7 @@
 package ru.etysoft.cuteframework.methods.media;
 
 import ru.etysoft.cuteframework.Logger;
-import ru.etysoft.cuteframework.Methods;
+import ru.etysoft.cuteframework.CuteFramework;
 import ru.etysoft.cuteframework.data.APIKeys;
 import ru.etysoft.cuteframework.data.APIMethods;
 import ru.etysoft.cuteframework.exceptions.ResponseException;
@@ -13,18 +13,22 @@ import java.util.HashMap;
 
 public class UploadImageRequest extends RequestHolder {
     private final String token;
-    private final ImageFile file;
-    public UploadImageRequest(ImageFile file, String token) {
+    private final ImageFile image;
+
+    public UploadImageRequest(ImageFile image, String token) {
         super(APIMethods.Media.UPLOAD_IMAGE);
-        this.file = file;
+        this.image = image;
         this.token = token;
     }
+
     public UploadImageResponse execute() throws ResponseException {
         HashMap<String, Object> hashMap = new HashMap<String, Object>();
         hashMap.put(APIKeys.TOKEN, token);
-        hashMap.put(APIKeys.FILE, file);
 
-        String url = Methods.domain + APIMethods.Media.UPLOAD_IMAGE;
+        hashMap.put(APIKeys.Media.Types.IMAGE, image);
+
+
+        String url = CuteFramework.domain + APIMethods.Media.UPLOAD_IMAGE;
 
         String response = POST.execute(url, hashMap, APIMethods.Media.UPLOAD_IMAGE);
         Logger.logResponse(response, getMethod());

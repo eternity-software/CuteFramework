@@ -3,11 +3,9 @@ package ru.etysoft.cuteframework.methods.chat.ChatList;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import ru.etysoft.cuteframework.Methods;
 import ru.etysoft.cuteframework.data.APIKeys;
 import ru.etysoft.cuteframework.exceptions.ResponseException;
 import ru.etysoft.cuteframework.methods.chat.ChatSnippet;
-import ru.etysoft.cuteframework.methods.chat.ServiceData;
 import ru.etysoft.cuteframework.responses.ResponseHandler;
 
 import java.util.ArrayList;
@@ -32,34 +30,8 @@ public class ChatListResponse extends ResponseHandler {
 
         for (int i = 0; i < jsonArray.length(); i++)
         {
+            ChatSnippet chat = new ChatSnippet(jsonArray.getJSONObject(i));
 
-            JSONObject chatObj = jsonArray.getJSONObject(i);
-            String name = chatObj.getString(APIKeys.NAME);
-            String description = chatObj.getString(APIKeys.DESCRIPTION);
-            int accountId = chatObj.getInt(APIKeys.ACCOUNT_ID);
-            int id = chatObj.getInt(APIKeys.ID);
-            String lastMessageTime = chatObj.getString(APIKeys.Message.MESSAGE_TIME);
-            String lastMessageText = chatObj.getString(APIKeys.Message.MESSAGE_TEXT);
-            String lastMessageSenderName = chatObj.getString(APIKeys.Message.MESSAGE_SENDER_DISPLAY_NAME);
-            boolean isRead = chatObj.getInt(APIKeys.Message.MESSAGE_READ) != 0;
-            String type = chatObj.getString(APIKeys.TYPE);
-            String selfStatus = chatObj.getString(APIKeys.SELF_STATUS);
-            String messageType = chatObj.getString(APIKeys.Message.MESSAGE_TYPE);
-            int lastMessageSenderId = chatObj.getInt(APIKeys.Message.MESSAGE_SENDER_ID);
-            String serviceObj = chatObj.getString(APIKeys.Message.MESSAGE_SERVICE_DATA);
-
-            String chatAvatarPath = null;
-
-            if(!chatObj.isNull(APIKeys.AVATAR_PATH))
-            {
-                chatAvatarPath = Methods.mediaDomain + chatObj.getString(APIKeys.AVATAR_PATH);
-            }
-
-
-            ServiceData serviceData = new ServiceData(serviceObj);
-            ChatSnippet chat = new ChatSnippet(id, accountId, type, name, description, selfStatus,
-                    lastMessageText, lastMessageSenderName, lastMessageTime, isRead, messageType, serviceData,
-                    lastMessageSenderId, chatAvatarPath);
             chats.add(chat);
         }
     }

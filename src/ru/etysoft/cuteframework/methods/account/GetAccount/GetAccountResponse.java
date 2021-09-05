@@ -2,7 +2,7 @@ package ru.etysoft.cuteframework.methods.account.GetAccount;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import ru.etysoft.cuteframework.Methods;
+import ru.etysoft.cuteframework.CuteFramework;
 import ru.etysoft.cuteframework.data.APIKeys;
 import ru.etysoft.cuteframework.responses.ResponseHandler;
 import ru.etysoft.cuteframework.responses.errors.ErrorHandler;
@@ -32,7 +32,7 @@ public class GetAccountResponse extends ResponseHandler {
             cover = String.valueOf(account.getString(APIKeys.COVER));
         }
 
-        if (!account.isNull(account.getString(APIKeys.AVATAR))){
+        if (!account.isNull(APIKeys.AVATAR)){
             avatar = account.getString(APIKeys.AVATAR);
         }
     }
@@ -41,14 +41,14 @@ public class GetAccountResponse extends ResponseHandler {
         if(cover == null) {
             return null;
         }
-        return Methods.mediaDomain + cover;
+        return CuteFramework.mediaDomain + cover;
     }
 
     public String getAvatar() {
         if(avatar == null) {
            return null;
         }
-        return Methods.mediaDomain + avatar;
+        return CuteFramework.mediaDomain + avatar;
     }
 
     public String getId(){

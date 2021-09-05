@@ -1,4 +1,4 @@
-package ru.etysoft.cuteframework.methods.messages.Remove;
+package ru.etysoft.cuteframework.methods.chat.Remove;
 
 import org.json.JSONException;
 import ru.etysoft.cuteframework.responses.ResponseHandler;

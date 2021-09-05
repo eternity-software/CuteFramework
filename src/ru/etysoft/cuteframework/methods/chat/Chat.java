@@ -3,29 +3,35 @@ package ru.etysoft.cuteframework.methods.chat;
 public class Chat {
 
     private int id;
-    private int accountId;
+
     private String type;
     private String name;
     private String description;
-    private String selfStatus;
-    private String avatarPath;
+    private String state;
+    private String avatar;
+    private int membersCount;
 
 
 
-    public Chat(String name, int id, int accountId, String type, String description, String selfStatus,
-                String avatarPath)
+    public Chat(String name, int id,  String type, String description, String state,
+                String avatar, int membersCount)
     {
         this.id = id;
-        this.accountId = accountId;
+
         this.type = type;
         this.name = name;
         this.description = description;
-        this.selfStatus = selfStatus;
-        this.avatarPath = avatarPath;
+        this.state = state;
+        this.avatar = avatar;
+        this.membersCount = membersCount;
     }
 
-    public String getAvatarPath() {
-        return avatarPath;
+    public int getMembersCount() {
+        return membersCount;
+    }
+
+    public String getAvatar() {
+        return avatar;
     }
 
     public String getType() {
@@ -36,8 +42,8 @@ public class Chat {
         return name;
     }
 
-    public String getSelfStatus() {
-        return selfStatus;
+    public String getState() {
+        return state;
     }
 
     public String getDescription() {
@@ -46,10 +52,6 @@ public class Chat {
 
     public int getId() {
         return id;
-    }
-
-    public int getAccountId() {
-        return accountId;
     }
 
 
@@ -61,7 +63,7 @@ public class Chat {
         public static final String PRIVATE = "P";
     }
 
-    public static class Status
+    public static class STATES
     {
         public static final String JOINED = "Y";
         public static final String LEAVED = "N";

@@ -1,11 +1,17 @@
 package ru.etysoft.cuteframework.methods.account.Login;
 
+import ru.etysoft.cuteframework.CuteFramework;
+import ru.etysoft.cuteframework.Logger;
 import ru.etysoft.cuteframework.data.APIMethods;
+import ru.etysoft.cuteframework.methods.account.Registration.RegistrationResponse;
+import ru.etysoft.cuteframework.requests.POST;
 import ru.etysoft.cuteframework.requests.Pair;
 import ru.etysoft.cuteframework.requests.RequestHolder;
 import ru.etysoft.cuteframework.data.APIKeys;
 import ru.etysoft.cuteframework.exceptions.ResponseException;
 import ru.etysoft.cuteframework.requests.Request;
+
+import java.util.HashMap;
 
 public class LoginRequest extends RequestHolder {
 
@@ -16,8 +22,6 @@ public class LoginRequest extends RequestHolder {
         super(APIMethods.Account.LOGIN);
         this.login = login;
         this.password = password;
-        setParams(Pair.make(APIKeys.LOGIN, login),
-                Pair.make(APIKeys.PASSWORD, password));
     }
 
     public String getLogin() {
@@ -30,8 +34,15 @@ public class LoginRequest extends RequestHolder {
 
 
     public LoginResponse execute() throws ResponseException {
-        Request request = makeRequest();
-        return new LoginResponse(request.processAPI(), request.getFormattedURL());
+        HashMap<String, Object> hashMap = new HashMap<String, Object>();
+        hashMap.put(APIKeys.LOGIN, login);
+        hashMap.put(APIKeys.PASSWORD, password);
+
+        String url = CuteFramework.domain + APIMethods.Account.LOGIN;
+
+        String response = POST.execute(url, hashMap, getMethod());
+        Logger.logResponse(response, getMethod());
+        return new LoginResponse(response, url);
     }
 
 

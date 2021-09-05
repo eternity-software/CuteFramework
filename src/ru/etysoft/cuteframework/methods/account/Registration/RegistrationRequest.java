@@ -1,7 +1,7 @@
 package ru.etysoft.cuteframework.methods.account.Registration;
 
 import ru.etysoft.cuteframework.Logger;
-import ru.etysoft.cuteframework.Methods;
+import ru.etysoft.cuteframework.CuteFramework;
 import ru.etysoft.cuteframework.data.APIMethods;
 import ru.etysoft.cuteframework.requests.POST;
 import ru.etysoft.cuteframework.requests.RequestHolder;
@@ -32,7 +32,7 @@ public class RegistrationRequest extends RequestHolder {
         hashMap.put(APIKeys.PASSWORD, password);
         hashMap.put(APIKeys.DISPLAY_NAME, displayName);
 
-        String url = Methods.domain + APIMethods.Account.REGISTRATION;
+        String url = CuteFramework.domain + APIMethods.Account.REGISTRATION;
 
         String response = POST.execute(url, hashMap, APIMethods.Account.REGISTRATION);
         Logger.logResponse(response, getMethod());

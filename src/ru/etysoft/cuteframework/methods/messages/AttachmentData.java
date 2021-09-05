@@ -23,8 +23,8 @@ public class AttachmentData {
 
     public static AttachmentData fromJSON(JSONObject attachmentData)
     {
-        int height = attachmentData.getInt(APIKeys.Attachment.ATTACHMENT_HEIGHT);
-        int width = attachmentData.getInt(APIKeys.Attachment.ATTACHMENT_WIDTH);
+        int height = attachmentData.getInt(APIKeys.Attachment.HEIGHT);
+        int width = attachmentData.getInt(APIKeys.Attachment.WIDTH);
         return new AttachmentData(height, width);
     }
 }

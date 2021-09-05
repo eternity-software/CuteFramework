@@ -7,7 +7,7 @@ import ru.etysoft.cuteframework.exceptions.ResponseException;
 import ru.etysoft.cuteframework.responses.ResponseHandler;
 
 public class UploadImageResponse extends ResponseHandler {
-    private String mediaId;
+    private String mediaId, path, type;
     public UploadImageResponse(String jsonResponse, String url) throws JSONException {
         super(jsonResponse, url);
     }
@@ -15,7 +15,9 @@ public class UploadImageResponse extends ResponseHandler {
     @Override
     public void onSuccess() {
         JSONObject jsonObject = getJsonResponse().getJSONObject(APIKeys.DATA);
-        mediaId = jsonObject.getString(APIKeys.Media.MEDIA_ID);
+        mediaId = jsonObject.getString(APIKeys.ID);
+        path = jsonObject.getString(APIKeys.Attachment.PATH);
+        type = jsonObject.getString(APIKeys.TYPE);
     }
 
     public String getMediaId() throws ResponseException {

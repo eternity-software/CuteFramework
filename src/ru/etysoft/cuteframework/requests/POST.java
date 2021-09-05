@@ -2,6 +2,7 @@ package ru.etysoft.cuteframework.requests;
 
 import okhttp3.Request;
 import okhttp3.*;
+import ru.etysoft.cuteframework.CuteFramework;
 import ru.etysoft.cuteframework.requests.attachements.ImageFile;
 
 import java.io.IOException;
@@ -16,11 +17,11 @@ public class POST {
 
     private static final MediaType MEDIA_TYPE_PNG = MediaType.parse("image/png");
 
-    public static String execute(final String url, final HashMap<String, Object> params, final String methodName) {
+    public static String execute(String url, final HashMap<String, Object> params, final String methodName) {
 
 
         try {
-
+            url += CuteFramework.options.replace("&", "?");
             String debugInfo = methodName + "<< POST\n> Request params";
 
             String result;

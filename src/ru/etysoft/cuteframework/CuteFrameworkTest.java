@@ -7,16 +7,14 @@ import org.junit.runners.MethodSorters;
 import ru.etysoft.cuteframework.exceptions.ResponseException;
 import ru.etysoft.cuteframework.methods.chat.ChatList.ChatListResponse;
 import ru.etysoft.cuteframework.methods.chat.ChatSnippet;
-import ru.etysoft.cuteframework.methods.messages.GetList.GetMessageListResponse;
+import ru.etysoft.cuteframework.methods.chat.GetHistory.GetMessageListResponse;
 import ru.etysoft.cuteframework.methods.messages.Message;
-import ru.etysoft.cuteframework.sockets.WebSocket;
 import ru.etysoft.cuteframework.sockets.methods.Messages.MessagesSocket;
 
-import java.net.URI;
 import java.net.URISyntaxException;
 
 @FixMethodOrder(MethodSorters.JVM)
-public class MethodsTest {
+public class CuteFrameworkTest {
 
     String testLogin = "kkkkkeqk1222";
     String testPassword = "q12345e6";
@@ -34,13 +32,13 @@ public class MethodsTest {
         GetMessageListResponse getMessageListResponse = null;
         ChatListResponse response = null;
         try {
-           response = Methods.getChatList(sessionKey);
+           response = CuteFramework.getChatList(sessionKey);
             ChatSnippet chatSnippet = response.getChats().get(0);
 
-            getMessageListResponse = Methods.getMessageList(sessionKey, "5");
+            getMessageListResponse = CuteFramework.getMessageList(sessionKey, "5");
             for (int i = 0; i<getMessageListResponse.getMessages().size(); i++){
                 Message message = getMessageListResponse.getMessages().get(0);
-                System.out.println(message.getChatId());
+               // System.out.println(message.getChatId());
                 System.out.println(message.getServiceData().getChatName());
             }
             System.out.println();

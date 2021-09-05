@@ -4,7 +4,7 @@ import java.util.Set;
 
 import org.jetbrains.annotations.NotNull;
 import ru.etysoft.cuteframework.Logger;
-import ru.etysoft.cuteframework.Methods;
+import ru.etysoft.cuteframework.CuteFramework;
 import ru.etysoft.cuteframework.exceptions.ResponseException;
 
 /**
@@ -52,7 +52,7 @@ public class Request {
 
     public String getURL()
     {
-        return Methods.domain + method + getArgsAsString(params);
+        return CuteFramework.domain + method + getArgsAsString(params);
     }
 
     public String getFormattedURL()

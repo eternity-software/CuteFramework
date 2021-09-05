@@ -1,66 +1,75 @@
 package ru.etysoft.cuteframework.methods.messages;
 
 import org.json.JSONObject;
-import ru.etysoft.cuteframework.Methods;
+import ru.etysoft.cuteframework.CuteFramework;
 import ru.etysoft.cuteframework.data.APIKeys;
 import ru.etysoft.cuteframework.methods.chat.ServiceData;
+import ru.etysoft.cuteframework.methods.user.User;
 
 public class Message {
     private int id;
     private int accountId;
-    private int chatId;
+    private boolean read;
     private String text;
-    private String selfStatus;
     private String time;
     private String displayName;
     private String type;
-    private String avatarPath;
     private ServiceData serviceData;
     private String attachmentPath;
     private String attachmentType;
     private AttachmentData attachmentData;
+    private User sender;
 
-    public Message(int id, int accountId, int chatId, String text, String selfStatus, String time, String displayName, String type, ServiceData serviceData,
-                   String avatarPath, String attachmentPath, String attachmentType, AttachmentData attachmentData) {
+    public Message(int id, int accountId, boolean read, String text, String time, String displayName, String type, ServiceData serviceData, String attachmentPath, String attachmentType, AttachmentData attachmentData, User sender) {
         this.id = id;
-        this.type = type;
-        this.serviceData = serviceData;
         this.accountId = accountId;
-        this.chatId = chatId;
+        this.read = read;
         this.text = text;
-        this.selfStatus = selfStatus;
         this.time = time;
         this.displayName = displayName;
-        this.avatarPath = avatarPath;
+        this.type = type;
+        this.serviceData = serviceData;
         this.attachmentPath = attachmentPath;
         this.attachmentType = attachmentType;
         this.attachmentData = attachmentData;
+        this.sender = sender;
     }
 
     public Message(JSONObject messageObj) {
         id = messageObj.getInt(APIKeys.ID);
-        accountId = messageObj.getInt(APIKeys.ACCOUNT_ID);
-        chatId = messageObj.getInt(APIKeys.CHAT_ID);
-        text = messageObj.getString(APIKeys.TEXT);
-        selfStatus = messageObj.getString(APIKeys.SELF_STATUS);
-        displayName = messageObj.getString(APIKeys.DISPLAY_NAME);
+        accountId = messageObj.getInt(APIKeys.ID);
+
+
         time = messageObj.getString(APIKeys.TIME);
         type = messageObj.getString(APIKeys.TYPE);
-        avatarPath = messageObj.getString(APIKeys.AVATAR_PATH);
+        read = messageObj.getBoolean(APIKeys.Message.READ);
 
 
-        if (!messageObj.isNull(APIKeys.Attachment.ATTACHMENT_PATH)) {
-            attachmentPath = messageObj.getString(APIKeys.Attachment.ATTACHMENT_PATH);
-            JSONObject attachmentDataObj = messageObj.getJSONObject(APIKeys.Attachment.ATTACHMENT_DATA);
+        if (messageObj.has(APIKeys.Attachment.ATTACHMENT)) {
+            JSONObject attachmentObj = messageObj.getJSONObject(APIKeys.Attachment.ATTACHMENT);
+            attachmentPath = attachmentObj.getString(APIKeys.Attachment.PATH);
+            attachmentType = attachmentObj.getString(APIKeys.TYPE);
+            JSONObject attachmentDataObj = attachmentObj.getJSONObject(APIKeys.DATA);
             attachmentData = AttachmentData.fromJSON(attachmentDataObj);
         }
 
-        if (!messageObj.isNull(APIKeys.Attachment.ATTACHMENT_TYPE)) {
-            attachmentType = messageObj.getString(APIKeys.Attachment.ATTACHMENT_TYPE);
+        if (type.equals(Type.SERVICE)) {
+            JSONObject jsonObject = messageObj.getJSONObject(APIKeys.DATA);
+            serviceData = new ServiceData(jsonObject);
         }
+        else
+        {
+            sender = new User(messageObj.getJSONObject(APIKeys.Message.FROM));
+            text = messageObj.getString(APIKeys.TEXT);
+        }
+    }
 
-        JSONObject jsonObject = messageObj.getJSONObject(APIKeys.Message.SERVICE_DATA);
-        serviceData = new ServiceData(jsonObject);
+    public User getSender() {
+        return sender;
+    }
+
+    public boolean isRead() {
+        return read;
     }
 
     public AttachmentData getAttachmentData() {
@@ -68,7 +77,7 @@ public class Message {
     }
 
     public String getAttachmentPath() {
-        return Methods.mediaDomain + attachmentPath;
+        return CuteFramework.mediaDomain + attachmentPath;
     }
 
     public String getAttachmentType() {
@@ -83,17 +92,6 @@ public class Message {
         return type;
     }
 
-    public String getAvatarPath() {
-        if (avatarPath != null) {
-            return Methods.mediaDomain + avatarPath;
-        }
-        return null;
-    }
-
-    public String getDisplayName() {
-        return displayName;
-    }
-
     public int getId() {
         return id;
     }
@@ -102,16 +100,9 @@ public class Message {
         return accountId;
     }
 
-    public int getChatId() {
-        return chatId;
-    }
 
     public String getText() {
         return text;
-    }
-
-    public String getSelfStatus() {
-        return selfStatus;
     }
 
     public String getTime() {

@@ -13,7 +13,7 @@ public class GetUserRequest extends RequestHolder {
         super(APIMethods.Users.GET_USER);
         this.token = token;
         this.userId = userId;
-        setParams(Pair.make(APIKeys.TOKEN, token), Pair.make(APIKeys.USER_ID, userId));
+        setParams(Pair.make(APIKeys.TOKEN, token), Pair.make(APIKeys.ACCOUNT_ID, userId));
     }
 
     public GetUserResponse execute() throws ResponseException {

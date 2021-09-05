@@ -1,4 +1,4 @@
-package ru.etysoft.cuteframework.methods.account.EditDisplayName;
+package ru.etysoft.cuteframework.methods.account.Edit;
 
 import ru.etysoft.cuteframework.data.APIKeys;
 import ru.etysoft.cuteframework.data.APIMethods;
@@ -25,7 +25,7 @@ public class EditRequest extends RequestHolder {
     }
 
     public EditRequest(String token, String displayName,
-                       String statusText, String bioText){
+                       String statusText, String bioText, String login){
         super(APIMethods.Account.EDIT);
         this.token = token;
         this.displayName = displayName;
@@ -33,7 +33,8 @@ public class EditRequest extends RequestHolder {
             setParams(Pair.make(APIKeys.TOKEN, token),
                     Pair.make(APIKeys.DISPLAY_NAME, URLEncoder.encode(displayName, "UTF-8")),
                     Pair.make(APIKeys.STATUS, URLEncoder.encode(statusText, "UTF-8")),
-                    Pair.make(APIKeys.BIO, URLEncoder.encode(bioText, "UTF-8")));
+                    Pair.make(APIKeys.BIO, URLEncoder.encode(bioText, "UTF-8")),
+                    Pair.make(APIKeys.LOGIN, URLEncoder.encode(login, "UTF-8")));
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }

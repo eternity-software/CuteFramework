@@ -2,26 +2,25 @@ package ru.etysoft.cuteframework.methods.chat;
 
 public class ChatMember {
 
-    private int id;
+    private long id;
     private String displayName;
     private String type;
-    private String selfStatus;
-    private String photo;
+    private String avatar;
 
-    public ChatMember(int id, String displayName, String type, String selfStatus,
-                      String photo) {
+    public ChatMember(long id, String displayName, String type,
+                      String avatar) {
         this.id = id;
         this.displayName = displayName;
         this.type = type;
-        this.selfStatus = selfStatus;
-        this.photo = photo;
+
+        this.avatar = avatar;
     }
 
-    public String getPhoto() {
-        return photo;
+    public String getAvatar() {
+        return avatar;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -33,9 +32,6 @@ public class ChatMember {
         return type;
     }
 
-    public String getSelfStatus() {
-        return selfStatus;
-    }
 
     public static class Types
     {

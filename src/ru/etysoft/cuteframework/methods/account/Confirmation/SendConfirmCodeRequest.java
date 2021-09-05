@@ -7,10 +7,10 @@ import ru.etysoft.cuteframework.requests.Pair;
 import ru.etysoft.cuteframework.requests.Request;
 import ru.etysoft.cuteframework.requests.RequestHolder;
 
-public class ConfirmCodeRequest extends RequestHolder {
+public class SendConfirmCodeRequest extends RequestHolder {
     private String token;
-    public ConfirmCodeRequest(String token){
-        super(APIMethods.Account.CONFIRMATION_CODE);
+    public SendConfirmCodeRequest(String token){
+        super(APIMethods.Account.SEND_CONFIRMATION_CODE);
         this.token = token;
         setParams(Pair.make(APIKeys.TOKEN, token));
     }

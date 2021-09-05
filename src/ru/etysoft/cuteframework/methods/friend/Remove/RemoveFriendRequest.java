@@ -9,10 +9,10 @@ import ru.etysoft.cuteframework.requests.RequestHolder;
 
 public class RemoveFriendRequest extends RequestHolder {
 
-    public RemoveFriendRequest(String token, String friendId) {
+    public RemoveFriendRequest(String token, String accountId) {
         super(APIMethods.Friend.REMOVE);
         setParams(Pair.make(APIKeys.TOKEN, token),
-                Pair.make(APIKeys.FRIEND_ID, friendId));
+                Pair.make(APIKeys.ACCOUNT_ID, accountId));
     }
 
     public RemoveFriendResponse execute() throws ResponseException {

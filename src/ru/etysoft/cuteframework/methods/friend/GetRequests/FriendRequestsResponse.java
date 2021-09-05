@@ -6,6 +6,7 @@ import org.json.JSONObject;
 import ru.etysoft.cuteframework.data.APIKeys;
 import ru.etysoft.cuteframework.exceptions.ResponseException;
 import ru.etysoft.cuteframework.methods.friend.Friend;
+import ru.etysoft.cuteframework.methods.user.User;
 import ru.etysoft.cuteframework.responses.ResponseHandler;
 
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ import java.util.List;
 public class FriendRequestsResponse extends ResponseHandler {
 
 
-    private List<Friend> requests;
+    private List<User> requests;
 
 
     public FriendRequestsResponse(String jsonResponse, String url) throws JSONException {
@@ -30,11 +31,11 @@ public class FriendRequestsResponse extends ResponseHandler {
 
         for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject friendObj = jsonArray.getJSONObject(i);
-            requests.add(Friend.fromJSON(friendObj, true));
+            requests.add(new User(friendObj));
         }
     }
 
-    public List<Friend> getRequests() throws ResponseException {
+    public List<User> getRequests() throws ResponseException {
         if (requests == null) throw new ResponseException("Friends is null! (isn't success!)");
         return requests;
     }

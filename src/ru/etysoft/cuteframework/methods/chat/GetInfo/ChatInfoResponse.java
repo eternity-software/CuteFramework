@@ -3,7 +3,7 @@ package ru.etysoft.cuteframework.methods.chat.GetInfo;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import ru.etysoft.cuteframework.Methods;
+import ru.etysoft.cuteframework.CuteFramework;
 import ru.etysoft.cuteframework.data.APIKeys;
 import ru.etysoft.cuteframework.exceptions.ResponseException;
 import ru.etysoft.cuteframework.methods.chat.Chat;
@@ -27,33 +27,33 @@ public class ChatInfoResponse extends ResponseHandler {
         JSONObject chatObj = getJsonResponse().getJSONObject(APIKeys.DATA).getJSONObject(APIKeys.CHAT);
         String name = chatObj.getString(APIKeys.NAME);
         String description = chatObj.getString(APIKeys.DESCRIPTION);
-        int accountId = chatObj.getInt(APIKeys.ACCOUNT_ID);
+
         int id = chatObj.getInt(APIKeys.ID);
+        int membersCount = getJsonResponse().getJSONObject(APIKeys.DATA).getInt(APIKeys.Chat.MEMBERS_COUNT);
         String type = chatObj.getString(APIKeys.TYPE);
-        String selfStatus = chatObj.getString(APIKeys.SELF_STATUS);
+        String state = chatObj.getString(APIKeys.STATE);
 
         String chatAvatarPath = null;
 
-        if(!chatObj.isNull(APIKeys.AVATAR_PATH))
+        if(!chatObj.isNull(APIKeys.AVATAR))
         {
-            chatAvatarPath = Methods.mediaDomain + chatObj.getString(APIKeys.AVATAR_PATH);
+            chatAvatarPath = CuteFramework.mediaDomain + chatObj.getString(APIKeys.AVATAR);
         }
 
 
-        chat = new Chat(name, id, accountId, type, description, selfStatus, chatAvatarPath);
+        chat = new Chat(name, id,  type, description, state, chatAvatarPath, membersCount);
 
-        JSONArray jsonArray = chatObj.getJSONArray("members");
+        JSONArray jsonArray = getJsonResponse().getJSONObject(APIKeys.DATA).getJSONArray(APIKeys.Chat.MEMBERS);
 
         memberList = new ArrayList<>();
         for (int i = 0; i < jsonArray.length(); i++) {
             JSONObject memberObj = jsonArray.getJSONObject(i);
             String displayName = memberObj.getString(APIKeys.DISPLAY_NAME);
             String typeMember = memberObj.getString(APIKeys.TYPE);
-            String selfStatusMember = memberObj.getString(APIKeys.SELF_STATUS);
-            int memberId = memberObj.getInt(APIKeys.ID);
-            String avatarPath = memberObj.getString(APIKeys.AVATAR_PATH);
-            ChatMember chatMember = new ChatMember(memberId, displayName, typeMember, selfStatusMember,
-                    Methods.domain.substring(0, Methods.domain.length() - 1) + avatarPath);
+            long memberId = memberObj.getLong(APIKeys.ID);
+            String avatar = memberObj.getString(APIKeys.AVATAR);
+            ChatMember chatMember = new ChatMember(memberId, displayName, typeMember,
+                    CuteFramework.domain.substring(0, CuteFramework.domain.length() - 1) + avatar);
             memberList.add(chatMember);
         }
     }

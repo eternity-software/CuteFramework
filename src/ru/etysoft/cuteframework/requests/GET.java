@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import ru.etysoft.cuteframework.CuteFramework;
 import ru.etysoft.cuteframework.exceptions.ResponseException;
 
 /**
@@ -15,6 +16,7 @@ public class GET {
 
     public static String execute(String url) throws ResponseException {
         try {
+            url += CuteFramework.options;
             System.out.println("CuFr GET >> " + url);
             OkHttpClient client = new OkHttpClient();
 

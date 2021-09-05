@@ -8,7 +8,7 @@ public class APIMethods {
     public static class Account
     {
         public final static String LOGIN = "account/login";
-        public final static String CONFIRMATION_CODE = "account/sendConfirmCode";
+        public final static String SEND_CONFIRMATION_CODE = "account/sendConfirmCode";
         public final static String CONFIRMATION = "account/confirm";
         public final static String AUTHENTICATION = "account/auth";
         public final static String GET = "account/get";
@@ -29,18 +29,15 @@ public class APIMethods {
         public final static String DEMOTE_ADMIN = "chat/demoteAdmin";
         public final static String GET_LIST = "chat/getList";
         public final static String GET = "chat/get";
+        public final static String EDIT = "chat/edit";
         public final static String LEAVE = "chat/leave";
         public final static String CHANGE_AVATAR = "chat/changeAvatar";
         public final static String CLEAR_HISTORY = "chat/clearHistory";
+        public final static String GET_HISTORY = "chat/getHistory";
+        public final static String SEND_MESSAGE = "chat/sendMessage";
+        public final static String REMOVE_MESSAGE = "chat/removeMessage";
     }
 
-    public static class Message
-    {
-        public final static String GET_LIST = "message/getList";
-        public final static String SEND = "message/send";
-        public final static String REMOVE_FOR_SELF = "message/removeForSelf";
-        public final static String REMOVE_FOR_ALL = "message/removeForAll";
-    }
 
     public static class Users{
         public final static String GET_USER = "users/get";
@@ -52,12 +49,10 @@ public class APIMethods {
     }
 
     public static class Friend {
-        public final static String GET_FRIENDS = "friend/getFriends";
-        public final static String SEND_REQUEST = "friend/sendRequest";
-        public final static String ACCEPT_REQUEST = "friend/acceptRequest";
+        public final static String GET_FRIENDS = "friend/getList";
+        public final static String ADD  = "friend/add";
         public final static String GET_INCOMING_REQUESTS = "friend/getIncomingRequests";
         public final static String GET_OUTGOING_REQUESTS = "friend/getOutgoingRequests";
-        public final static String DECLINE_REQUEST = "friend/declineRequest";
         public final static String REMOVE = "friend/remove";
     }
 

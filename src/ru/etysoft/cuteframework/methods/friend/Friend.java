@@ -1,7 +1,7 @@
 package ru.etysoft.cuteframework.methods.friend;
 
 import org.json.JSONObject;
-import ru.etysoft.cuteframework.Methods;
+import ru.etysoft.cuteframework.CuteFramework;
 import ru.etysoft.cuteframework.data.APIKeys;
 
 public class Friend {
@@ -23,9 +23,9 @@ public class Friend {
     public static Friend fromJSON(JSONObject jsonObject, boolean isRequest)
     {
         String avatarPath = null;
-        if(!jsonObject.isNull(APIKeys.AVATAR_PATH))
+        if(!jsonObject.isNull(APIKeys.AVATAR))
         {
-            avatarPath = jsonObject.getString(APIKeys.AVATAR_PATH);
+            avatarPath = jsonObject.getString(APIKeys.AVATAR);
         }
         String displayName = jsonObject.getString(APIKeys.DISPLAY_NAME);
         String onlineTime = jsonObject.getString(APIKeys.ONLINE_TIME);
@@ -56,7 +56,7 @@ public class Friend {
     }
 
     public String getAvatarPath() {
-        return Methods.mediaDomain + avatarPath;
+        return CuteFramework.mediaDomain + avatarPath;
     }
 
     public String getOnlineTime() {
