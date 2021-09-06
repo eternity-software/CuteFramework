@@ -64,6 +64,54 @@ public class Message {
         }
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setAccountId(int accountId) {
+        this.accountId = accountId;
+    }
+
+    public void setRead(boolean read) {
+        this.read = read;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setServiceData(ServiceData serviceData) {
+        this.serviceData = serviceData;
+    }
+
+    public void setAttachmentPath(String attachmentPath) {
+        this.attachmentPath = attachmentPath;
+    }
+
+    public void setAttachmentType(String attachmentType) {
+        this.attachmentType = attachmentType;
+    }
+
+    public void setAttachmentData(AttachmentData attachmentData) {
+        this.attachmentData = attachmentData;
+    }
+
+    public void setSender(User sender) {
+        this.sender = sender;
+    }
+
     public User getSender() {
         return sender;
     }
@@ -78,6 +126,10 @@ public class Message {
 
     public String getAttachmentPath() {
         return CuteFramework.mediaDomain + attachmentPath;
+    }
+
+    public String getCleanAttachmentPath() {
+        return attachmentPath;
     }
 
     public String getAttachmentType() {

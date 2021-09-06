@@ -20,6 +20,14 @@ public class UploadImageResponse extends ResponseHandler {
         type = jsonObject.getString(APIKeys.TYPE);
     }
 
+    public String getPath() {
+        return path;
+    }
+
+    public String getType() {
+        return type;
+    }
+
     public String getMediaId() throws ResponseException {
         if (mediaId==null) throw new ResponseException("mediaId is null");
         return mediaId;
