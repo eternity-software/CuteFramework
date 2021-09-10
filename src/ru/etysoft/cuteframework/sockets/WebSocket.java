@@ -50,24 +50,31 @@ public class WebSocket {
 
     }
 
+   // {
+    //    "type": "listener",
+  //          "action": "getMessage",
+  //          "data": {
+    //    "token": "$2b$04$FliA1z7k0xj0X4uD.3CnGOCCc9HKA6NyeSr1lAfB1RjN7XTk8ex9q",
+      //          "chatId": 2
+   // }
+    //}
     public void sendAPIRequest(String method, Pair... params) {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put(APIKeys.TYPE, "listener");
 
-        JSONObject requestObj = new JSONObject();
-        requestObj.put("model", method.split("/")[0]);
-        requestObj.put("method", method.split("/")[1]);
-        requestObj.put("version", "0.0.1");
+
+        jsonObject.put("action", method.split("/")[1]);
+        jsonObject.put("version", "0.0.2");
 
         JSONObject paramsObj = new JSONObject();
         for (Pair pair : params) {
             paramsObj.put(pair.getKey(), pair.getValue());
         }
 
+        jsonObject.put("data", paramsObj);
 
-        jsonObject.put("request", requestObj);
-        jsonObject.put("params", paramsObj);
 
+        Logger.logSocket(jsonObject.toString(), getName());
         sendMessage(jsonObject.toString());
 
 
@@ -134,8 +141,15 @@ public class WebSocket {
      */
     @OnMessage
     public void onMessage(String message) {
-        Logger.logSocket("Received string\n> " + message, name);
-        webSocketHandler.onMessageReceived(this, message);
+        try {
+            Logger.logSocket("Received string\n> " + message, name);
+            webSocketHandler.onMessageReceived(this, message);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
     }
 
     /**

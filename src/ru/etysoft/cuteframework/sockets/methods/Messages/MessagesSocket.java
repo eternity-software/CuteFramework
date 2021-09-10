@@ -2,8 +2,10 @@ package ru.etysoft.cuteframework.sockets.methods.Messages;
 
 import org.json.JSONObject;
 import ru.etysoft.cuteframework.CuteFramework;
+import ru.etysoft.cuteframework.Logger;
 import ru.etysoft.cuteframework.data.APIKeys;
 import ru.etysoft.cuteframework.data.APIMethods;
+import ru.etysoft.cuteframework.methods.chat.SendMessage.SendMessageResponse;
 import ru.etysoft.cuteframework.methods.messages.Message;
 import ru.etysoft.cuteframework.requests.Pair;
 import ru.etysoft.cuteframework.sockets.WebSocket;
@@ -35,7 +37,8 @@ public class MessagesSocket implements WebSocket.WebSocketHandler {
     @Override
     public void onMessageReceived(WebSocket webSocket, String message) {
         try {
-            messageReceiveHandler.onMessageReceive(new Message(new JSONObject(message)));
+            Logger.logSocket(message, webSocket.getName());
+            messageReceiveHandler.onMessageReceive(new SendMessageResponse(message, webSocket.getName()));
         }
         catch (Exception e)
         {
@@ -47,7 +50,7 @@ public class MessagesSocket implements WebSocket.WebSocketHandler {
     public void onOpen(WebSocket webSocket) {
         try
         {
-            webSocket.sendAPIRequest(APIMethods.Chat.GET_HISTORY,
+            webSocket.sendAPIRequest(APIMethods.Chat.GET_MESSAGE,
                     Pair.make(APIKeys.TOKEN, token),
                     Pair.make(APIKeys.CHAT_ID, chatId)
             );
@@ -66,6 +69,6 @@ public class MessagesSocket implements WebSocket.WebSocketHandler {
     }
 
     public interface MessageReceiveHandler {
-        void onMessageReceive(Message message);
+        void onMessageReceive(SendMessageResponse message);
     }
 }

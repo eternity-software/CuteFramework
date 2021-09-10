@@ -8,6 +8,7 @@ import ru.etysoft.cuteframework.exceptions.ResponseException;
 import ru.etysoft.cuteframework.methods.chat.ChatList.ChatListResponse;
 import ru.etysoft.cuteframework.methods.chat.ChatSnippet;
 import ru.etysoft.cuteframework.methods.chat.GetHistory.GetMessageListResponse;
+import ru.etysoft.cuteframework.methods.chat.SendMessage.SendMessageResponse;
 import ru.etysoft.cuteframework.methods.messages.Message;
 import ru.etysoft.cuteframework.sockets.methods.Messages.MessagesSocket;
 
@@ -68,8 +69,8 @@ public class CuteFrameworkTest {
             MessagesSocket messagesSocket = new MessagesSocket("$2b$04$rjWOW/H2TQr1SRTjuKuDl.hrMzFCUOux2vWq8Rlq6eyrzlCRTCeaa", "2",
                     new MessagesSocket.MessageReceiveHandler() {
                         @Override
-                        public void onMessageReceive(Message message) {
-                            System.out.println("MEssage text: " + message.getText());
+                        public void onMessageReceive(SendMessageResponse message) {
+                            System.out.println("MEssage text: " + message.getMessage().getText());
                         }
                     });
            Thread.sleep(100000);
