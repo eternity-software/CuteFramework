@@ -59,6 +59,7 @@ public class APIKeys {
 
     public final static String FILE = "file";
     public final static String DATA = "data";
+    public final static String FIRST_MESSAGE_ID = "firstMessageId";
     public final static String TYPE = "type";
     public final static String NAME = "name";
     public final static String DESCRIPTION = "description";
@@ -69,6 +70,8 @@ public class APIKeys {
     public final static String TOKEN = "token";
     public final static String CHATS = "chats";
     public final static String CHAT = "chat";
+    public final static String IS_DIALOG = "isDialog";
+    public final static String PRIVATE = "private";
     public final static String TEXT = "text";
     public final static String TIME = "time";
     public final static String CODE = "code";

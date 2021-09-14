@@ -6,7 +6,9 @@ import ru.etysoft.cuteframework.data.APIKeys;
 import ru.etysoft.cuteframework.methods.messages.Message;
 
 public class ChatSnippet {
-    private int id;
+    private long id;
+    private long accountId;
+    private boolean isDialog;
     private String type;
     private String name;
     private String state;
@@ -19,10 +21,16 @@ public class ChatSnippet {
 
         name = chatObj.getString(APIKeys.NAME);
 
-        id = chatObj.getInt(APIKeys.ID);
+        id = chatObj.getLong(APIKeys.ID);
 
         type = chatObj.getString(APIKeys.TYPE);
         state = chatObj.getString(APIKeys.STATE);
+        isDialog = chatObj.getBoolean(APIKeys.IS_DIALOG);
+
+        if(isDialog)
+        {
+            accountId = chatObj.getJSONObject(APIKeys.PRIVATE).getLong(APIKeys.ID);
+        }
 
 
         if(snippetObj.has(APIKeys.Message.MESSAGE))
@@ -37,6 +45,14 @@ public class ChatSnippet {
         }
 
 
+    }
+
+    public long getAccountId() {
+        return accountId;
+    }
+
+    public boolean isDialog() {
+        return isDialog;
     }
 
     public Message getMessage() {
@@ -60,7 +76,7 @@ public class ChatSnippet {
         return state;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 

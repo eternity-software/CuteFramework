@@ -19,6 +19,7 @@ public class Message {
     private String attachmentType;
     private AttachmentData attachmentData;
     private User sender;
+    private MessageDataHandler messageDataHandler;
 
     public Message(int id, int accountId, boolean read, String text, String time, String displayName, String type, ServiceData serviceData, String attachmentPath, String attachmentType, AttachmentData attachmentData, User sender) {
         this.id = id;
@@ -60,8 +61,16 @@ public class Message {
         else
         {
             sender = new User(messageObj.getJSONObject(APIKeys.Message.FROM));
-            text = messageObj.getString(APIKeys.TEXT);
+            if(!messageObj.isNull(APIKeys.TEXT))
+            {
+                text = messageObj.getString(APIKeys.TEXT);
+            }
+
         }
+    }
+
+    public void setMessageDataHandler(MessageDataHandler messageDataHandler) {
+        this.messageDataHandler = messageDataHandler;
     }
 
     public void setId(int id) {
@@ -161,15 +170,23 @@ public class Message {
         return time;
     }
 
+    public void notifyDataChanged()
+    {
+        messageDataHandler.onDataUpdated(this);
+    }
+
     public static class Type {
         public static final String SERVICE = "service";
         public static final String USER = "user";
     }
-
 
     public static class Status {
         public static final String AVAILABLE = "Y";
         public static final String DELETED = "N";
     }
 
+    public interface MessageDataHandler
+    {
+        void onDataUpdated(Message message);
+    }
 }

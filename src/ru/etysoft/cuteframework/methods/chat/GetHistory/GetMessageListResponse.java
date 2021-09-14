@@ -17,6 +17,7 @@ import java.util.List;
 public class GetMessageListResponse extends ResponseHandler {
 
     private List<Message> messages;
+    private long firstMessageId;
 
     public GetMessageListResponse(String jsonResponse, String url) throws JSONException {
         super(jsonResponse, url);
@@ -25,6 +26,8 @@ public class GetMessageListResponse extends ResponseHandler {
     @Override
     public void onSuccess() {
         JSONArray jsonArray = getJsonResponse().getJSONObject(APIKeys.DATA).getJSONArray(APIKeys.Message.MESSAGES);
+
+        firstMessageId = getJsonResponse().getJSONObject(APIKeys.DATA).getLong(APIKeys.FIRST_MESSAGE_ID);
 
         messages = new ArrayList<>();
 
@@ -35,6 +38,10 @@ public class GetMessageListResponse extends ResponseHandler {
             Message message = new Message(messageObj);
             messages.add(message);
         }
+    }
+
+    public long getFirstMessageId() {
+        return firstMessageId;
     }
 
     public List<Message> getMessages() throws ResponseException {
