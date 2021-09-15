@@ -16,6 +16,7 @@ import javax.websocket.Session;
 import javax.websocket.WebSocketContainer;
 import java.io.IOException;
 import java.net.URI;
+import java.util.ArrayList;
 
 /**
  * WebSocket Client
@@ -28,6 +29,7 @@ public class WebSocket {
     private int socketId;
     private String name;
     private WebSocketHandler webSocketHandler;
+    private ArrayList<Runnable > onCloseListeners = new ArrayList<>();
 
     /**
      * New socket constructor
@@ -50,35 +52,11 @@ public class WebSocket {
 
     }
 
-   // {
-    //    "type": "listener",
-  //          "action": "getMessage",
-  //          "data": {
-    //    "token": "$2b$04$FliA1z7k0xj0X4uD.3CnGOCCc9HKA6NyeSr1lAfB1RjN7XTk8ex9q",
-      //          "chatId": 2
-   // }
-    //}
-    public void sendAPIRequest(String method, Pair... params) {
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put(APIKeys.TYPE, "listener");
-
-
-        jsonObject.put("action", method.split("/")[1]);
-        jsonObject.put("version", "0.0.2");
-
-        JSONObject paramsObj = new JSONObject();
-        for (Pair pair : params) {
-            paramsObj.put(pair.getKey(), pair.getValue());
-        }
-
-        jsonObject.put("data", paramsObj);
-
-
-        Logger.logSocket(jsonObject.toString(), getName());
-        sendMessage(jsonObject.toString());
-
-
+    public void addOnClose(Runnable onClose)
+    {
+        onCloseListeners.add(onClose);
     }
+
 
     public Session getUserSession() {
         return userSession;
@@ -124,12 +102,17 @@ public class WebSocket {
     @OnClose
     public void onClose() {
         webSocketHandler.onClosing(this);
+
         try {
             getUserSession().close();
         } catch (IOException e) {
             e.printStackTrace();
         }
         this.userSession = null;
+        for(Runnable runnable : onCloseListeners)
+        {
+            runnable.run();
+        }
         Logger.logSocket("Socket closed", name);
     }
 
@@ -151,6 +134,7 @@ public class WebSocket {
         }
 
     }
+
 
     /**
      * Send a message to server.

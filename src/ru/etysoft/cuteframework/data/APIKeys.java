@@ -28,6 +28,8 @@ public class APIKeys {
         public final static String MESSAGE_ID = "messageId";
         public final static String FOR_ALL = "forAll";
         public final static String SENDER_ID = "senderId";
+        public final static String FORWARDED_ID = "forwardedId";
+        public final static String FORWARDED = "forwarded";
     }
 
     public static class Attachment
@@ -82,6 +84,7 @@ public class APIKeys {
     public final static String CONFIRM = "confirm";
     public final static String STATE = "state";
     public final static String ID = "id";
+    public final static String SUBSCRIBE = "subscribe";
     public final static String STATUS = "statusText";
     public final static String BIO = "bioText";
     public final static String USER_ID = "userId";

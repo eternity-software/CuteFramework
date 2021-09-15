@@ -19,6 +19,7 @@ public class Message {
     private String attachmentType;
     private AttachmentData attachmentData;
     private User sender;
+    private Message forwardedMessage;
     private MessageDataHandler messageDataHandler;
 
     public Message(int id, int accountId, boolean read, String text, String time, String displayName, String type, ServiceData serviceData, String attachmentPath, String attachmentType, AttachmentData attachmentData, User sender) {
@@ -65,8 +66,22 @@ public class Message {
             {
                 text = messageObj.getString(APIKeys.TEXT);
             }
+            if(!messageObj.isNull(APIKeys.Message.FORWARDED))
+
+            {
+                forwardedMessage = new Message(messageObj.getJSONObject(APIKeys.Message.FORWARDED));
+            }
 
         }
+    }
+
+
+    public void setForwardedMessage(Message forwardedMessage) {
+        this.forwardedMessage = forwardedMessage;
+    }
+
+    public Message getForwardedMessage() {
+        return forwardedMessage;
     }
 
     public void setMessageDataHandler(MessageDataHandler messageDataHandler) {

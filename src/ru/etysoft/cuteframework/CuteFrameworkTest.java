@@ -10,7 +10,7 @@ import ru.etysoft.cuteframework.methods.chat.ChatSnippet;
 import ru.etysoft.cuteframework.methods.chat.GetHistory.GetMessageListResponse;
 import ru.etysoft.cuteframework.methods.chat.SendMessage.SendMessageResponse;
 import ru.etysoft.cuteframework.methods.messages.Message;
-import ru.etysoft.cuteframework.sockets.methods.Messages.MessagesSocket;
+import ru.etysoft.cuteframework.sockets.paradigm.Chat.ChatSocket;
 
 import java.net.URISyntaxException;
 
@@ -63,20 +63,12 @@ public class CuteFrameworkTest {
 //        });
 //        thread.start();
 
-
         try {
-
-            MessagesSocket messagesSocket = new MessagesSocket("$2b$04$rjWOW/H2TQr1SRTjuKuDl.hrMzFCUOux2vWq8Rlq6eyrzlCRTCeaa", "2",
-                    new MessagesSocket.MessageReceiveHandler() {
-                        @Override
-                        public void onMessageReceive(SendMessageResponse message) {
-                            System.out.println("MEssage text: " + message.getMessage().getText());
-                        }
-                    });
-           Thread.sleep(100000);
-        } catch (URISyntaxException | InterruptedException e) {
+            ChatSocket chatSocket = new ChatSocket("$2b$04$ZjpUd0NU5cEzKgIeVrw2H.uw.flM6abc2Fbj2dS4PzzKRKXJJZgly");
+        } catch (URISyntaxException e) {
             e.printStackTrace();
         }
+
 
 //        TestSocket testSocket = new TestSocket(Methods.longpollDomain, 8181);
 //        testSocket.start();

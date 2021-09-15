@@ -35,7 +35,7 @@ public class CuteFramework {
     public static String domain = "https://api.mcute.ru/";
     public static String mediaDomain = "https://api.mcute.ru";
     public static String mainDomain = "https://mcute.ru/";
-    public static String longpollDomain = "ws://188.225.33.56:8181";
+    public static String webSocketLink = "ws://188.225.33.56:8181";
     public static String options = "&v=0.0.2";
 
     public static LoginResponse authorize(String login, String password) throws ResponseException {
