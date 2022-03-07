@@ -17,8 +17,11 @@ public class ChatCreateResponse extends ResponseHandler {
     @Override
     public void onSuccess() {
         JSONObject jsonObject = getJsonResponse().getJSONObject(APIKeys.DATA);
-        chatId = String.valueOf(jsonObject.getInt(APIKeys.ID));
-        name = String.valueOf(jsonObject.getInt(APIKeys.NAME));
+        chatId = String.valueOf(jsonObject.getLong(APIKeys.ID));
+        if(jsonObject.has(APIKeys.NAME))
+        {
+            name = jsonObject.getString(APIKeys.NAME);
+        }
     }
 
     public String getName() throws ResponseException {

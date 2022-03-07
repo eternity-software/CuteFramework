@@ -1,16 +1,23 @@
 package ru.etysoft.cuteframework.sockets;
 
-import org.json.JSONObject;
-
 public abstract class Event {
 
-    String eventString;
 
-    public Event(String eventString)
+    private String eventJson;
+
+    public Event(String eventJson)
     {
-        this.eventString = eventString;
+        this.eventJson = eventJson;
+        processEvent(eventJson);
     }
 
+    public abstract void processEvent(String eventJson);
+
+    public static class Types
+    {
+        public static final String NEW_MESSAGE = "newMessage";
+        public static final String MEMBER_STATE = "memberState";
+    }
 
 
 }

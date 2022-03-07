@@ -15,6 +15,7 @@ import javax.websocket.Session;
 import javax.websocket.WebSocketContainer;
 import java.io.IOException;
 import java.net.URI;
+import java.util.ArrayList;
 
 /**
  * WebSocket Client
@@ -27,6 +28,7 @@ public class WebSocket {
     private int socketId;
     private String name;
     private WebSocketHandler webSocketHandler;
+    private ArrayList<Runnable > onCloseListeners = new ArrayList<>();
 
     /**
      * New socket constructor
@@ -49,28 +51,11 @@ public class WebSocket {
 
     }
 
-    public void sendAPIRequest(String method, Pair... params) {
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put(APIKeys.TYPE, "listener");
-
-        JSONObject requestObj = new JSONObject();
-        requestObj.put("model", method.split("/")[0]);
-        requestObj.put("method", method.split("/")[1]);
-        requestObj.put("version", "0.0.1");
-
-        JSONObject paramsObj = new JSONObject();
-        for (Pair pair : params) {
-            paramsObj.put(pair.getKey(), pair.getValue());
-        }
-
-
-        jsonObject.put("request", requestObj);
-        jsonObject.put("params", paramsObj);
-
-        sendMessage(jsonObject.toString());
-
-
+    public void addOnClose(Runnable onClose)
+    {
+        onCloseListeners.add(onClose);
     }
+
 
     public Session getUserSession() {
         return userSession;
@@ -116,12 +101,17 @@ public class WebSocket {
     @OnClose
     public void onClose() {
         webSocketHandler.onClosing(this);
+
         try {
             getUserSession().close();
         } catch (IOException e) {
             e.printStackTrace();
         }
         this.userSession = null;
+        for(Runnable runnable : onCloseListeners)
+        {
+            runnable.run();
+        }
         Logger.logSocket("Socket closed", name);
     }
 
@@ -133,9 +123,17 @@ public class WebSocket {
      */
     @OnMessage
     public void onMessage(String message) {
-        Logger.logSocket("Received string\n> " + message, name);
-        webSocketHandler.onMessageReceived(this, message);
+        try {
+            Logger.logSocket("Received string\n> " + message, name);
+            webSocketHandler.onMessageReceived(this, message);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
     }
+
 
     /**
      * Send a message to server.

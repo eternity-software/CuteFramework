@@ -28,6 +28,8 @@ public class APIKeys {
         public final static String MESSAGE_ID = "messageId";
         public final static String FOR_ALL = "forAll";
         public final static String SENDER_ID = "senderId";
+        public final static String FORWARDED_ID = "forwardedId";
+        public final static String FORWARDED = "forwarded";
     }
 
     public static class Attachment
@@ -59,6 +61,7 @@ public class APIKeys {
 
     public final static String FILE = "file";
     public final static String DATA = "data";
+    public final static String FIRST_MESSAGE_ID = "firstMessageId";
     public final static String TYPE = "type";
     public final static String NAME = "name";
     public final static String DESCRIPTION = "description";
@@ -69,6 +72,8 @@ public class APIKeys {
     public final static String TOKEN = "token";
     public final static String CHATS = "chats";
     public final static String CHAT = "chat";
+    public final static String IS_DIALOG = "isDialog";
+    public final static String PRIVATE = "private";
     public final static String TEXT = "text";
     public final static String TIME = "time";
     public final static String CODE = "code";
@@ -79,6 +84,7 @@ public class APIKeys {
     public final static String CONFIRM = "confirm";
     public final static String STATE = "state";
     public final static String ID = "id";
+    public final static String SUBSCRIBE = "subscribe";
     public final static String STATUS = "statusText";
     public final static String BIO = "bioText";
     public final static String USER_ID = "userId";

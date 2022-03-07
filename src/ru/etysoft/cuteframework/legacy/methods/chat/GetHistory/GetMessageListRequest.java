@@ -14,6 +14,13 @@ public class GetMessageListRequest extends RequestHolder {
                 Pair.make(APIKeys.CHAT_ID, chatId));
     }
 
+    public GetMessageListRequest(String token, String chatId, String messageId) {
+        super(APIMethods.Chat.GET_HISTORY);
+        setParams(Pair.make(APIKeys.TOKEN, token),
+                Pair.make(APIKeys.Message.MESSAGE_ID, messageId),
+                Pair.make(APIKeys.CHAT_ID, chatId));
+    }
+
     public GetMessageListResponse execute() throws ResponseException {
         Request request = makeRequest();
         return new GetMessageListResponse(request.processAPI(), request.getFormattedURL());

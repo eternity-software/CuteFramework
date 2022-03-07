@@ -33,9 +33,11 @@ public class APIMethods {
         public final static String LEAVE = "chat/leave";
         public final static String CHANGE_AVATAR = "chat/changeAvatar";
         public final static String CLEAR_HISTORY = "chat/clearHistory";
+        public final static String GET_MESSAGE = "chat/getMessage";
         public final static String GET_HISTORY = "chat/getHistory";
         public final static String SEND_MESSAGE = "chat/sendMessage";
         public final static String REMOVE_MESSAGE = "chat/removeMessage";
+        public final static String GET_PRIVATE_CHAT = "chat/getPrivate";
     }
 
 
