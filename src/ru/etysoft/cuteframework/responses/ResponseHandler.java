@@ -2,8 +2,9 @@ package ru.etysoft.cuteframework.responses;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import ru.etysoft.cuteframework.exceptions.NoSuchValueException;
 import ru.etysoft.cuteframework.responses.errors.ErrorHandler;
-import ru.etysoft.cuteframework.data.APIKeys;
+import ru.etysoft.cuteframework.legacy.data.APIKeys;
 
 /**
  * Abstract class for JSON response handling
@@ -24,6 +25,10 @@ public abstract class ResponseHandler {
         {
             onSuccess();
         }
+    }
+
+    public void checkNotNull(Object value) throws NoSuchValueException {
+        if(value == null) throw new NoSuchValueException();
     }
 
     /**

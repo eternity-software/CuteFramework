@@ -2,9 +2,9 @@ package ru.etysoft.cuteframework.sockets.methods.Messages;
 
 import org.json.JSONObject;
 import ru.etysoft.cuteframework.CuteFramework;
-import ru.etysoft.cuteframework.data.APIKeys;
-import ru.etysoft.cuteframework.data.APIMethods;
-import ru.etysoft.cuteframework.methods.messages.Message;
+import ru.etysoft.cuteframework.legacy.data.APIKeys;
+import ru.etysoft.cuteframework.legacy.data.APIMethods;
+import ru.etysoft.cuteframework.legacy.methods.messages.Message;
 import ru.etysoft.cuteframework.requests.Pair;
 import ru.etysoft.cuteframework.sockets.WebSocket;
 

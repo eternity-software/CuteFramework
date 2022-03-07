@@ -16,7 +16,7 @@ public class GET {
 
     public static String execute(String url) throws ResponseException {
         try {
-            url += CuteFramework.options;
+            url += "&v=" + CuteFramework.API_VERSION;
             System.out.println("CuFr GET >> " + url);
             OkHttpClient client = new OkHttpClient();
 

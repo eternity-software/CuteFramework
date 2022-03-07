@@ -5,10 +5,10 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 import ru.etysoft.cuteframework.exceptions.ResponseException;
-import ru.etysoft.cuteframework.methods.chat.ChatList.ChatListResponse;
-import ru.etysoft.cuteframework.methods.chat.ChatSnippet;
-import ru.etysoft.cuteframework.methods.chat.GetHistory.GetMessageListResponse;
-import ru.etysoft.cuteframework.methods.messages.Message;
+import ru.etysoft.cuteframework.legacy.methods.chat.ChatList.ChatListResponse;
+import ru.etysoft.cuteframework.legacy.methods.chat.ChatSnippet;
+import ru.etysoft.cuteframework.legacy.methods.chat.GetHistory.GetMessageListResponse;
+import ru.etysoft.cuteframework.legacy.methods.messages.Message;
 import ru.etysoft.cuteframework.sockets.methods.Messages.MessagesSocket;
 
 import java.net.URISyntaxException;
@@ -29,26 +29,6 @@ public class CuteFrameworkTest {
     public void accountCreation() {
 //        GetUserResponse getUserResponse = null;
 //        SearchUserResponse searchUserResponse = null;
-        GetMessageListResponse getMessageListResponse = null;
-        ChatListResponse response = null;
-        try {
-           response = CuteFramework.getChatList(sessionKey);
-            ChatSnippet chatSnippet = response.getChats().get(0);
-
-            getMessageListResponse = CuteFramework.getMessageList(sessionKey, "5");
-            for (int i = 0; i<getMessageListResponse.getMessages().size(); i++){
-                Message message = getMessageListResponse.getMessages().get(0);
-               // System.out.println(message.getChatId());
-                System.out.println(message.getServiceData().getChatName());
-            }
-            System.out.println();
-//            System.out.println(searchUserResponse.getUsers().size());
-//            chatCreateResponse = Methods.createChat(sessionKey, testDisplay_name, desc, "C");
-
-        } catch (ResponseException e) {
-            e.printStackTrace();
-        }
-//        Assert.assertTrue(authorizationResponseHandler.isSuccess() && registrationResponseHandler.isSuccess());
 
     }
 

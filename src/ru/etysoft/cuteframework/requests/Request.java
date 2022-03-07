@@ -52,7 +52,7 @@ public class Request {
 
     public String getURL()
     {
-        return CuteFramework.domain + method + getArgsAsString(params);
+        return CuteFramework.API_DOMAIN + method + getArgsAsString(params);
     }
 
     public String getFormattedURL()

@@ -28,7 +28,7 @@ public abstract class RequestHolder {
         return params;
     }
 
-    public String getUrl() { return CuteFramework.domain + getMethod(); }
+    public String getUrl() { return CuteFramework.API_DOMAIN + getMethod(); }
 
     public Request makeRequest() {
         return new Request(method, params);

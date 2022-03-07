@@ -3,8 +3,7 @@ package ru.etysoft.cuteframework.sockets;
 
 import org.json.JSONObject;
 import ru.etysoft.cuteframework.Logger;
-import ru.etysoft.cuteframework.data.APIKeys;
-import ru.etysoft.cuteframework.methods.messages.Message;
+import ru.etysoft.cuteframework.legacy.data.APIKeys;
 import ru.etysoft.cuteframework.requests.Pair;
 
 import javax.websocket.ClientEndpoint;
