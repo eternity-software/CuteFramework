@@ -18,8 +18,8 @@ public class RegisterRequest extends RequestHolder {
 
     }
 
-    public LoginResponse execute() throws ResponseException {
+    public LoginRequest.LoginResponse execute() throws ResponseException {
         Request request = makeRequest();
-        return new LoginResponse(request.processAPI(), request.getFormattedURL());
+        return new LoginRequest.LoginResponse(request.processAPI(), request.getFormattedURL());
     }
 }

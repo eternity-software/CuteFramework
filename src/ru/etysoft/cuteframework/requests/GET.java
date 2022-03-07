@@ -1,5 +1,6 @@
 package ru.etysoft.cuteframework.requests;
 
+import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 
@@ -7,6 +8,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import ru.etysoft.cuteframework.CuteFramework;
+import ru.etysoft.cuteframework.consts.APIKeys;
 import ru.etysoft.cuteframework.exceptions.ResponseException;
 
 /**
@@ -15,12 +17,29 @@ import ru.etysoft.cuteframework.exceptions.ResponseException;
 public class GET {
 
     public static String execute(String url) throws ResponseException {
+        return execute(url, new HashMap<>());
+    }
+
+
+    public static String execute(String url, HashMap<String, String> headers) throws ResponseException {
         try {
-            url += "&v=" + CuteFramework.API_VERSION;
+
             System.out.println("CuFr GET >> " + url);
             OkHttpClient client = new OkHttpClient();
 
+            Request.Builder builder = new Request.Builder();
+            builder.url(url);
+
+            for(String key : headers.keySet())
+            {
+                String value = headers.get(key);
+                builder.addHeader(key, value);
+            }
+            builder.addHeader(APIKeys.Headers.VERSION, CuteFramework.API_VERSION);
+
+
             Request request = new Request.Builder()
+
                     .url(url)
                     .build();
             try (Response response = client.newCall(request).execute()) {

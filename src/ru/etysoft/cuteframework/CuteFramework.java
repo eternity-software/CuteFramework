@@ -1,8 +1,9 @@
 package ru.etysoft.cuteframework;
 
-
 import ru.etysoft.cuteframework.exceptions.NotLoggedInExeption;
-import ru.etysoft.cuteframework.methods.account.LoginResponse;
+import ru.etysoft.cuteframework.methods.account.LoginRequest;
+import ru.etysoft.cuteframework.sqlite.SQLite;
+import java.sql.SQLException;
 
 public class CuteFramework {
 
@@ -14,10 +15,21 @@ public class CuteFramework {
     private static String token = "";
     private static long expiresIn = 0;
     private static String id;
+    private static String cacheDirPath = "";
+    private static String sqlClassName = "org.sqlite.JDBC";
+    private static String jdbcUrl = "jdbc:sqlite:";
 
-    public CuteFramework()
+    public static void setSqlClassName(String sqlClassName) {
+        CuteFramework.sqlClassName = sqlClassName;
+    }
+
+    public static void setJdbcUrl(String jdbcUrl) {
+        CuteFramework.jdbcUrl = jdbcUrl;
+    }
+
+    public static void initialize()
     {
-        LoginResponse.setLoginCallback(new LoginResponse.LoginCallback() {
+        LoginRequest.LoginResponse.setLoginCallback(new LoginRequest.LoginResponse.LoginCallback() {
             @Override
             public void onLogin(String token, String id, String expiresIn) {
                 CuteFramework.token = token;
@@ -25,8 +37,16 @@ public class CuteFramework {
                 CuteFramework.id = id;
             }
         });
+        try {
+            SQLite.initialize(cacheDirPath, sqlClassName, jdbcUrl);
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
+    public static void setCacheDir(String cacheDirPath) {
+        CuteFramework.cacheDirPath = cacheDirPath;
+    }
 
     public static long getExpiresIn() throws NotLoggedInExeption {
         if(token == null) throw new NotLoggedInExeption();

@@ -21,7 +21,7 @@ public class POST {
 
 
         try {
-            url += CuteFramework.options.replace("&", "?");
+            url += "?v=" + CuteFramework.API_VERSION;
             String debugInfo = methodName + "<< POST\n> Request params";
 
             String result;

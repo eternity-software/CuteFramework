@@ -5,13 +5,13 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 import ru.etysoft.cuteframework.exceptions.ResponseException;
-import ru.etysoft.cuteframework.legacy.methods.chat.ChatList.ChatListResponse;
-import ru.etysoft.cuteframework.legacy.methods.chat.ChatSnippet;
-import ru.etysoft.cuteframework.legacy.methods.chat.GetHistory.GetMessageListResponse;
-import ru.etysoft.cuteframework.legacy.methods.messages.Message;
-import ru.etysoft.cuteframework.sockets.methods.Messages.MessagesSocket;
+
+
+import ru.etysoft.cuteframework.sqlite.SQLite;
+import ru.etysoft.cuteframework.sqlite.tables.ProfileData;
 
 import java.net.URISyntaxException;
+import java.sql.SQLException;
 
 @FixMethodOrder(MethodSorters.JVM)
 public class CuteFrameworkTest {
@@ -24,6 +24,21 @@ public class CuteFrameworkTest {
     String newName = "abobass";
     String desc = "z,aq,zll,azq";
     int code = 845696;
+
+
+    @Test
+    public void profileCacheTest() {
+
+        CuteFramework.initialize();
+        try {
+            System.out.println("CURRENT TOKEN: " +  SQLite.getProfileData().getToken());
+            SQLite.getProfileData().setToken("123456");
+            System.out.println("TOKEN AFTER SAVE: " +  SQLite.getProfileData().getToken());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
 
     @Test
     public void accountCreation() {
@@ -43,19 +58,7 @@ public class CuteFrameworkTest {
 //        thread.start();
 
 
-        try {
 
-            MessagesSocket messagesSocket = new MessagesSocket("$2b$04$rjWOW/H2TQr1SRTjuKuDl.hrMzFCUOux2vWq8Rlq6eyrzlCRTCeaa", "2",
-                    new MessagesSocket.MessageReceiveHandler() {
-                        @Override
-                        public void onMessageReceive(Message message) {
-                            System.out.println("MEssage text: " + message.getText());
-                        }
-                    });
-           Thread.sleep(100000);
-        } catch (URISyntaxException | InterruptedException e) {
-            e.printStackTrace();
-        }
 
 //        TestSocket testSocket = new TestSocket(Methods.longpollDomain, 8181);
 //        testSocket.start();

@@ -16,6 +16,7 @@ public abstract class Event {
     public static class Types
     {
         public static final String NEW_MESSAGE = "newMessage";
+        public static final String READ_MESSAGE = "messageRead";
         public static final String MEMBER_STATE = "memberState";
     }
 

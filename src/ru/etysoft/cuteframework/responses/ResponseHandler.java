@@ -2,9 +2,10 @@ package ru.etysoft.cuteframework.responses;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import ru.etysoft.cuteframework.consts.APIKeys;
 import ru.etysoft.cuteframework.exceptions.NoSuchValueException;
 import ru.etysoft.cuteframework.responses.errors.ErrorHandler;
-import ru.etysoft.cuteframework.legacy.data.APIKeys;
+
 
 /**
  * Abstract class for JSON response handling
@@ -39,7 +40,7 @@ public abstract class ResponseHandler {
     public boolean isSuccess()  {
         try
         {
-            return jsonResponse.getString(APIKeys.TYPE).equals("success");
+            return jsonResponse.getString(APIKeys.Response.TYPE).equals("success");
         }
        catch (JSONException e)
        {

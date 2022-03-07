@@ -2,8 +2,15 @@ package ru.etysoft.cuteframework.consts;
 
 public class APIKeys {
 
+    public static class Headers
+    {
+        public static final String VERSION = "Version";
+    }
+
     public static class Response{
         public static final String DATA = "data";
+        public static final String TYPE = "type";
+
     }
 
     public static class Account
