@@ -15,6 +15,6 @@ public class DemoteAdminRequest extends RequestHolder {
   
   public DemoteAdminResponse execute() throws ResponseException {
     Request request = makeRequest();
-    return new DemoteAdminResponse(request.processAPI(), request.getFormattedURL());
+    return new DemoteAdminResponse(request.executeAPI(), request.getFormattedURL());
   }
 }

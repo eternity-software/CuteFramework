@@ -14,6 +14,6 @@ public class ChatLeaveRequest extends RequestHolder {
   
   public ChatLeaveResponse execute() throws ResponseException {
     Request request = makeRequest();
-    return new ChatLeaveResponse(request.processAPI(), request.getFormattedURL());
+    return new ChatLeaveResponse(request.executeAPI(), request.getFormattedURL());
   }
 }

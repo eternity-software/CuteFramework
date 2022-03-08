@@ -12,13 +12,13 @@ import ru.etysoft.cuteframework.responses.errors.ErrorHandler;
  *
  * @author Mikhail Karlov
  */
-public abstract class ResponseHandler {
+public abstract class Response {
 
     private String stringResponse;
     private JSONObject jsonResponse;
     private String url;
 
-    public ResponseHandler(String jsonResponse, String url) throws JSONException {
+    public Response(String jsonResponse, String url) throws JSONException {
         this.stringResponse = jsonResponse;
         this.url = url;
         this.jsonResponse = new JSONObject(jsonResponse);

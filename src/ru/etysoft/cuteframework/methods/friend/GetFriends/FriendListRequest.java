@@ -20,6 +20,6 @@ public class FriendListRequest extends RequestHolder {
   
   public FriendListResponse execute() throws ResponseException {
     Request request = makeRequest();
-    return new FriendListResponse(request.processAPI(), request.getFormattedURL());
+    return new FriendListResponse(request.executeAPI(), request.getFormattedURL());
   }
 }

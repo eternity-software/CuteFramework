@@ -21,6 +21,6 @@ public class GetMessageListRequest extends RequestHolder {
   
   public GetMessageListResponse execute() throws ResponseException {
     Request request = makeRequest();
-    return new GetMessageListResponse(request.processAPI(), request.getFormattedURL());
+    return new GetMessageListResponse(request.executeAPI(), request.getFormattedURL());
   }
 }

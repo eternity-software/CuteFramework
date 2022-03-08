@@ -15,6 +15,6 @@ public class BlockMemberRequest extends RequestHolder {
   
   public BlockMemberResponse execute() throws ResponseException {
     Request request = makeRequest();
-    return new BlockMemberResponse(request.processAPI(), request.getFormattedURL());
+    return new BlockMemberResponse(request.executeAPI(), request.getFormattedURL());
   }
 }

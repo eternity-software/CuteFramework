@@ -19,6 +19,6 @@ public class SearchUserRequest extends RequestHolder {
   
   public SearchUserResponse execute() throws ResponseException {
     Request request = makeRequest();
-    return new SearchUserResponse(request.processAPI(), request.getURL());
+    return new SearchUserResponse(request.executeAPI(), request.getURL());
   }
 }

@@ -36,6 +36,6 @@ public class AddAdminRequest extends RequestHolder {
   
   public AddAdminResponse execute() throws ResponseException {
     Request request = makeRequest();
-    return new AddAdminResponse(request.processAPI(), request.getFormattedURL());
+    return new AddAdminResponse(request.executeAPI(), request.getFormattedURL());
   }
 }

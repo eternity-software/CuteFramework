@@ -3,9 +3,9 @@ package ru.etysoft.cuteframework.methods.media;
 import org.json.JSONException;
 import org.json.JSONObject;
 import ru.etysoft.cuteframework.exceptions.ResponseException;
-import ru.etysoft.cuteframework.responses.ResponseHandler;
+import ru.etysoft.cuteframework.responses.Response;
 
-public class UploadImageResponse extends ResponseHandler {
+public class UploadImageResponse extends Response {
   private String mediaId;
   
   private String path;

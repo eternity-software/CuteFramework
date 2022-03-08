@@ -3,9 +3,9 @@ package ru.etysoft.cuteframework.methods.chat.SendMessage;
 import org.json.JSONException;
 import org.json.JSONObject;
 import ru.etysoft.cuteframework.methods.messages.Message;
-import ru.etysoft.cuteframework.responses.ResponseHandler;
+import ru.etysoft.cuteframework.responses.Response;
 
-public class SendMessageResponse extends ResponseHandler {
+public class SendMessageResponse extends Response {
   private Message message;
   
   public SendMessageResponse(String jsonResponse, String url) throws JSONException {

@@ -2,7 +2,7 @@ package ru.etysoft.cuteframework;
 
 import ru.etysoft.cuteframework.exceptions.NotLoggedInExeption;
 import ru.etysoft.cuteframework.methods.account.LoginRequest;
-import ru.etysoft.cuteframework.sqlite.SQLite;
+import ru.etysoft.cuteframework.storage.Cache;
 import java.sql.SQLException;
 
 public class CuteFramework {
@@ -31,14 +31,14 @@ public class CuteFramework {
     {
         LoginRequest.LoginResponse.setLoginCallback(new LoginRequest.LoginResponse.LoginCallback() {
             @Override
-            public void onLogin(String token, String id, String expiresIn) {
+            public void onLogin(String token, String id, long expiresIn) {
                 CuteFramework.token = token;
-                CuteFramework.expiresIn = Long.parseLong(expiresIn) * 1000;
+                CuteFramework.expiresIn = expiresIn * 1000;
                 CuteFramework.id = id;
             }
         });
         try {
-            SQLite.initialize(cacheDirPath, sqlClassName, jdbcUrl);
+            Cache.initialize(cacheDirPath, sqlClassName, jdbcUrl);
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }

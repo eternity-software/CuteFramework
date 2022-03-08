@@ -6,9 +6,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import ru.etysoft.cuteframework.exceptions.ResponseException;
 import ru.etysoft.cuteframework.methods.user.User;
-import ru.etysoft.cuteframework.responses.ResponseHandler;
+import ru.etysoft.cuteframework.responses.Response;
 
-public class SearchUserResponse extends ResponseHandler {
+public class SearchUserResponse extends Response {
   private ArrayList<User> users;
   
   public SearchUserResponse(String jsonResponse, String url) throws JSONException {

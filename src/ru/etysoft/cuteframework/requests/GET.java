@@ -8,6 +8,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import ru.etysoft.cuteframework.CuteFramework;
+import ru.etysoft.cuteframework.Logger;
 import ru.etysoft.cuteframework.consts.APIKeys;
 import ru.etysoft.cuteframework.exceptions.ResponseException;
 
@@ -34,14 +35,11 @@ public class GET {
             {
                 String value = headers.get(key);
                 builder.addHeader(key, value);
+                Logger.logDebug("Added header " + key + ": " + value);
             }
             builder.addHeader(APIKeys.Headers.VERSION, CuteFramework.API_VERSION);
 
-
-            Request request = new Request.Builder()
-
-                    .url(url)
-                    .build();
+            Request request = builder.build();
             try (Response response = client.newCall(request).execute()) {
                 String stringResponse = response.body().string();
                 return stringResponse;

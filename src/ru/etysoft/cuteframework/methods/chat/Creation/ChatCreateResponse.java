@@ -3,9 +3,9 @@ package ru.etysoft.cuteframework.methods.chat.Creation;
 import org.json.JSONException;
 import org.json.JSONObject;
 import ru.etysoft.cuteframework.exceptions.ResponseException;
-import ru.etysoft.cuteframework.responses.ResponseHandler;
+import ru.etysoft.cuteframework.responses.Response;
 
-public class ChatCreateResponse extends ResponseHandler {
+public class ChatCreateResponse extends Response {
   private String chatId;
   
   private String name;

@@ -3,9 +3,9 @@ package ru.etysoft.cuteframework.methods.user.Get;
 import org.json.JSONException;
 import org.json.JSONObject;
 import ru.etysoft.cuteframework.methods.user.User;
-import ru.etysoft.cuteframework.responses.ResponseHandler;
+import ru.etysoft.cuteframework.responses.Response;
 
-public class GetUserResponse extends ResponseHandler {
+public class GetUserResponse extends Response {
   private User user;
   
   private User coverPath;

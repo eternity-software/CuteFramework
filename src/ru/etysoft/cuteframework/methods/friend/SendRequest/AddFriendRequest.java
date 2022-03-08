@@ -14,6 +14,6 @@ public class AddFriendRequest extends RequestHolder {
   
   public AddFriendRequestResponse execute() throws ResponseException {
     Request request = makeRequest();
-    return new AddFriendRequestResponse(request.processAPI(), request.getFormattedURL());
+    return new AddFriendRequestResponse(request.executeAPI(), request.getFormattedURL());
   }
 }

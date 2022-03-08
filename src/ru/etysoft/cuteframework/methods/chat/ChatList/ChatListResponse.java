@@ -7,9 +7,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import ru.etysoft.cuteframework.exceptions.ResponseException;
 import ru.etysoft.cuteframework.methods.chat.ChatSnippet;
-import ru.etysoft.cuteframework.responses.ResponseHandler;
+import ru.etysoft.cuteframework.responses.Response;
 
-public class ChatListResponse extends ResponseHandler {
+public class ChatListResponse extends Response {
   private List<ChatSnippet> chats;
   
   public ChatListResponse(String jsonResponse, String url) throws JSONException {

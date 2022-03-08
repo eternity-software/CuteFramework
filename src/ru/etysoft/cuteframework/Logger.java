@@ -15,4 +15,8 @@ public class Logger {
     {
         System.out.println(method + " << " + request);
     }
+    public static void logDebug(String string)
+    {
+        System.out.println("DEBUG >> " + string);
+    }
 }

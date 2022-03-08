@@ -14,6 +14,6 @@ public class ClearHistoryRequest extends RequestHolder {
   
   public ClearHistoryResponse execute() throws ResponseException {
     Request request = makeRequest();
-    return new ClearHistoryResponse(request.processAPI(), request.getFormattedURL());
+    return new ClearHistoryResponse(request.executeAPI(), request.getFormattedURL());
   }
 }

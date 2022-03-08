@@ -28,7 +28,7 @@ public class ChatCreateRequest extends RequestHolder {
   
   public ChatCreateResponse execute() throws ResponseException {
     Request request = makeRequest();
-    return new ChatCreateResponse(request.processAPI(), request.getFormattedURL());
+    return new ChatCreateResponse(request.executeAPI(), request.getFormattedURL());
   }
   
   public String getToken() {

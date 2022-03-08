@@ -48,6 +48,6 @@ public class SendMessageRequest extends RequestHolder {
   
   public SendMessageResponse execute() throws ResponseException {
     Request request = makeRequest();
-    return new SendMessageResponse(request.processAPI(), request.getFormattedURL());
+    return new SendMessageResponse(request.executeAPI(), request.getFormattedURL());
   }
 }

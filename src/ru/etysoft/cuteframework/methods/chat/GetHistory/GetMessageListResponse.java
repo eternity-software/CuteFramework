@@ -7,9 +7,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import ru.etysoft.cuteframework.exceptions.ResponseException;
 import ru.etysoft.cuteframework.methods.messages.Message;
-import ru.etysoft.cuteframework.responses.ResponseHandler;
+import ru.etysoft.cuteframework.responses.Response;
 
-public class GetMessageListResponse extends ResponseHandler {
+public class GetMessageListResponse extends Response {
   private List<Message> messages;
   
   private long firstMessageId;

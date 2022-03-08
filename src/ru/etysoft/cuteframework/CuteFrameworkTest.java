@@ -1,85 +1,81 @@
 package ru.etysoft.cuteframework;
 
 
+import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
+import ru.etysoft.cuteframework.exceptions.NoSuchValueException;
+import ru.etysoft.cuteframework.exceptions.NotCachedException;
+
+
+import ru.etysoft.cuteframework.exceptions.OneRowOperationException;
 import ru.etysoft.cuteframework.exceptions.ResponseException;
+import ru.etysoft.cuteframework.methods.account.GetAccount;
+import ru.etysoft.cuteframework.methods.account.LoginRequest;
+import ru.etysoft.cuteframework.methods.account.RegisterDeviceRequest;
+import ru.etysoft.cuteframework.storage.Cache;
 
-
-import ru.etysoft.cuteframework.sqlite.SQLite;
-import ru.etysoft.cuteframework.sqlite.tables.ProfileData;
-
-import java.net.URISyntaxException;
 import java.sql.SQLException;
 
-@FixMethodOrder(MethodSorters.JVM)
+@FixMethodOrder(MethodSorters.DEFAULT)
 public class CuteFrameworkTest {
 
-    String testLogin = "kkkkkeqk1222";
-    String testPassword = "q12345e6";
-    String testMail = "russia1561@gmail.com";
-    String testDisplay_name = "ilay";
-    String sessionKey = "$2b$04$JMxIe67RtNfVUjKtQEuxhOojGcRYRhzr5XhPpmmQgES0W4nM.TvWC";
-    String newName = "abobass";
-    String desc = "z,aq,zll,azq";
-    int code = 845696;
-
-
     @Test
-    public void profileCacheTest() {
+    public void loginTest() {
 
         CuteFramework.initialize();
+        String deviceIdB = null;
         try {
-            System.out.println("CURRENT TOKEN: " +  SQLite.getProfileData().getToken());
-            SQLite.getProfileData().setToken("123456");
-            System.out.println("TOKEN AFTER SAVE: " +  SQLite.getProfileData().getToken());
-        } catch (SQLException e) {
+            String tokenB = Cache.getUserAccount().getToken();
+            deviceIdB = Cache.getUserAccount().getDeviceId();
+            System.out.println("ACCOUNT TEST: \n   token=" + tokenB + "\n   deviceId=" + deviceIdB);
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
+        try {
+
+            RegisterDeviceRequest.RegisterDeviceResponse registerDeviceResponse =
+                    new RegisterDeviceRequest("test device", "mobile").execute();
+
+            LoginRequest.LoginResponse loginResponse = new LoginRequest("karlové", "123456").execute();
+
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+        try {
+            String token = Cache.getUserAccount().getToken();
+            String deviceId = Cache.getUserAccount().getDeviceId();
+
+            System.out.println("ACCOUNT TEST: \n   token=" + token + "\n   deviceId=" + deviceId);
+
+            Assert.assertTrue((token != null && deviceId != null));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+
     }
 
     @Test
-    public void accountCreation() {
-//        GetUserResponse getUserResponse = null;
-//        SearchUserResponse searchUserResponse = null;
+    public void getAccountTest()
+    {
+        try {
+            GetAccount.GetAccountResponse getAccountResponse = new GetAccount().execute();
+            Assert.assertTrue(getAccountResponse.getAccount().getEmail().contains("@"));
+        } catch (Exception e) {
+            e.printStackTrace();
+            Assert.fail();
 
+        }
     }
 
-    @Test
-    public void socketTest() {
-//        Thread thread = new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                Server.start();
-//            }
-//        });
-//        thread.start();
-
-
-
-
-//        TestSocket testSocket = new TestSocket(Methods.longpollDomain, 8181);
-//        testSocket.start();
-//        TestSocket testSocket2 = new TestSocket(Methods.longpollDomain, 8181);
-//        testSocket2.start();
-//        int i = 0;
-//        try {
-//
-//
-//
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        while (true)
-//        {
-//
-//
-//        }
-
-    }
 
 
 }

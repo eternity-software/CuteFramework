@@ -1,11 +1,17 @@
 package ru.etysoft.cuteframework.requests;
 
+import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.Set;
 
 import org.jetbrains.annotations.NotNull;
 import ru.etysoft.cuteframework.Logger;
 import ru.etysoft.cuteframework.CuteFramework;
+import ru.etysoft.cuteframework.consts.APIKeys;
+import ru.etysoft.cuteframework.exceptions.NotCachedException;
+import ru.etysoft.cuteframework.exceptions.OneRowOperationException;
 import ru.etysoft.cuteframework.exceptions.ResponseException;
+import ru.etysoft.cuteframework.storage.Cache;
 
 /**
  * Making a server-request
@@ -60,13 +66,24 @@ public class Request {
        return getURL();
     }
 
-    public String processAPI() throws ResponseException {
-        String response = GET.execute(getFormattedURL());
+
+    public String executeAPIWithToken() throws ResponseException, SQLException, NotCachedException {
+        HashMap<String, String> headers = new HashMap<>();
+        headers.put(APIKeys.Headers.TOKEN, Cache.getUserAccount().getToken());
+        return executeAPI(headers);
+    }
+
+    public String executeAPI() throws ResponseException {
+        return executeAPI(new HashMap<>());
+    }
+
+    public String executeAPI(HashMap<String, String> headers) throws ResponseException {
+        String response = GET.execute(getFormattedURL(), headers);
         Logger.logResponse(response, method);
         return response;
     }
 
-    public String process() throws ResponseException {
+    public String execute() throws ResponseException {
         return GET.execute(getURL());
     }
 

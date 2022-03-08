@@ -9,9 +9,9 @@ import ru.etysoft.cuteframework.CuteFramework;
 import ru.etysoft.cuteframework.exceptions.ResponseException;
 import ru.etysoft.cuteframework.methods.chat.Chat;
 import ru.etysoft.cuteframework.methods.chat.ChatMember;
-import ru.etysoft.cuteframework.responses.ResponseHandler;
+import ru.etysoft.cuteframework.responses.Response;
 
-public class ChatInfoResponse extends ResponseHandler {
+public class ChatInfoResponse extends Response {
   private Chat chat;
   
   private List<ChatMember> memberList;

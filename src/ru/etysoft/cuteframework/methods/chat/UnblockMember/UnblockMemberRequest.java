@@ -15,6 +15,6 @@ public class UnblockMemberRequest extends RequestHolder {
   
   public UnblockMemberResponse execute() throws ResponseException {
     Request request = makeRequest();
-    return new UnblockMemberResponse(request.processAPI(), request.getFormattedURL());
+    return new UnblockMemberResponse(request.executeAPI(), request.getFormattedURL());
   }
 }

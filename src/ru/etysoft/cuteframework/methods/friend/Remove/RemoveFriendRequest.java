@@ -14,6 +14,6 @@ public class RemoveFriendRequest extends RequestHolder {
   
   public RemoveFriendResponse execute() throws ResponseException {
     Request request = makeRequest();
-    return new RemoveFriendResponse(request.processAPI(), request.getFormattedURL());
+    return new RemoveFriendResponse(request.executeAPI(), request.getFormattedURL());
   }
 }

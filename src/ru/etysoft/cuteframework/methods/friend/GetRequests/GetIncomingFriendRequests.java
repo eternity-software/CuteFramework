@@ -20,6 +20,6 @@ public class GetIncomingFriendRequests extends RequestHolder {
   
   public FriendRequestsResponse execute() throws ResponseException {
     Request request = makeRequest();
-    return new FriendRequestsResponse(request.processAPI(), request.getFormattedURL());
+    return new FriendRequestsResponse(request.executeAPI(), request.getFormattedURL());
   }
 }

@@ -20,6 +20,6 @@ public class ChatListRequest extends RequestHolder {
   
   public ChatListResponse execute() throws ResponseException {
     Request request = makeRequest();
-    return new ChatListResponse(request.processAPI(), request.getFormattedURL());
+    return new ChatListResponse(request.executeAPI(), request.getFormattedURL());
   }
 }

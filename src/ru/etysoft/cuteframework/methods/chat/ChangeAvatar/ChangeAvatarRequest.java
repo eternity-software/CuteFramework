@@ -20,6 +20,6 @@ public class ChangeAvatarRequest extends RequestHolder {
   
   public ChangeAvatarResponse execute() throws ResponseException {
     Request request = makeRequest();
-    return new ChangeAvatarResponse(request.processAPI(), request.getURL());
+    return new ChangeAvatarResponse(request.executeAPI(), request.getURL());
   }
 }

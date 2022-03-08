@@ -15,6 +15,6 @@ public class MakeAdminRequest extends RequestHolder {
   
   public MakeAdminResponse execute() throws ResponseException {
     Request request = makeRequest();
-    return new MakeAdminResponse(request.processAPI(), request.getFormattedURL());
+    return new MakeAdminResponse(request.executeAPI(), request.getFormattedURL());
   }
 }

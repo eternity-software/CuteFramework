@@ -19,6 +19,6 @@ public class GetUserRequest extends RequestHolder {
   
   public GetUserResponse execute() throws ResponseException {
     Request request = makeRequest();
-    return new GetUserResponse(request.processAPI(), request.getURL());
+    return new GetUserResponse(request.executeAPI(), request.getURL());
   }
 }

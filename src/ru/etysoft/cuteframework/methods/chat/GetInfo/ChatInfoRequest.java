@@ -14,6 +14,6 @@ public class ChatInfoRequest extends RequestHolder {
   
   public ChatInfoResponse execute() throws ResponseException {
     Request request = makeRequest();
-    return new ChatInfoResponse(request.processAPI(), request.getFormattedURL());
+    return new ChatInfoResponse(request.executeAPI(), request.getFormattedURL());
   }
 }

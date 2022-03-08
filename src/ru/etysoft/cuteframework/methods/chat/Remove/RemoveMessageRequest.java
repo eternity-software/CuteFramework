@@ -22,6 +22,6 @@ public class RemoveMessageRequest extends RequestHolder {
   
   public RemoveMessageResponse execute() throws ResponseException {
     Request request = makeRequest();
-    return new RemoveMessageResponse(request.processAPI(), request.getFormattedURL());
+    return new RemoveMessageResponse(request.executeAPI(), request.getFormattedURL());
   }
 }

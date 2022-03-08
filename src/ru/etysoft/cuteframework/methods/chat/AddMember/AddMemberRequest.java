@@ -15,6 +15,6 @@ public class AddMemberRequest extends RequestHolder {
   
   public AddMemberResponse execute() throws ResponseException {
     Request request = makeRequest();
-    return new AddMemberResponse(request.processAPI(), request.getFormattedURL());
+    return new AddMemberResponse(request.executeAPI(), request.getFormattedURL());
   }
 }

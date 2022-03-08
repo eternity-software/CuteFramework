@@ -7,9 +7,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import ru.etysoft.cuteframework.exceptions.ResponseException;
 import ru.etysoft.cuteframework.methods.user.User;
-import ru.etysoft.cuteframework.responses.ResponseHandler;
+import ru.etysoft.cuteframework.responses.Response;
 
-public class FriendRequestsResponse extends ResponseHandler {
+public class FriendRequestsResponse extends Response {
   private List<User> requests;
   
   public FriendRequestsResponse(String jsonResponse, String url) throws JSONException {
