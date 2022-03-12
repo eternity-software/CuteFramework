@@ -8,9 +8,28 @@ public class APIKeys {
         public static final String TOKEN = "Token";
     }
 
-    public static class Response{
+    public static class Response
+    {
         public static final String DATA = "data";
         public static final String TYPE = "type";
+
+    }
+
+    public static class Session
+    {
+        public static final String IS_ACTIVE = "isActive";
+        public static final String IS_BLOCKED = "isBlocked";
+        public static final String ID = "id";
+        public static final String DEVICE = "device";
+    }
+
+    public static class Device
+    {
+        public static final String NAME = "name";
+        public static final String TYPE = "type";
+        public static final String ADDRESS = "ip";
+        public static final String IS_BLOCKED = "isBlocked";
+        public static final String ID = "id";
 
     }
 
@@ -35,6 +54,23 @@ public class APIKeys {
         public static final String ACCOUNT_ID = "accountId";
         public static final String TOKEN = "token";
         public static final String EXPIRES_IN = "expiresIn";
+    }
+
+    public static class Chat
+    {
+        public static final String CHAT_ID = "chatId";
+        public static final String TYPE = "type";
+        public static final String NAME = "name";
+        public static final String DESCRIPTION = "description";
+        public static final String IS_BLOCKED = "isBlocked";
+        public static final String ID = "id";
+
+    }
+
+    public static class Message
+    {
+        public static final String TEXT = "text";
+        public static final String MESSAGE_ID = "messageId";
     }
 
 

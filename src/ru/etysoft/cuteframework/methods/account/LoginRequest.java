@@ -26,7 +26,7 @@ public class LoginRequest extends RequestHolder {
 
     public LoginResponse execute() throws ResponseException {
         Request request = makeRequest();
-        return new LoginResponse(request.executeAPI(), request.getFormattedURL());
+        return new LoginResponse(request.executeAPIPOST(), request.getFormattedURL());
     }
 
     public static class LoginResponse extends Response {

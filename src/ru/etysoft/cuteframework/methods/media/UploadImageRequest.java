@@ -24,7 +24,7 @@ public class UploadImageRequest extends RequestHolder {
     hashMap.put("token", this.token);
     hashMap.put("image", this.image);
     String url = CuteFramework.MAIN_DOMAIN + "media/uploadImage";
-    String response = POST.execute(url, hashMap, "media/uploadImage");
+    String response = POST.execute(url, hashMap, "media/uploadImage", null);
     Logger.logResponse(response, getMethod());
     return new UploadImageResponse(response, url);
   }

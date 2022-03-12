@@ -2,27 +2,29 @@ package ru.etysoft.cuteframework;
 
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
-import ru.etysoft.cuteframework.exceptions.NoSuchValueException;
-import ru.etysoft.cuteframework.exceptions.NotCachedException;
 
 
-import ru.etysoft.cuteframework.exceptions.OneRowOperationException;
-import ru.etysoft.cuteframework.exceptions.ResponseException;
-import ru.etysoft.cuteframework.methods.account.GetAccount;
+import ru.etysoft.cuteframework.methods.account.GetAccountRequest;
 import ru.etysoft.cuteframework.methods.account.LoginRequest;
 import ru.etysoft.cuteframework.methods.account.RegisterDeviceRequest;
+import ru.etysoft.cuteframework.methods.chat.ChatCreateRequest;
+import ru.etysoft.cuteframework.methods.chat.ChatGetInfoRequest;
+import ru.etysoft.cuteframework.models.Chat;
 import ru.etysoft.cuteframework.storage.Cache;
 
-import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
-@FixMethodOrder(MethodSorters.DEFAULT)
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class CuteFrameworkTest {
 
+
     @Test
-    public void loginTest() {
+    public void aloginTest() {
 
         CuteFramework.initialize();
         String deviceIdB = null;
@@ -42,9 +44,9 @@ public class CuteFrameworkTest {
             LoginRequest.LoginResponse loginResponse = new LoginRequest("karlové", "123456").execute();
 
 
-
         } catch (Exception e) {
             e.printStackTrace();
+            Assert.fail();
         }
 
 
@@ -57,18 +59,23 @@ public class CuteFrameworkTest {
             Assert.assertTrue((token != null && deviceId != null));
         } catch (Exception e) {
             e.printStackTrace();
+            Assert.fail();
         }
-
 
 
     }
 
     @Test
-    public void getAccountTest()
-    {
+    public void chatTest() {
+        CuteFramework.initialize();
         try {
-            GetAccount.GetAccountResponse getAccountResponse = new GetAccount().execute();
-            Assert.assertTrue(getAccountResponse.getAccount().getEmail().contains("@"));
+            ChatCreateRequest.ChatCreateResponse getAccountResponse = new ChatCreateRequest("conversation", "ddd", "sadasdasdsadas").execute();
+
+
+            ChatGetInfoRequest.ChatGetInfoResponse getChatResponse = new ChatGetInfoRequest(getAccountResponse.getChatId()).execute();
+
+
+            Assert.assertEquals("ddd", getChatResponse.getChat().getName());
         } catch (Exception e) {
             e.printStackTrace();
             Assert.fail();
@@ -76,6 +83,57 @@ public class CuteFrameworkTest {
         }
     }
 
+    @Test
+    public void chatTestCache() {
+
+        try {
+            Cache.getChatsTable().clean();
+
+            Chat testChat = new Chat();
+            testChat.setBlocked(false);
+            testChat.setType("s");
+            testChat.setName("ss");
+            testChat.setId("id");
+
+            int testChatsCount = 100;
+            long millisStartCreation = System.currentTimeMillis();
+            for(int i = 0; i < testChatsCount; i++)
+            {
+
+                Cache.getChatsTable().addChat(testChat);
+            }
+            long millisCreation = System.currentTimeMillis() - millisStartCreation;
+
+            Logger.logDebug("Test chat set created in " + millisCreation + "ms (" + testChatsCount + " chats)");
+
+            long millisStartGetting = System.currentTimeMillis();
+
+            HashMap<String, Chat> chats = Cache.getChatsTable().getAllChats();
+
+            long millisGetting = System.currentTimeMillis() - millisStartGetting;
+
+            Logger.logDebug("Getting all chats  (" + chats.size() + ") took " + millisGetting + "ms");
+
+            Assert.assertTrue(true);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Assert.fail();
+
+        }
+    }
+
+
+    @Test
+    public void getAccountTest() {
+        try {
+            GetAccountRequest.GetAccountResponse getAccountResponse = new GetAccountRequest().execute();
+            Assert.assertTrue(getAccountResponse.getAccount().getEmail().contains("@"));
+        } catch (Exception e) {
+            e.printStackTrace();
+            Assert.fail();
+
+        }
+    }
 
 
 }

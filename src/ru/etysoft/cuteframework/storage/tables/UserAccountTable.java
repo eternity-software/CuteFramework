@@ -1,5 +1,6 @@
 package ru.etysoft.cuteframework.storage.tables;
 
+import ru.etysoft.cuteframework.Logger;
 import ru.etysoft.cuteframework.consts.APIKeys;
 import ru.etysoft.cuteframework.exceptions.NotCachedException;
 import ru.etysoft.cuteframework.exceptions.OneRowOperationException;
@@ -38,8 +39,6 @@ public class UserAccountTable extends Table {
         return token;
     }
 
-
-
     public void setDeviceId(String token) throws SQLException, OneRowOperationException {
         if(getRowsCount() > 0)
         {
@@ -76,8 +75,12 @@ public class UserAccountTable extends Table {
         }
     }
 
-    public static void initialize() throws SQLException {
-        Cache.getStatement().execute("CREATE TABLE if not exists '"+ TABLE_NAME + "' ('id' text, 'token' text, 'deviceId' text);");
+    private static void initialize() throws SQLException {
+        String request = "CREATE TABLE if not exists '"+ TABLE_NAME + "' ('id' text, 'token' text, 'deviceId' text);";
+        Cache.getStatement().execute(request);
+
+            Logger.logDebug("SQL >> " + request);
+
     }
 
 

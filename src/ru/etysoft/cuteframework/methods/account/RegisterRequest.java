@@ -23,6 +23,6 @@ public class RegisterRequest extends RequestHolder {
 
     public LoginRequest.LoginResponse execute() throws ResponseException {
         Request request = makeRequest();
-        return new LoginRequest.LoginResponse(request.executeAPI(), request.getFormattedURL());
+        return new LoginRequest.LoginResponse(request.executeAPIPOST(), request.getFormattedURL());
     }
 }

@@ -2,8 +2,10 @@ package ru.etysoft.cuteframework.requests;
 
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Set;
 
+import org.glassfish.grizzly.utils.ArraySet;
 import org.jetbrains.annotations.NotNull;
 import ru.etysoft.cuteframework.Logger;
 import ru.etysoft.cuteframework.CuteFramework;
@@ -36,8 +38,17 @@ public class Request {
     public static String getArgsAsString(@NotNull Set<Pair> params) {
         String args = "?";
 
-        int i = 0;
+        Set<Pair> finalParams = new HashSet<>();
+
         for (Pair pair : params) {
+            if(pair.getValue() != null)
+            {
+                finalParams.add(pair);
+            }
+        }
+
+        int i = 0;
+        for (Pair pair : finalParams) {
             String key = pair.getKey();
             String arg = key + "=" + pair.getValue();
             args += arg;
@@ -58,12 +69,12 @@ public class Request {
 
     public String getURL()
     {
-        return CuteFramework.API_DOMAIN + method + getArgsAsString(params);
+        return CuteFramework.API_DOMAIN + method ;
     }
 
     public String getFormattedURL()
     {
-       return getURL();
+       return getURL() + getArgsAsString(params);
     }
 
 
@@ -73,8 +84,18 @@ public class Request {
         return executeAPI(headers);
     }
 
+    public String executeAPIPOSTWithToken() throws  SQLException, NotCachedException {
+        HashMap<String, String> headers = new HashMap<>();
+        headers.put(APIKeys.Headers.TOKEN, Cache.getUserAccount().getToken());
+        return executeAPIPOST(headers);
+    }
+
     public String executeAPI() throws ResponseException {
         return executeAPI(new HashMap<>());
+    }
+
+    public String executeAPIPOST()  {
+        return executeAPIPOST(new HashMap<>());
     }
 
     public String executeAPI(HashMap<String, String> headers) throws ResponseException {
@@ -83,8 +104,21 @@ public class Request {
         return response;
     }
 
+    public String executeAPIPOST(HashMap<String, String> headers)  {
+
+        HashMap<String, Object> paramsMap = new HashMap<>();
+        for(Pair pair : params)
+        {
+            paramsMap.put(pair.getKey(), pair.getValue());
+        }
+
+        String response = POST.execute(getFormattedURL(), paramsMap, method, headers);
+        Logger.logResponse(response, method);
+        return response;
+    }
+
     public String execute() throws ResponseException {
-        return GET.execute(getURL());
+        return GET.execute(getFormattedURL());
     }
 
 

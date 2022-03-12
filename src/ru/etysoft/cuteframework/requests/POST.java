@@ -3,6 +3,7 @@ package ru.etysoft.cuteframework.requests;
 import okhttp3.Request;
 import okhttp3.*;
 import ru.etysoft.cuteframework.CuteFramework;
+import ru.etysoft.cuteframework.Logger;
 import ru.etysoft.cuteframework.requests.attachements.ImageFile;
 
 import java.io.IOException;
@@ -17,7 +18,8 @@ public class POST {
 
     private static final MediaType MEDIA_TYPE_PNG = MediaType.parse("image/png");
 
-    public static String execute(String url, final HashMap<String, Object> params, final String methodName) {
+    public static String execute(String url, final HashMap<String, Object> params,
+                                 final String methodName, HashMap<String, String> headers) {
 
 
         try {
@@ -28,6 +30,8 @@ public class POST {
             OkHttpClient client = new OkHttpClient();
             MultipartBody.Builder requestBodyBuilder = new MultipartBody.Builder()
                     .setType(MultipartBody.FORM);
+
+
 
             Set<String> keys = params.keySet();
             int imageIndex = 1;
@@ -46,11 +50,18 @@ public class POST {
             }
 
 
-            Request request = new Request.Builder()
+             Request.Builder builder = new Request.Builder()
                     .url(url)
-                    .post(requestBodyBuilder.build())
-                    .build();
+                    .post(requestBodyBuilder.build());
 
+            for(String key : headers.keySet())
+            {
+                String value = headers.get(key);
+                builder.addHeader(key, value);
+                Logger.logDebug("Added header " + key + ": " + value);
+            }
+
+            Request request = builder.build();
             System.out.println(debugInfo);
             try (Response response = client.newCall(request).execute()) {
                 if (!response.isSuccessful())

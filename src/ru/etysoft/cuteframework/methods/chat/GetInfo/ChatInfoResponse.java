@@ -7,8 +7,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import ru.etysoft.cuteframework.CuteFramework;
 import ru.etysoft.cuteframework.exceptions.ResponseException;
-import ru.etysoft.cuteframework.methods.chat.Chat;
 import ru.etysoft.cuteframework.methods.chat.ChatMember;
+import ru.etysoft.cuteframework.models.Chat;
 import ru.etysoft.cuteframework.responses.Response;
 
 public class ChatInfoResponse extends Response {
@@ -31,7 +31,7 @@ public class ChatInfoResponse extends Response {
     String chatAvatarPath = null;
     if (!chatObj.isNull("avatar"))
       chatAvatarPath = CuteFramework.MEDIA_DOMAIN + chatObj.getString("avatar");
-    this.chat = new Chat(name, id, type, description, state, chatAvatarPath, membersCount);
+    this.chat = new Chat(getJsonResponse());
     JSONArray jsonArray = getJsonResponse().getJSONObject("data").getJSONArray("members");
     this.memberList = new ArrayList<>();
     for (int i = 0; i < jsonArray.length(); i++) {

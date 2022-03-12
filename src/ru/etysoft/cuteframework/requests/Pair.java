@@ -5,7 +5,7 @@ package ru.etysoft.cuteframework.requests;
  */
 public class Pair {
     private String key;
-    private String value;
+    private Object value;
 
     public Pair(String key, String value)
     {
@@ -17,7 +17,7 @@ public class Pair {
         return key;
     }
 
-    public String getValue() {
+    public Object getValue() {
         return value;
     }
 

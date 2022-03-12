@@ -27,7 +27,7 @@ public class EditChatRequest extends RequestHolder {
     hashMap.put("name", this.name);
     hashMap.put("description", this.description);
     String url = CuteFramework.API_DOMAIN + "chat/create";
-    String response = POST.execute(url, hashMap, getMethod());
+    String response = POST.execute(url, hashMap, getMethod(), null);
     Logger.logResponse(response, getMethod());
     return new EditChatResponse(response, url);
   }

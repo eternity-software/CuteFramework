@@ -15,15 +15,15 @@ import ru.etysoft.cuteframework.responses.Response;
 
 import java.sql.SQLException;
 
-public class GetAccount extends RequestHolder {
+public class GetAccountRequest extends RequestHolder {
 
-    public GetAccount(String id)
+    public GetAccountRequest(String id)
     {
         super(APIMethods.Account.GET);
         setParams(new Pair(APIKeys.Account.ID, id));
     }
 
-    public GetAccount()
+    public GetAccountRequest()
     {
         super(APIMethods.Account.GET);
         setParams();
