@@ -6,7 +6,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import ru.etysoft.cuteframework.exceptions.ResponseException;
-import ru.etysoft.cuteframework.methods.chat.ChatSnippet;
+import ru.etysoft.cuteframework.models.ChatSnippet;
 import ru.etysoft.cuteframework.responses.Response;
 
 public class ChatListResponse extends Response {

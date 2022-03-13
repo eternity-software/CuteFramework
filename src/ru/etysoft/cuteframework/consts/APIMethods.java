@@ -26,6 +26,7 @@ public class APIMethods {
 
         public static final String CREATE  = CHAT_PREFIX + "create";
         public static final String GET_INFO  = CHAT_PREFIX + "getInfo";
+        public static final String GET_LIST  = CHAT_PREFIX + "getList";
         public static final String SEND_MESSAGE  = CHAT_PREFIX + "sendMessage";
     }
 

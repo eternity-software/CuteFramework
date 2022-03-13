@@ -2,7 +2,6 @@ package ru.etysoft.cuteframework;
 
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
@@ -13,10 +12,11 @@ import ru.etysoft.cuteframework.methods.account.LoginRequest;
 import ru.etysoft.cuteframework.methods.account.RegisterDeviceRequest;
 import ru.etysoft.cuteframework.methods.chat.ChatCreateRequest;
 import ru.etysoft.cuteframework.methods.chat.ChatGetInfoRequest;
+import ru.etysoft.cuteframework.methods.chat.ChatGetListRequest;
 import ru.etysoft.cuteframework.models.Chat;
+import ru.etysoft.cuteframework.models.ChatSnippet;
 import ru.etysoft.cuteframework.storage.Cache;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -67,7 +67,7 @@ public class CuteFrameworkTest {
 
     @Test
     public void chatTest() {
-        CuteFramework.initialize();
+
         try {
             ChatCreateRequest.ChatCreateResponse getAccountResponse = new ChatCreateRequest("conversation", "ddd", "sadasdasdsadas").execute();
 
@@ -87,20 +87,16 @@ public class CuteFrameworkTest {
     public void chatTestCache() {
 
         try {
-            Cache.getChatsTable().clean();
+            //Cache.getChatSnippetsTable().clean();
 
-            Chat testChat = new Chat();
-            testChat.setBlocked(false);
-            testChat.setType("s");
-            testChat.setName("ss");
-            testChat.setId("id");
+            ChatSnippet testChat = new ChatSnippet("dd", "ddd", "ddd", false);
 
-            int testChatsCount = 100;
+            int testChatsCount = 0;
             long millisStartCreation = System.currentTimeMillis();
             for(int i = 0; i < testChatsCount; i++)
             {
 
-                Cache.getChatsTable().addChat(testChat);
+                Cache.getChatSnippetsTable().addChat(testChat);
             }
             long millisCreation = System.currentTimeMillis() - millisStartCreation;
 
@@ -108,7 +104,7 @@ public class CuteFrameworkTest {
 
             long millisStartGetting = System.currentTimeMillis();
 
-            HashMap<String, Chat> chats = Cache.getChatsTable().getAllChats();
+            HashMap<String, Chat> chats = Cache.getChatSnippetsTable().getAllChats();
 
             long millisGetting = System.currentTimeMillis() - millisStartGetting;
 
@@ -122,6 +118,22 @@ public class CuteFrameworkTest {
         }
     }
 
+
+    @Test
+    public void getChatList()
+    {
+        try
+        {
+            ChatGetListRequest.ChatGetListResponse getListResponse = new ChatGetListRequest().execute();
+            Assert.assertTrue(getListResponse.getChatSnippets().size() > 0);
+
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            Assert.fail();
+        }
+    }
 
     @Test
     public void getAccountTest() {

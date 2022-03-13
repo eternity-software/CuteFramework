@@ -64,6 +64,7 @@ public class APIKeys {
         public static final String DESCRIPTION = "description";
         public static final String IS_BLOCKED = "isBlocked";
         public static final String ID = "id";
+        public static final String CHATS = "chats";
 
     }
 
@@ -71,6 +72,7 @@ public class APIKeys {
     {
         public static final String TEXT = "text";
         public static final String MESSAGE_ID = "messageId";
+        public static final String MESSAGES = "messages";
     }
 
 

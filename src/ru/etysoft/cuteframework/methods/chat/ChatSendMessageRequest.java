@@ -8,12 +8,15 @@ import ru.etysoft.cuteframework.requests.Pair;
 import ru.etysoft.cuteframework.requests.RequestHolder;
 import ru.etysoft.cuteframework.responses.Response;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 public class ChatSendMessageRequest extends RequestHolder
 {
 
-    public ChatSendMessageRequest(String chatId, String text) {
+    public ChatSendMessageRequest(String chatId, String text) throws UnsupportedEncodingException {
         super(APIMethods.Chat.SEND_MESSAGE);
-        setParams(Pair.make(APIKeys.Message.TEXT, text),
+        setParams(Pair.make(APIKeys.Message.TEXT, URLEncoder.encode(text, "UTF-8")),
                 Pair.make(APIKeys.Chat.CHAT_ID, chatId));
     }
 
