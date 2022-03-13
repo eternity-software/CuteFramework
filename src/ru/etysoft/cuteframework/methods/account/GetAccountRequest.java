@@ -12,6 +12,7 @@ import ru.etysoft.cuteframework.requests.Pair;
 import ru.etysoft.cuteframework.requests.Request;
 import ru.etysoft.cuteframework.requests.RequestHolder;
 import ru.etysoft.cuteframework.responses.Response;
+import ru.etysoft.cuteframework.storage.Cache;
 
 import java.sql.SQLException;
 
@@ -47,11 +48,29 @@ public class GetAccountRequest extends RequestHolder {
         @Override
         public void onSuccess() {
             account = new Account(getJsonResponse().getJSONObject(APIKeys.Response.DATA).getJSONObject(APIKeys.Account.ACCOUNT));
+
+            try {
+                Cache.getUserAccount().setLogin(account.getLogin());
+
+                Cache.getUserAccount().setName(account.getName());
+                try {
+                    Cache.getUserAccount().setId(account.getId());
+                    Cache.getUserAccount().setStatus(account.getStatus());
+                    Cache.getUserAccount().setBio(account.getBio());
+                } catch (Exception ignored) {
+
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+
         }
 
         public Account getAccount() throws NoSuchValueException {
             if(isSuccess())
             {
+
                 return account;
             }
             else

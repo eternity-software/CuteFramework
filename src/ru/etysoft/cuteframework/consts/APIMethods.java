@@ -27,7 +27,13 @@ public class APIMethods {
         public static final String CREATE  = CHAT_PREFIX + "create";
         public static final String GET_INFO  = CHAT_PREFIX + "getInfo";
         public static final String GET_LIST  = CHAT_PREFIX + "getList";
+        public static final String GET_HISTORY  = CHAT_PREFIX + "getHistory";
         public static final String SEND_MESSAGE  = CHAT_PREFIX + "sendMessage";
+        public static final String REMOVE_MESSAGE  = CHAT_PREFIX + "removeMessage";
+        public static final String SET_PERMISSION_GROUP  = CHAT_PREFIX + "setPermissionsGroup";
+        public static final String ADD_MEMBER  = CHAT_PREFIX + "addMember";
+        public static final String BAN_MEMBER  = CHAT_PREFIX + "banMember";
+        public static final String UNBAN_MEMBER  = CHAT_PREFIX + "unbanMember";
     }
 
 }

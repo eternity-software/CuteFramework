@@ -10,17 +10,20 @@ import ru.etysoft.cuteframework.requests.Pair;
 import ru.etysoft.cuteframework.requests.Request;
 import ru.etysoft.cuteframework.requests.RequestHolder;
 import ru.etysoft.cuteframework.responses.Response;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.sql.SQLException;
 
 public class ChatCreateRequest extends RequestHolder {
 
 
 
-    public ChatCreateRequest(String type, String name, String description) {
+    public ChatCreateRequest(String type, String name, String description) throws UnsupportedEncodingException {
         super(APIMethods.Chat.CREATE);
 
         setParams(Pair.make(APIKeys.Chat.TYPE, type),
-                Pair.make(APIKeys.Chat.NAME, name),
+                Pair.make(APIKeys.Chat.NAME, URLEncoder.encode(name, "UTF-8")),
                 Pair.make(APIKeys.Chat.DESCRIPTION, description));
     }
 

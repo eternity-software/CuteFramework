@@ -8,6 +8,7 @@ import ru.etysoft.cuteframework.exceptions.NoSuchValueException;
 import ru.etysoft.cuteframework.exceptions.NotCachedException;
 import ru.etysoft.cuteframework.exceptions.ResponseException;
 import ru.etysoft.cuteframework.models.ChatSnippet;
+import ru.etysoft.cuteframework.requests.Pair;
 import ru.etysoft.cuteframework.requests.Request;
 import ru.etysoft.cuteframework.requests.RequestHolder;
 import ru.etysoft.cuteframework.responses.Response;
@@ -21,6 +22,11 @@ public class ChatGetListRequest extends RequestHolder {
     public ChatGetListRequest() {
         super(APIMethods.Chat.GET_LIST);
         setParams();
+    }
+
+    public ChatGetListRequest(String lastId) {
+        super(APIMethods.Chat.GET_LIST);
+        setParams(Pair.make(APIKeys.Chat.LAST_CHAT_ID, lastId));
     }
 
     public ChatGetListResponse execute() throws NotCachedException, SQLException, ResponseException {

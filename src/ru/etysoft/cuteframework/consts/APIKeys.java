@@ -50,10 +50,12 @@ public class APIKeys {
         public static final String IS_BLOCKED = "isBlocked";
         public static final String ADDITIONAL_INFO = "additionalInfo";
         public static final String ID = "id";
-        public static final String CODE = "id";
+        public static final String CODE = "code";
         public static final String ACCOUNT_ID = "accountId";
         public static final String TOKEN = "token";
         public static final String EXPIRES_IN = "expiresIn";
+        public static final String SESSION_ID = "sessionId";
+        public static final String PERMISSION_GROUP = "group";
     }
 
     public static class Chat
@@ -65,6 +67,10 @@ public class APIKeys {
         public static final String IS_BLOCKED = "isBlocked";
         public static final String ID = "id";
         public static final String CHATS = "chats";
+        public static final String MESSAGE = "message";
+        public static final String MEMBERS_COUNT = "membersCount";
+        public static final String LAST_CHAT_ID = "lastChatId";
+        public static final String LAST_MESSAGE_ID = "lastMessageId";
 
     }
 
@@ -73,7 +79,19 @@ public class APIKeys {
         public static final String TEXT = "text";
         public static final String MESSAGE_ID = "messageId";
         public static final String MESSAGES = "messages";
+        public static final String ID = "id";
+        public static final String TYPE = "type";
+        public static final String ACCOUNT_INFO = "accountInfo";
+        public static final String CREATED_AT = "createdAt";
+        public static final String UPDATED_AT = "updatedAt";
+        public static final String SENDER = "sender";
+        public static final String SERVICE_DATA = "serviceData";
     }
+    public static class ServiceData
+    {
+        public static final String CHAT_NAME = "chatName";
+    }
+
 
 
 

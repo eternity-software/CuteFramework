@@ -5,13 +5,14 @@ import ru.etysoft.cuteframework.consts.APIKeys;
 
 public class Chat extends Model{
 
-    private String type, name, id;
+    private String type, name, id, description;
+    private long membersCount;
     private boolean isBlocked;
 
-    private static final String TYPE_CONVERSATION = "conversation";
-    private static final String TYPE_P2P = "pointToPoint";
-    private static final String TYPE_PRIVATE = "private";
-    private static final String TYPE_WEBRTC = "webRTC";
+    public static final String TYPE_CONVERSATION = "conversation";
+    public static final String TYPE_P2P = "pointToPoint";
+    public static final String TYPE_PRIVATE = "private";
+    public static final String TYPE_WEBRTC = "webRTC";
 
     public Chat(JSONObject jsonObject) {
         super(jsonObject);
@@ -19,6 +20,8 @@ public class Chat extends Model{
         name = jsonObject.getString(APIKeys.Chat.NAME);
         isBlocked = jsonObject.getBoolean(APIKeys.Chat.IS_BLOCKED);
         id = jsonObject.getString(APIKeys.Chat.ID);
+        description = jsonObject.getString(APIKeys.Chat.DESCRIPTION);
+        membersCount = jsonObject.getLong(APIKeys.Chat.MEMBERS_COUNT);
     }
 
     public Chat() {
@@ -27,6 +30,14 @@ public class Chat extends Model{
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public long getMembersCount() {
+        return membersCount;
     }
 
     public void setName(String name) {

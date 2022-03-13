@@ -31,7 +31,7 @@ public class LoginRequest extends RequestHolder {
 
     public static class LoginResponse extends Response {
 
-        private String id, token;
+        private String id, token, sessionId;
         private long expiresIn;
         private static LoginCallback loginCallback;
 
@@ -50,14 +50,21 @@ public class LoginRequest extends RequestHolder {
             token = jsonObject.getString(ru.etysoft.cuteframework.consts.APIKeys.Account.TOKEN);
             id = jsonObject.getString(APIKeys.Account.ACCOUNT_ID);
             expiresIn = jsonObject.getLong(APIKeys.Account.EXPIRES_IN);
+            sessionId = jsonObject.getString(APIKeys.Account.SESSION_ID);
 
             try {
                 Cache.getUserAccount().setToken(token);
+                Cache.getUserAccount().setSessionId(sessionId);
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
             loginCallback.onLogin(token, id, expiresIn);
+        }
+
+        public String getSessionId() throws NoSuchValueException {
+            checkNotNull(sessionId);
+            return sessionId;
         }
 
         public String getId() throws NoSuchValueException {

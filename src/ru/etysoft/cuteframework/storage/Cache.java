@@ -3,6 +3,7 @@ package ru.etysoft.cuteframework.storage;
 import ru.etysoft.cuteframework.storage.tables.ChatSnippetsTable;
 import ru.etysoft.cuteframework.storage.tables.UserAccountTable;
 
+import java.io.File;
 import java.sql.*;
 
 public class Cache {
@@ -11,10 +12,12 @@ public class Cache {
     private static Statement statement;
     private static UserAccountTable userAccountTable;
     private static ChatSnippetsTable chatSnippetsTable;
+    private static String dbFilePath;
 
     public static void initialize(String cacheDir, String sqliteClassName, String jdbcUrl) throws SQLException, ClassNotFoundException {
         Class.forName(sqliteClassName);
         connection = DriverManager.getConnection(jdbcUrl + cacheDir + "db.sqlite");
+        dbFilePath = cacheDir + "db.sqlite";
         createTables();
 
     }
@@ -29,6 +32,17 @@ public class Cache {
 
         chatSnippetsTable = new ChatSnippetsTable();
         userAccountTable = new UserAccountTable();
+    }
+
+    public static double getSizeMb()
+    {
+
+        long fileSizeInBytes =  new File(dbFilePath).length();
+
+        long fileSizeInKB = fileSizeInBytes / 1024;
+
+        return fileSizeInKB / 1024d;
+
     }
 
     public static ChatSnippetsTable getChatSnippetsTable() {

@@ -41,7 +41,7 @@ public class CuteFrameworkTest {
             RegisterDeviceRequest.RegisterDeviceResponse registerDeviceResponse =
                     new RegisterDeviceRequest("test device", "mobile").execute();
 
-            LoginRequest.LoginResponse loginResponse = new LoginRequest("karlové", "123456").execute();
+            LoginRequest.LoginResponse loginResponse = new LoginRequest("karlov", "123456").execute();
 
 
         } catch (Exception e) {
@@ -76,6 +76,20 @@ public class CuteFrameworkTest {
 
 
             Assert.assertEquals("ddd", getChatResponse.getChat().getName());
+        } catch (Exception e) {
+            e.printStackTrace();
+            Assert.fail();
+
+        }
+    }
+
+    @Test
+    public void chatListTest() {
+
+        try {
+            ChatGetListRequest.ChatGetListResponse getListResponse = new ChatGetListRequest().execute();
+
+            Assert.assertTrue(true);
         } catch (Exception e) {
             e.printStackTrace();
             Assert.fail();

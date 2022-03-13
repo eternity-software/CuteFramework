@@ -50,6 +50,31 @@ public class UserAccountTable extends Table {
         }
     }
 
+    public String getId() throws SQLException, NotCachedException {
+        String token = null;
+        try {
+            token = getUniqueString(APIKeys.Account.ID);
+        } catch (OneRowOperationException e) {
+            e.printStackTrace();
+        }
+        if(token == null)
+        {
+            throw new NotCachedException(APIKeys.Account.ID);
+        }
+        return token;
+    }
+
+    public void setId(String id) throws SQLException, OneRowOperationException {
+        if(getRowsCount() > 0)
+        {
+            updateValues(APIKeys.Account.ID, id);
+        }
+        else
+        {
+            putValue(APIKeys.Account.ID, id);
+        }
+    }
+
     public String getToken() throws SQLException, NotCachedException {
         String token = null;
         try {
@@ -75,8 +100,74 @@ public class UserAccountTable extends Table {
         }
     }
 
+    public String getBio() throws SQLException, NotCachedException {
+        return getValue(APIKeys.Account.BIO);
+    }
+
+    public String getLogin() throws SQLException, NotCachedException {
+        return getValue(APIKeys.Account.LOGIN);
+    }
+
+    public String getStatus() throws SQLException, NotCachedException {
+        return getValue(APIKeys.Account.STATUS);
+    }
+
+    public void setStatus(String value) throws SQLException {
+         setValue(APIKeys.Account.STATUS, value);
+    }
+
+    public void setBio(String value) throws SQLException {
+        setValue(APIKeys.Account.BIO, value);
+    }
+
+    public void setLogin(String value) throws SQLException {
+        setValue(APIKeys.Account.LOGIN, value);
+    }
+
+    public String getName() throws SQLException, NotCachedException {
+        return getValue(APIKeys.Account.NAME);
+    }
+
+    public void setName(String value) throws SQLException {
+        setValue(APIKeys.Account.NAME, value);
+    }
+
+    public String getSessionId() throws SQLException, NotCachedException {
+        return getValue(APIKeys.Account.SESSION_ID);
+    }
+
+    public void setSessionId(String value) throws SQLException {
+        setValue(APIKeys.Account.SESSION_ID, value);
+    }
+
+    private String getValue(String valueName) throws SQLException, NotCachedException {
+        String value = null;
+        try {
+            value = getUniqueString(valueName);
+        } catch (OneRowOperationException e) {
+            e.printStackTrace();
+        }
+        if(value == null)
+        {
+            throw new NotCachedException(valueName);
+        }
+        return value;
+    }
+
+    private void setValue(String valueName, String value) throws SQLException {
+        if(getRowsCount() > 0)
+        {
+            updateValues(valueName, value);
+        }
+        else
+        {
+            putValue(valueName, value);
+        }
+    }
+
     private static void initialize() throws SQLException {
-        String request = "CREATE TABLE if not exists '"+ TABLE_NAME + "' ('id' text, 'token' text, 'deviceId' text);";
+        String request = "CREATE TABLE if not exists '"+ TABLE_NAME + "' ('id' text, 'token' text, 'deviceId' text, 'login' text, " +
+                "'name' text, 'status' text, 'bio' text, 'sessionId' text);";
         Cache.getStatement().execute(request);
 
             Logger.logDebug("SQL >> " + request);

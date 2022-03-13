@@ -7,23 +7,38 @@ import ru.etysoft.cuteframework.exceptions.NoSuchValueException;
 public class Account extends Model {
 
     private final String name;
-    private final String login;
+    private String login;
     private String email;
     private String status;
+    private String id;
     private String bio;
-    private final boolean isConfirmed;
+    private boolean isConfirmed;
     private final boolean isBlocked;
 
     public Account(JSONObject jsonObject) {
         super(jsonObject);
+
         name = jsonObject.getString(APIKeys.Account.NAME);
-        login = jsonObject.getString(APIKeys.Account.LOGIN);
+        if(jsonObject.has(APIKeys.Account.LOGIN)) {
+            // TODO: Remove this block
+            login = jsonObject.getString(APIKeys.Account.LOGIN);
+        }
         if(jsonObject.has(APIKeys.Account.EMAIL))
         {
             email = jsonObject.getString(APIKeys.Account.EMAIL);
         }
         isBlocked = jsonObject.getBoolean(APIKeys.Account.IS_BLOCKED);
-        isConfirmed = jsonObject.getBoolean(APIKeys.Account.IS_CONFIRMED);
+        id = jsonObject.getString(APIKeys.Account.ID);
+
+        if(jsonObject.has(APIKeys.Account.IS_CONFIRMED))
+        {
+            isConfirmed = jsonObject.getBoolean(APIKeys.Account.IS_CONFIRMED);
+        }
+        else
+        {
+            isConfirmed = true;
+        }
+
 
         if(jsonObject.has(APIKeys.Account.ADDITIONAL_INFO))
         {
@@ -43,6 +58,11 @@ public class Account extends Model {
 
     public boolean isConfirmed() {
         return isConfirmed;
+    }
+
+
+    public String getId() {
+        return id;
     }
 
     public boolean isBlocked() {
