@@ -25,11 +25,11 @@ public class UserAccountTable extends Table {
        return hasUniqueValue(APIKeys.Account.TOKEN);
     }
 
-    public String getDeviceId() throws SQLException, NotCachedException {
+    public String getDeviceId() throws NotCachedException {
         String token = null;
         try {
             token = getUniqueString(APIKeys.Account.DEVICE_ID);
-        } catch (OneRowOperationException e) {
+        } catch (OneRowOperationException | SQLException e) {
             e.printStackTrace();
         }
         if(token == null)
@@ -39,22 +39,26 @@ public class UserAccountTable extends Table {
         return token;
     }
 
-    public void setDeviceId(String token) throws SQLException, OneRowOperationException {
-        if(getRowsCount() > 0)
-        {
-            updateValues(APIKeys.Account.DEVICE_ID, token);
-        }
-        else
-        {
-            putValue(APIKeys.Account.DEVICE_ID, token);
+    public void setDeviceId(String token) {
+        try {
+            if(getRowsCount() > 0)
+            {
+                updateValues(APIKeys.Account.DEVICE_ID, token);
+            }
+            else
+            {
+                putValue(APIKeys.Account.DEVICE_ID, token);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
-    public String getId() throws SQLException, NotCachedException {
+    public String getId() throws NotCachedException {
         String token = null;
         try {
             token = getUniqueString(APIKeys.Account.ID);
-        } catch (OneRowOperationException e) {
+        } catch (OneRowOperationException | SQLException e) {
             e.printStackTrace();
         }
         if(token == null)
@@ -64,22 +68,26 @@ public class UserAccountTable extends Table {
         return token;
     }
 
-    public void setId(String id) throws SQLException, OneRowOperationException {
-        if(getRowsCount() > 0)
-        {
-            updateValues(APIKeys.Account.ID, id);
-        }
-        else
-        {
-            putValue(APIKeys.Account.ID, id);
+    public void setId(String id) {
+        try {
+            if(getRowsCount() > 0)
+            {
+                updateValues(APIKeys.Account.ID, id);
+            }
+            else
+            {
+                putValue(APIKeys.Account.ID, id);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
-    public String getToken() throws SQLException, NotCachedException {
+    public String getToken() throws NotCachedException {
         String token = null;
         try {
             token = getUniqueString(APIKeys.Account.TOKEN);
-        } catch (OneRowOperationException e) {
+        } catch (OneRowOperationException | SQLException e) {
             e.printStackTrace();
         }
         if(token == null)
@@ -89,46 +97,50 @@ public class UserAccountTable extends Table {
         return token;
     }
 
-    public void setToken(String token) throws SQLException, OneRowOperationException {
-        if(getRowsCount() > 0)
-        {
-            updateValues(APIKeys.Account.TOKEN, token);
-        }
-        else
-        {
-            putValue(APIKeys.Account.TOKEN, token);
+    public void setToken(String token) {
+        try {
+            if(getRowsCount() > 0)
+            {
+                updateValues(APIKeys.Account.TOKEN, token);
+            }
+            else
+            {
+                putValue(APIKeys.Account.TOKEN, token);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
-    public String getBio() throws SQLException, NotCachedException {
+    public String getBio() throws NotCachedException {
         return getValue(APIKeys.Account.BIO);
     }
 
-    public String getLogin() throws SQLException, NotCachedException {
+    public String getLogin() throws NotCachedException {
         return getValue(APIKeys.Account.LOGIN);
     }
 
-    public String getStatus() throws SQLException, NotCachedException {
+    public String getStatus() throws  NotCachedException {
         return getValue(APIKeys.Account.STATUS);
     }
 
-    public void setStatus(String value) throws SQLException {
+    public void setStatus(String value)  {
          setValue(APIKeys.Account.STATUS, value);
     }
 
-    public void setBio(String value) throws SQLException {
+    public void setBio(String value)  {
         setValue(APIKeys.Account.BIO, value);
     }
 
-    public void setLogin(String value) throws SQLException {
+    public void setLogin(String value) {
         setValue(APIKeys.Account.LOGIN, value);
     }
 
-    public String getName() throws SQLException, NotCachedException {
+    public String getName() throws  NotCachedException {
         return getValue(APIKeys.Account.NAME);
     }
 
-    public void setName(String value) throws SQLException {
+    public void setName(String value)  {
         setValue(APIKeys.Account.NAME, value);
     }
 
@@ -136,15 +148,15 @@ public class UserAccountTable extends Table {
         return getValue(APIKeys.Account.SESSION_ID);
     }
 
-    public void setSessionId(String value) throws SQLException {
+    public void setSessionId(String value)  {
         setValue(APIKeys.Account.SESSION_ID, value);
     }
 
-    private String getValue(String valueName) throws SQLException, NotCachedException {
+    private String getValue(String valueName) throws  NotCachedException {
         String value = null;
         try {
             value = getUniqueString(valueName);
-        } catch (OneRowOperationException e) {
+        } catch (OneRowOperationException | SQLException e) {
             e.printStackTrace();
         }
         if(value == null)
@@ -154,14 +166,18 @@ public class UserAccountTable extends Table {
         return value;
     }
 
-    private void setValue(String valueName, String value) throws SQLException {
-        if(getRowsCount() > 0)
-        {
-            updateValues(valueName, value);
-        }
-        else
-        {
-            putValue(valueName, value);
+    private void setValue(String valueName, String value)  {
+        try {
+            if(getRowsCount() > 0)
+            {
+                updateValues(valueName, value);
+            }
+            else
+            {
+                putValue(valueName, value);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 

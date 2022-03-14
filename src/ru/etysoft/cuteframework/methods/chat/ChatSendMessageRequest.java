@@ -19,7 +19,7 @@ public class ChatSendMessageRequest extends RequestHolder
 
     public ChatSendMessageRequest(String chatId, String text) throws UnsupportedEncodingException {
         super(APIMethods.Chat.SEND_MESSAGE);
-        setParams(Pair.make(APIKeys.Message.TEXT, URLEncoder.encode(text, "UTF-8")),
+        setParams(Pair.make(APIKeys.Message.TEXT,text),
                 Pair.make(APIKeys.Chat.CHAT_ID, chatId));
     }
 

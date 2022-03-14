@@ -1,5 +1,6 @@
 package ru.etysoft.cuteframework.storage.tables;
 
+import ru.etysoft.cuteframework.Logger;
 import ru.etysoft.cuteframework.models.Chat;
 import ru.etysoft.cuteframework.models.ChatSnippet;
 import ru.etysoft.cuteframework.storage.Cache;
@@ -56,9 +57,10 @@ public class ChatSnippetsTable extends Table {
     public ChatSnippet getChatSnippet(String id) {
         try {
             String request = "SELECT * FROM " + CHATS_TABLE_NAME + " WHERE id = '" + id + "';";
+            Logger.logDebug("Getting chat " + id);
             ResultSet resultSet = Cache.getStatement().executeQuery(request);
             if(!resultSet.isClosed()) {
-                id = resultSet.getString("id");
+                resultSet.next();
                 String name = resultSet.getString("name");
                 String type = resultSet.getString("type");
                 boolean isBlocked = resultSet.getBoolean("isBlocked");
@@ -82,6 +84,7 @@ public class ChatSnippetsTable extends Table {
         try {
             String request = "DELETE FROM " + CHATS_TABLE_NAME + " WHERE id = '" + id + "';";
             Cache.getStatement().execute(request);
+            Logger.logDebug("Deleting " + id + " " + getRowsCount());
 
 
         } catch (Exception e) {
@@ -94,7 +97,7 @@ public class ChatSnippetsTable extends Table {
     public void addChat(ChatSnippet chat) throws SQLException {
         if (getChatSnippet(chat.getId()) != null) deleteChatSnippet(chat.getId());
         String request = "INSERT INTO '" + CHATS_TABLE_NAME + "' VALUES ('" + chat.getId() + "', '" +
-                chat.getName() + "', " + chat.isBlocked() + ", '" + chat.getType() + "'); ";
+                chat.getName() + "', " + (chat.isBlocked() ? 1 : 0) + ", '" + chat.getType() + "'); ";
         Cache.getStatement().execute(request);
     }
 }

@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 
+import ru.etysoft.cuteframework.exceptions.NotCachedException;
 import ru.etysoft.cuteframework.methods.account.GetAccountRequest;
 import ru.etysoft.cuteframework.methods.account.LoginRequest;
 import ru.etysoft.cuteframework.methods.account.RegisterDeviceRequest;
@@ -17,6 +18,7 @@ import ru.etysoft.cuteframework.models.Chat;
 import ru.etysoft.cuteframework.models.ChatSnippet;
 import ru.etysoft.cuteframework.storage.Cache;
 
+import java.sql.SQLException;
 import java.util.HashMap;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -140,6 +142,37 @@ public class CuteFrameworkTest {
         {
             ChatGetListRequest.ChatGetListResponse getListResponse = new ChatGetListRequest().execute();
             Assert.assertTrue(getListResponse.getChatSnippets().size() > 0);
+
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            Assert.fail();
+        }
+    }
+
+    @Test
+    public void stressSql()
+    {
+        try
+        {
+            int i = 0;
+            while (i < 100000)
+            {
+                try {
+
+                    Cache.getUserAccount().getToken();
+                    Cache.getUserAccount().getLogin();
+                    Cache.getUserAccount().getAllRows();
+                } catch (NotCachedException | SQLException e) {
+                    e.printStackTrace();
+                }
+
+                i++;
+
+            }
+            Assert.assertTrue(true);
+
 
         }
         catch (Exception e)

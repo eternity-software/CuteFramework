@@ -53,6 +53,7 @@ public abstract class Table {
         {
             i++;
         }
+        resultSet.close();
         return i;
     }
 
@@ -69,6 +70,7 @@ public abstract class Table {
             value = resultSet.getString(key);
             i++;
         }
+        resultSet.close();
         return value;
     }
 

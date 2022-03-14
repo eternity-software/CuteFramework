@@ -23,7 +23,7 @@ public class ChatCreateRequest extends RequestHolder {
         super(APIMethods.Chat.CREATE);
 
         setParams(Pair.make(APIKeys.Chat.TYPE, type),
-                Pair.make(APIKeys.Chat.NAME, URLEncoder.encode(name, "UTF-8")),
+                Pair.make(APIKeys.Chat.NAME, name),
                 Pair.make(APIKeys.Chat.DESCRIPTION, description));
     }
 

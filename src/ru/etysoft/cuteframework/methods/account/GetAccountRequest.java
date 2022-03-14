@@ -49,7 +49,7 @@ public class GetAccountRequest extends RequestHolder {
         public void onSuccess() {
             account = new Account(getJsonResponse().getJSONObject(APIKeys.Response.DATA).getJSONObject(APIKeys.Account.ACCOUNT));
 
-            try {
+
                 Cache.getUserAccount().setLogin(account.getLogin());
 
                 Cache.getUserAccount().setName(account.getName());
@@ -60,9 +60,7 @@ public class GetAccountRequest extends RequestHolder {
                 } catch (Exception ignored) {
 
                 }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+
 
 
         }
