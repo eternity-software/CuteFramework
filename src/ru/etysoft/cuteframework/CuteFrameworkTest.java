@@ -1,6 +1,8 @@
 package ru.etysoft.cuteframework;
 
 
+import org.apache.commons.io.FileUtils;
+import org.json.JSONObject;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -18,6 +20,11 @@ import ru.etysoft.cuteframework.models.Chat;
 import ru.etysoft.cuteframework.models.ChatSnippet;
 import ru.etysoft.cuteframework.storage.Cache;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;
 import java.util.HashMap;
 
@@ -134,6 +141,18 @@ public class CuteFrameworkTest {
         }
     }
 
+    private static void saveStringToFile(String string) {
+        try (PrintWriter out = new PrintWriter("data.json")) {
+            out.println(string);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static String readFile() throws IOException {
+        File file = new File("data.json");
+        return FileUtils.readFileToString(file, StandardCharsets.UTF_8);
+    }
 
     @Test
     public void getChatList()

@@ -55,7 +55,8 @@ public class APIKeys {
         public static final String TOKEN = "token";
         public static final String EXPIRES_IN = "expiresIn";
         public static final String SESSION_ID = "sessionId";
-        public static final String PERMISSION_GROUP = "group";
+        public static final String GROUP = "group";
+        public static final String PERMISSIONS_GROUP = "permissionsGroup";
     }
 
     public static class Chat

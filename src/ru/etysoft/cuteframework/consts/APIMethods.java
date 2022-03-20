@@ -34,6 +34,11 @@ public class APIMethods {
         public static final String ADD_MEMBER  = CHAT_PREFIX + "addMember";
         public static final String BAN_MEMBER  = CHAT_PREFIX + "banMember";
         public static final String UNBAN_MEMBER  = CHAT_PREFIX + "unbanMember";
+        public static final String CLEAR_HISTORY  = CHAT_PREFIX + "clearHistory";
+        public static final String EDIT_MESSAGE  = CHAT_PREFIX + "editMessage";
+        public static final String EDIT  = CHAT_PREFIX + "edit";
+        public static final String LEAVE  = CHAT_PREFIX + "leave";
+        public static final String GET_MEMBERS  = CHAT_PREFIX + "getMembers";
     }
 
 }

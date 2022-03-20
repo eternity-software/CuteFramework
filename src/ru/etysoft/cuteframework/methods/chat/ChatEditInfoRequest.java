@@ -11,12 +11,12 @@ import ru.etysoft.cuteframework.requests.RequestHolder;
 
 import java.sql.SQLException;
 
-public class ChatSetPermissionGroup extends RequestHolder {
-    public ChatSetPermissionGroup(String chatId, String accountId, String group) {
-        super(APIMethods.Chat.SET_PERMISSION_GROUP);
-        setParams(Pair.make(APIKeys.Account.ACCOUNT_ID, accountId),
+public class ChatEditInfoRequest extends RequestHolder {
+    public ChatEditInfoRequest(String chatId, String name, String description) {
+        super(APIMethods.Chat.EDIT);
+        setParams(Pair.make(APIKeys.Chat.NAME, name),
                 Pair.make(APIKeys.Chat.CHAT_ID, chatId),
-                Pair.make(APIKeys.Account.GROUP, group));
+                Pair.make(APIKeys.Chat.DESCRIPTION, description));
     }
 
     public BlankResponse execute() throws ResponseException, SQLException, NotCachedException {
