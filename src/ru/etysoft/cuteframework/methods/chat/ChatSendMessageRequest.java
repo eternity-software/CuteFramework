@@ -5,6 +5,7 @@ import ru.etysoft.cuteframework.consts.APIKeys;
 import ru.etysoft.cuteframework.consts.APIMethods;
 import ru.etysoft.cuteframework.exceptions.NoSuchValueException;
 import ru.etysoft.cuteframework.exceptions.NotCachedException;
+import ru.etysoft.cuteframework.models.messages.Message;
 import ru.etysoft.cuteframework.requests.Pair;
 import ru.etysoft.cuteframework.requests.Request;
 import ru.etysoft.cuteframework.requests.RequestHolder;
@@ -31,7 +32,7 @@ public class ChatSendMessageRequest extends RequestHolder
     public static class ChatSendMessageResponse extends Response
     {
 
-        private String messageId;
+        private Message message;
 
         public ChatSendMessageResponse(String jsonResponse, String url) throws JSONException {
             super(jsonResponse, url);
@@ -39,12 +40,12 @@ public class ChatSendMessageRequest extends RequestHolder
 
         @Override
         public void onSuccess() {
-            messageId = getJsonResponse().getJSONObject(APIKeys.Response.DATA).getString(APIKeys.Message.MESSAGE_ID);
+            message = new Message(getJsonResponse().getJSONObject(APIKeys.Response.DATA));
         }
 
-        public String getMessageId() throws NoSuchValueException {
-            checkNotNull(messageId);
-            return messageId;
+        public Message getMessage() throws NoSuchValueException {
+            checkNotNull(message);
+            return message;
         }
     }
 }

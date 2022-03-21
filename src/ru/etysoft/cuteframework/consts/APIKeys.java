@@ -69,6 +69,7 @@ public class APIKeys {
         public static final String ID = "id";
         public static final String CHATS = "chats";
         public static final String MESSAGE = "message";
+        public static final String MEMBERS = "members";
         public static final String MEMBERS_COUNT = "membersCount";
         public static final String LAST_CHAT_ID = "lastChatId";
         public static final String LAST_MESSAGE_ID = "lastMessageId";
