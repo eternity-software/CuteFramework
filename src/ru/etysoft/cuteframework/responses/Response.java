@@ -33,14 +33,14 @@ public abstract class Response {
     }
 
     /**
-     * Checking "type" string in JSONResponse
+     * Success check
      *
-     * @return Returns a boolean (if "type" equals "success")
+     * @return Returns a boolean
      */
     public boolean isSuccess()  {
         try
         {
-            return jsonResponse.getString(APIKeys.Response.TYPE).equals("success");
+            return !jsonResponse.has(APIKeys.Response.ERROR);
         }
        catch (JSONException e)
        {

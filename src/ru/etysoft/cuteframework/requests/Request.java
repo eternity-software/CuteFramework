@@ -19,6 +19,7 @@ import ru.etysoft.cuteframework.storage.Cache;
  * Making a server-request
  * @author Mikahil Karlov
  */
+@Deprecated
 public class Request {
 
     private String method;
@@ -94,16 +95,19 @@ public class Request {
         return executeAPI(new HashMap<>());
     }
 
+    @Deprecated
     public String executeAPIPOST()  {
         return executeAPIPOST(new HashMap<>());
     }
 
+    @Deprecated
     public String executeAPI(HashMap<String, String> headers) throws ResponseException {
         String response = GET.execute(getFormattedURL(), headers);
         Logger.logResponse(response, method);
         return response;
     }
 
+    @Deprecated
     public String executeAPIPOST(HashMap<String, String> headers)  {
 
         HashMap<String, Object> paramsMap = new HashMap<>();
@@ -112,9 +116,9 @@ public class Request {
             paramsMap.put(pair.getKey(), pair.getValue());
         }
 
-        String response = POST.execute(getFormattedURL(), paramsMap, method, headers);
-        Logger.logResponse(response, method);
-        return response;
+      //  String response = POST.execute(getFormattedURL(), paramsMap, method, headers, null);
+      ///  Logger.logResponse(response, method);
+        return "";
     }
 
     public String execute() throws ResponseException {

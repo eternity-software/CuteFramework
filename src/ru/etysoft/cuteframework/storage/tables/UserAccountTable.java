@@ -5,7 +5,7 @@ import ru.etysoft.cuteframework.consts.APIKeys;
 import ru.etysoft.cuteframework.exceptions.NotCachedException;
 import ru.etysoft.cuteframework.exceptions.OneRowOperationException;
 import ru.etysoft.cuteframework.storage.Cache;
-import java.sql.ResultSet;
+
 import java.sql.SQLException;
 
 public class UserAccountTable extends Table {
@@ -18,7 +18,7 @@ public class UserAccountTable extends Table {
     }
 
     public boolean hasDeviceId() {
-        return hasUniqueValue(APIKeys.Account.DEVICE_ID);
+        return hasUniqueValue(APIKeys.Account.DEVICE);
     }
 
     public boolean hasToken()  {
@@ -28,13 +28,13 @@ public class UserAccountTable extends Table {
     public String getDeviceId() throws NotCachedException {
         String token = null;
         try {
-            token = getUniqueString(APIKeys.Account.DEVICE_ID);
+            token = getUniqueString(APIKeys.Account.DEVICE);
         } catch (OneRowOperationException | SQLException e) {
             e.printStackTrace();
         }
         if(token == null)
         {
-            throw new NotCachedException(APIKeys.Account.DEVICE_ID);
+            throw new NotCachedException(APIKeys.Account.DEVICE);
         }
         return token;
     }
@@ -43,11 +43,11 @@ public class UserAccountTable extends Table {
         try {
             if(getRowsCount() > 0)
             {
-                updateValues(APIKeys.Account.DEVICE_ID, token);
+                updateValues(APIKeys.Account.DEVICE, token);
             }
             else
             {
-                putValue(APIKeys.Account.DEVICE_ID, token);
+                putValue(APIKeys.Account.DEVICE, token);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -97,15 +97,30 @@ public class UserAccountTable extends Table {
         return token;
     }
 
-    public void setToken(String token) {
+    public void setAccessToken(String token) {
         try {
             if(getRowsCount() > 0)
             {
-                updateValues(APIKeys.Account.TOKEN, token);
+                updateValues(APIKeys.Token.ACCESS, token);
             }
             else
             {
-                putValue(APIKeys.Account.TOKEN, token);
+                putValue(APIKeys.Token.ACCESS, token);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void setRefreshToken(String token) {
+        try {
+            if(getRowsCount() > 0)
+            {
+                updateValues(APIKeys.Token.REFRESH, token);
+            }
+            else
+            {
+                putValue(APIKeys.Token.REFRESH, token);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -122,6 +137,14 @@ public class UserAccountTable extends Table {
 
     public String getStatus() throws  NotCachedException {
         return getValue(APIKeys.Account.STATUS);
+    }
+
+    public String getAccessToken() throws  NotCachedException {
+        return getValue(APIKeys.Token.ACCESS);
+    }
+
+    public String getRefreshToken() throws  NotCachedException {
+        return getValue(APIKeys.Token.REFRESH);
     }
 
     public void setStatus(String value)  {

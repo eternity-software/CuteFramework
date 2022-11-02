@@ -17,13 +17,22 @@ import java.util.Set;
 public class POST {
 
     private static final MediaType MEDIA_TYPE_PNG = MediaType.parse("image/png");
+    private static final MediaType MEDIA_TYPE_JSON = MediaType.parse("application/json; charset=utf-8");
 
-    public static String execute(String url, final HashMap<String, Object> params,
-                                 final String methodName, HashMap<String, String> headers) {
+    public static String execute( RequestHolder requestHolder) {
 
 
         try {
-            url += "?v=" + CuteFramework.API_VERSION;
+
+            String methodName = requestHolder.getMethod();
+            String body = requestHolder.getBody();
+
+            String url = requestHolder.getUrl();
+
+            HashMap<String, Object> headers = requestHolder.getHeaders();
+
+
+
             String debugInfo = methodName + "<< POST\n> Request params";
 
             String result;
@@ -32,42 +41,36 @@ public class POST {
                     .setType(MultipartBody.FORM);
 
 
+            System.out.println(body);
+            // requestBodyBuilder.addPart();
 
-            Set<String> keys = params.keySet();
-            int imageIndex = 1;
-            for (String key : keys) {
-                Object data = params.get(key);
-                if (data instanceof String) {
-                    requestBodyBuilder.addFormDataPart(key, (String) data);
-                    debugInfo = debugInfo + "\n" + key + ": " + data;
-                } else if (data instanceof ImageFile) {
-                    requestBodyBuilder.addFormDataPart(key, "image" + imageIndex + ".png",
-                            RequestBody.create(MEDIA_TYPE_PNG, (ImageFile) data));
-                    imageIndex++;
-                    debugInfo = debugInfo + "\n" + key + ": " + ((ImageFile) data).getAbsolutePath();
-                }
 
-            }
+
 
 
              Request.Builder builder = new Request.Builder()
                     .url(url)
-                    .post(requestBodyBuilder.build());
+                    .post(RequestBody.create( body, MEDIA_TYPE_JSON));
 
             for(String key : headers.keySet())
             {
-                String value = headers.get(key);
-                builder.addHeader(key, value);
-                Logger.logDebug("Added header " + key + ": " + value);
+                if(headers.get(key) instanceof String)
+                {
+                    String value = (String) headers.get(key);
+                    builder.addHeader(key, value);
+
+                }
             }
 
             Request request = builder.build();
+
             System.out.println(debugInfo);
             try (Response response = client.newCall(request).execute()) {
                 if (!response.isSuccessful())
-                    throw new IOException("Unexpected code " + response);
+                   System.out.println("Unexpected code " + response.body().string());
                 result = response.body().string();
             }
+            System.out.println(result);
             return result;
         } catch (final Exception e) {
             e.printStackTrace();

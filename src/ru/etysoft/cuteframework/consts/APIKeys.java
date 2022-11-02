@@ -6,15 +6,25 @@ public class APIKeys {
     {
         public static final String VERSION = "Version";
         public static final String TOKEN = "Token";
+        public static final String BEARER = "Bearer";
     }
 
     public static class Response
     {
-        public static final String DATA = "data";
+        public static final String ERROR = "error";
         public static final String TYPE = "type";
 
     }
 
+    public static class Token
+    {
+        public static final String REFRESH = "refreshToken";
+        public static final String ACCESS = "accessToken";
+
+        public static final String DEVICE = "device";
+    }
+
+    @Deprecated
     public static class Session
     {
         public static final String IS_ACTIVE = "isActive";
@@ -27,7 +37,10 @@ public class APIKeys {
     {
         public static final String NAME = "name";
         public static final String TYPE = "type";
-        public static final String ADDRESS = "ip";
+        public static final String ADDRESS = "macAddress";
+
+
+
         public static final String IS_BLOCKED = "isBlocked";
         public static final String ID = "id";
 
@@ -35,7 +48,7 @@ public class APIKeys {
 
     public static class Account
     {
-        public static final String DEVICE_ID = "deviceId";
+        public static final String DEVICE = "deviceId";
         public static final String ACCOUNT = "account";
         public static final String LOGIN = "login";
         public static final String PASSWORD = "password";
@@ -73,6 +86,19 @@ public class APIKeys {
         public static final String MEMBERS_COUNT = "membersCount";
         public static final String LAST_CHAT_ID = "lastChatId";
         public static final String LAST_MESSAGE_ID = "lastMessageId";
+
+    }
+
+    public static class Music
+    {
+        public static final String COVER = "cover";
+        public static final String ARTIST = "artist";
+        public static final String PATH = "path";
+        public static final String NAME = "name";
+        public static final String ID = "id";
+        public static final String TRACK_ID = "trackId";
+        public static final String QUERY = "query";
+        public static final String RESULT = "result";
 
     }
 

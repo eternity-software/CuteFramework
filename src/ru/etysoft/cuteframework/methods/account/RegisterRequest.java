@@ -4,25 +4,25 @@ import ru.etysoft.cuteframework.consts.APIKeys;
 import ru.etysoft.cuteframework.consts.APIMethods;
 import ru.etysoft.cuteframework.exceptions.NotCachedException;
 import ru.etysoft.cuteframework.exceptions.ResponseException;
+import ru.etysoft.cuteframework.models.Device;
+import ru.etysoft.cuteframework.requests.POST;
 import ru.etysoft.cuteframework.requests.Pair;
-import ru.etysoft.cuteframework.requests.Request;
 import ru.etysoft.cuteframework.requests.RequestHolder;
-import ru.etysoft.cuteframework.storage.Cache;
 
 import java.sql.SQLException;
 
 public class RegisterRequest extends RequestHolder {
-    public RegisterRequest(String login, String email, String password) throws SQLException, NotCachedException {
-        super(APIMethods.Account.REGISTER);
-        setParams(Pair.make(APIKeys.Account.LOGIN, login),
+    public RegisterRequest(String login, String password, String email, Device device) throws SQLException, NotCachedException {
+        super(APIMethods.Authorization.SIGN_UP);
+        addBody(Pair.make(APIKeys.Account.LOGIN, login),
                 Pair.make(APIKeys.Account.EMAIL, email),
-                Pair.make(APIKeys.Account.DEVICE_ID, Cache.getUserAccount().getDeviceId()),
+                Pair.make(APIKeys.Token.DEVICE, device.getJsonModel()),
                 Pair.make(APIKeys.Account.PASSWORD, password));
 
     }
 
-    public LoginRequest.LoginResponse execute() throws ResponseException {
-        Request request = makeRequest();
-        return new LoginRequest.LoginResponse(request.executeAPIPOST(), request.getFormattedURL());
+    public SignInRequest.Response execute() throws ResponseException {
+
+        return new SignInRequest.Response(POST.execute(this), getUrl());
     }
 }

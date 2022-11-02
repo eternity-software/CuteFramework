@@ -2,7 +2,6 @@ package ru.etysoft.cuteframework;
 
 
 import org.apache.commons.io.FileUtils;
-import org.json.JSONObject;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -10,14 +9,13 @@ import org.junit.runners.MethodSorters;
 
 
 import ru.etysoft.cuteframework.exceptions.NotCachedException;
-import ru.etysoft.cuteframework.methods.account.GetAccountRequest;
-import ru.etysoft.cuteframework.methods.account.LoginRequest;
-import ru.etysoft.cuteframework.methods.account.RegisterDeviceRequest;
-import ru.etysoft.cuteframework.methods.chat.ChatCreateRequest;
-import ru.etysoft.cuteframework.methods.chat.ChatGetInfoRequest;
-import ru.etysoft.cuteframework.methods.chat.ChatGetListRequest;
+
+import ru.etysoft.cuteframework.methods.account.RegisterRequest;
+import ru.etysoft.cuteframework.methods.account.SignInRequest;
+
 import ru.etysoft.cuteframework.models.Chat;
 import ru.etysoft.cuteframework.models.ChatSnippet;
+import ru.etysoft.cuteframework.models.Device;
 import ru.etysoft.cuteframework.storage.Cache;
 
 import java.io.File;
@@ -33,7 +31,38 @@ public class CuteFrameworkTest {
 
 
     @Test
-    public void aloginTest() {
+    public void registerTest() {
+
+        CuteFramework.initialize();
+        String deviceIdB = null;
+
+
+        try {
+
+
+
+            SignInRequest.Response response = new RegisterRequest("karlov", "123456", "jopa@etysoft.ru", new Device("testDevice", "mobile", "testAddress")).execute();
+
+            if(!response.isSuccess())
+            {
+                Assert.fail();
+            }
+
+            System.out.println("access token: " + response.getAccessToken());
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+
+
+
+
+    }
+
+    @Test
+    public void loginTest() {
 
         CuteFramework.initialize();
         String deviceIdB = null;
@@ -47,131 +76,28 @@ public class CuteFrameworkTest {
 
         try {
 
-            RegisterDeviceRequest.RegisterDeviceResponse registerDeviceResponse =
-                    new RegisterDeviceRequest("test device", "mobile").execute();
-
-            LoginRequest.LoginResponse loginResponse = new LoginRequest("karlov", "123456").execute();
 
 
-        } catch (Exception e) {
-            e.printStackTrace();
-            Assert.fail();
-        }
+            SignInRequest.Response response = new SignInRequest("karlov", "123456",  new Device("testDevice", "mobile", "testAddress")).execute();
 
-
-        try {
-            String token = Cache.getUserAccount().getToken();
-            String deviceId = Cache.getUserAccount().getDeviceId();
-
-            System.out.println("ACCOUNT TEST: \n   token=" + token + "\n   deviceId=" + deviceId);
-
-            Assert.assertTrue((token != null && deviceId != null));
-        } catch (Exception e) {
-            e.printStackTrace();
-            Assert.fail();
-        }
-
-
-    }
-
-    @Test
-    public void chatTest() {
-
-
-        try {
-            int createdChatsCount = 1000;
-            for(int i = 0; i < createdChatsCount; i++) {
-                ChatCreateRequest.ChatCreateResponse getAccountResponse = new ChatCreateRequest("conversation", "ddd", "sadasdasdsadas").execute();
-
-
-                ChatGetInfoRequest.ChatGetInfoResponse getChatResponse = new ChatGetInfoRequest(getAccountResponse.getChatId()).execute();
-
-            }
-            Assert.assertTrue(true);
-        } catch (Exception e) {
-            e.printStackTrace();
-            Assert.fail();
-
-        }
-    }
-
-    @Test
-    public void chatListTest() {
-
-        try {
-            ChatGetListRequest.ChatGetListResponse getListResponse = new ChatGetListRequest().execute();
-
-            Assert.assertTrue(true);
-        } catch (Exception e) {
-            e.printStackTrace();
-            Assert.fail();
-
-        }
-    }
-
-    @Test
-    public void chatTestCache() {
-
-        try {
-            //Cache.getChatSnippetsTable().clean();
-
-            ChatSnippet testChat = new ChatSnippet("dd", "ddd", "ddd", false);
-
-            int testChatsCount = 0;
-            long millisStartCreation = System.currentTimeMillis();
-            for(int i = 0; i < testChatsCount; i++)
+            if(!response.isSuccess())
             {
-
-                Cache.getChatSnippetsTable().addChat(testChat);
+                Assert.fail();
             }
-            long millisCreation = System.currentTimeMillis() - millisStartCreation;
 
-            Logger.logDebug("Test chat set created in " + millisCreation + "ms (" + testChatsCount + " chats)");
+            System.out.println("access token: " + response.getAccessToken());
 
-            long millisStartGetting = System.currentTimeMillis();
 
-            HashMap<String, Chat> chats = Cache.getChatSnippetsTable().getAllChats();
-
-            long millisGetting = System.currentTimeMillis() - millisStartGetting;
-
-            Logger.logDebug("Getting all chats  (" + chats.size() + ") took " + millisGetting + "ms");
-
-            Assert.assertTrue(true);
         } catch (Exception e) {
             e.printStackTrace();
-            Assert.fail();
 
         }
+
+
+
+
     }
 
-    private static void saveStringToFile(String string) {
-        try (PrintWriter out = new PrintWriter("data.json")) {
-            out.println(string);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private static String readFile() throws IOException {
-        File file = new File("data.json");
-        return FileUtils.readFileToString(file, StandardCharsets.UTF_8);
-    }
-
-    @Test
-    public void getChatList()
-    {
-        try
-        {
-            ChatGetListRequest.ChatGetListResponse getListResponse = new ChatGetListRequest().execute();
-            Assert.assertTrue(getListResponse.getChatSnippets().size() > 0);
-
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-            Assert.fail();
-        }
-    }
 
     @Test
     public void stressSql()
@@ -204,17 +130,7 @@ public class CuteFrameworkTest {
         }
     }
 
-    @Test
-    public void getAccountTest() {
-        try {
-            GetAccountRequest.GetAccountResponse getAccountResponse = new GetAccountRequest().execute();
-            Assert.assertTrue(getAccountResponse.getAccount().getEmail().contains("@"));
-        } catch (Exception e) {
-            e.printStackTrace();
-            Assert.fail();
 
-        }
-    }
 
 
 }

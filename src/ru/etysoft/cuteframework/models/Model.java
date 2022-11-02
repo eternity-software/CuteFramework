@@ -11,4 +11,11 @@ public abstract class Model {
         this.jsonModel = jsonObject;
     }
 
+    public JSONObject getJsonModel() {
+        return jsonModel;
+    }
+
+    public void setJsonModel(JSONObject jsonModel) {
+        this.jsonModel = jsonModel;
+    }
 }
